@@ -413,10 +413,11 @@ import Layout from '../layouts/Layout.astro';
     let clickCount = 0;
     let clickTimer: ReturnType<typeof setTimeout> | null = null;
     const messages = [
-      '🎬 Action!', '📹 Rolling!', '✂️ Good cut!', '🎥 That\'s a wrap!', '💡 いいアイデア！',
-      '🇵🇭🇯🇵 Hybrid!', '☕ コーヒーブレイク', '🎮 GG!', '🐂 アリスター！', '🥋 ジェイミー！',
-      '(´・ω・｀)', '( ˘ω˘ )ｽﾔｧ', '٩( \'ω\' )و', '🦐 エビじゃないよ', '✨ キラッ',
-      '🦞 ロブちゃん参上！', '🍻 Cheers!', '💖'
+      '🎬 Action!', '📹 Rolling!', '✂️ Good cut!', '🎥 Wrap!', '💡',
+      '🎮 GG!', '🐂 アリスター！', '🥋 ジェイミー！', '🦞', '🍻', '💖', '✨',
+      '(´・ω・｀)', '( ˘ω˘ )', '٩( \'ω\' )و', '🦐 エビじゃないよ',
+      '7/23生まれ ♌️', 'LoLサポ専', 'SF6マスター', '七人の侍派',
+      '100万再生', '映画部顧問8年', 'Rails 5年', '☕ 必須'
     ];
 
     // 四方八方からの曲線パターン
@@ -474,59 +475,46 @@ import Layout from '../layouts/Layout.astro';
 
       document.body.appendChild(toast);
 
-      // 滑らかな曲線で出て、止まって見せて、ふわっと消える
-      const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-      const smooth = (t: number) => t * t * (3 - 2 * t); // smoothstep
-      
-      // 曲線上の点を計算（二次ベジェ曲線）
-      const bezier = (t: number) => {
-        const mt = 1 - t;
-        return {
-          x: mt * mt * path.start.x + 2 * mt * t * path.mid.x + t * t * path.end.x,
-          y: mt * mt * path.start.y + 2 * mt * t * path.mid.y + t * t * path.end.y
-        };
-      };
-      
-      // キーフレームを細かく生成してスムーズに
-      const keyframes: Keyframe[] = [];
-      const curveSteps = 12;
-      
-      for (let i = 0; i <= curveSteps; i++) {
-        const t = i / curveSteps;
-        const pos = bezier(smooth(t));
-        const scale = 0.3 + t * 0.85; // 0.3 → 1.15
-        const opacity = Math.min(1, t * 3);
-        
-        keyframes.push({
-          left: `${pos.x}px`,
-          top: `${pos.y}px`,
-          transform: `translate(-50%, -50%) scale(${scale})`,
-          opacity: opacity,
-          offset: t * 0.35
-        });
-      }
-      
-      // 止まって見せる
-      keyframes.push({
-        left: `${path.end.x}px`,
-        top: `${path.end.y}px`,
-        transform: 'translate(-50%, -50%) scale(1)',
-        opacity: 1,
-        offset: 0.8
-      });
-      
-      // ふわっと消える
-      keyframes.push({
-        left: `${path.end.x}px`,
-        top: `${path.end.y - 25}px`,
-        transform: 'translate(-50%, -50%) scale(0.85)',
-        opacity: 0,
-        offset: 1
-      });
-
-      toast.animate(keyframes, {
-        duration: 3500,
-        easing: 'linear',
+      // スッと出て、止まって見せて、ふわっと消える
+      toast.animate([
+        { 
+          left: `${path.start.x}px`, 
+          top: `${path.start.y}px`, 
+          transform: 'translate(-50%, -50%) scale(0.5)', 
+          opacity: 0,
+          offset: 0
+        },
+        { 
+          left: `${path.end.x}px`, 
+          top: `${path.end.y}px`, 
+          transform: 'translate(-50%, -50%) scale(1.05)', 
+          opacity: 1,
+          offset: 0.15
+        },
+        { 
+          left: `${path.end.x}px`, 
+          top: `${path.end.y}px`, 
+          transform: 'translate(-50%, -50%) scale(1)', 
+          opacity: 1,
+          offset: 0.25
+        },
+        { 
+          left: `${path.end.x}px`, 
+          top: `${path.end.y}px`, 
+          transform: 'translate(-50%, -50%) scale(1)', 
+          opacity: 1,
+          offset: 0.75
+        },
+        { 
+          left: `${path.end.x}px`, 
+          top: `${path.end.y - 15}px`, 
+          transform: 'translate(-50%, -50%) scale(0.9)', 
+          opacity: 0,
+          offset: 1
+        }
+      ], {
+        duration: 2500,
+        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
         fill: 'forwards'
       }).onfinish = () => toast.remove();
     };
