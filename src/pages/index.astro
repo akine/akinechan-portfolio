@@ -419,93 +419,112 @@ import Layout from '../layouts/Layout.astro';
       '🦞 ロブちゃん参上！', '🍻 Cheers!', '💖'
     ];
 
+    // 四方八方からの曲線パターン
+    const getRandomPath = (rect: DOMRect) => {
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const r = rect.width / 2;
+      
+      const patterns = [
+        // 右上へ「ノ」
+        { start: { x: cx + r * 0.5, y: cy }, mid: { x: cx + r + 60, y: cy - 20 }, end: { x: cx + r + 40, y: cy - r - 40 } },
+        // 左上へ逆「ノ」
+        { start: { x: cx - r * 0.5, y: cy }, mid: { x: cx - r - 60, y: cy - 20 }, end: { x: cx - r - 40, y: cy - r - 40 } },
+        // 右下へ
+        { start: { x: cx + r * 0.5, y: cy }, mid: { x: cx + r + 60, y: cy + 20 }, end: { x: cx + r + 50, y: cy + r + 30 } },
+        // 左下へ
+        { start: { x: cx - r * 0.5, y: cy }, mid: { x: cx - r - 60, y: cy + 20 }, end: { x: cx - r - 50, y: cy + r + 30 } },
+        // 真上へ
+        { start: { x: cx, y: cy - r * 0.5 }, mid: { x: cx + 30, y: cy - r - 30 }, end: { x: cx, y: cy - r - 60 } },
+        // 真上へ（逆カーブ）
+        { start: { x: cx, y: cy - r * 0.5 }, mid: { x: cx - 30, y: cy - r - 30 }, end: { x: cx, y: cy - r - 60 } },
+        // 右へ
+        { start: { x: cx + r * 0.5, y: cy }, mid: { x: cx + r + 40, y: cy - 30 }, end: { x: cx + r + 80, y: cy } },
+        // 左へ
+        { start: { x: cx - r * 0.5, y: cy }, mid: { x: cx - r - 40, y: cy - 30 }, end: { x: cx - r - 80, y: cy } },
+      ];
+      
+      return patterns[Math.floor(Math.random() * patterns.length)];
+    };
+
+    const spawnEasterEgg = () => {
+      const rect = avatar!.getBoundingClientRect();
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+      const path = getRandomPath(rect);
+      
+      const toast = document.createElement('div');
+      toast.textContent = msg;
+      toast.style.cssText = `
+        position: fixed;
+        left: ${path.start.x}px;
+        top: ${path.start.y}px;
+        transform: translate(-50%, -50%) scale(0);
+        background: white;
+        color: #334155;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-size: 1rem;
+        font-weight: 600;
+        z-index: 40;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border: 2px solid #e2e8f0;
+        white-space: nowrap;
+        pointer-events: none;
+      `;
+
+      document.body.appendChild(toast);
+
+      // 曲線で出て、止まって見せて、ふわっと消える
+      toast.animate([
+        { 
+          left: `${path.start.x}px`, 
+          top: `${path.start.y}px`, 
+          transform: 'translate(-50%, -50%) scale(0)', 
+          opacity: 0 
+        },
+        { 
+          left: `${path.mid.x}px`, 
+          top: `${path.mid.y}px`, 
+          transform: 'translate(-50%, -50%) scale(1.15)', 
+          opacity: 1,
+          offset: 0.25 
+        },
+        { 
+          left: `${path.end.x}px`, 
+          top: `${path.end.y}px`, 
+          transform: 'translate(-50%, -50%) scale(1)', 
+          opacity: 1,
+          offset: 0.4 
+        },
+        { 
+          left: `${path.end.x}px`, 
+          top: `${path.end.y}px`, 
+          transform: 'translate(-50%, -50%) scale(1)', 
+          opacity: 1,
+          offset: 0.8 
+        },
+        { 
+          left: `${path.end.x}px`, 
+          top: `${path.end.y - 20}px`, 
+          transform: 'translate(-50%, -50%) scale(0.9)', 
+          opacity: 0 
+        }
+      ], {
+        duration: 3500,
+        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        fill: 'forwards'
+      }).onfinish = () => toast.remove();
+    };
+
     avatar?.addEventListener('click', () => {
       clickCount++;
       
       if (clickTimer) clearTimeout(clickTimer);
-      clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+      clickTimer = setTimeout(() => { clickCount = 0; }, 1500);
 
-      if (clickCount >= 5) {
-        clickCount = 0;
-        const msg = messages[Math.floor(Math.random() * messages.length)];
-        const rect = avatar.getBoundingClientRect();
-        const avatarRadius = rect.width / 2;
-        
-        // 出現位置: 右か左からランダムに
-        const goRight = Math.random() > 0.5;
-        const startX = goRight ? rect.right - 20 : rect.left + 20;
-        const startY = rect.top + rect.height * 0.3;
-        
-        // 到達位置: 「ノ」の曲線で斜め上に
-        const endX = goRight ? rect.right + 60 : rect.left - 60;
-        const endY = rect.top - 20;
-        
-        // 中間点: 曲線の頂点（横に膨らむ）
-        const midX = goRight ? rect.right + 80 : rect.left - 80;
-        const midY = rect.top + rect.height * 0.2;
-        
-        const toast = document.createElement('div');
-        toast.textContent = msg;
-        toast.style.cssText = `
-          position: fixed;
-          left: ${startX}px;
-          top: ${startY}px;
-          transform: translate(-50%, -50%) scale(0);
-          background: white;
-          color: #334155;
-          padding: 10px 18px;
-          border-radius: 999px;
-          font-size: 1rem;
-          font-weight: 600;
-          z-index: 40;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-          border: 2px solid #e2e8f0;
-          white-space: nowrap;
-          pointer-events: none;
-        `;
-
-        document.body.appendChild(toast);
-
-        // アニメーション: 後ろから「ノ」の曲線で出てきて、止まって見せて、ふわっと消える
-        toast.animate([
-          { 
-            left: `${startX}px`, 
-            top: `${startY}px`, 
-            transform: 'translate(-50%, -50%) scale(0)', 
-            opacity: 0 
-          },
-          { 
-            left: `${midX}px`, 
-            top: `${midY}px`, 
-            transform: 'translate(-50%, -50%) scale(1.1)', 
-            opacity: 1,
-            offset: 0.3 
-          },
-          { 
-            left: `${endX}px`, 
-            top: `${endY}px`, 
-            transform: 'translate(-50%, -50%) scale(1)', 
-            opacity: 1,
-            offset: 0.5 
-          },
-          { 
-            left: `${endX}px`, 
-            top: `${endY}px`, 
-            transform: 'translate(-50%, -50%) scale(1)', 
-            opacity: 1,
-            offset: 0.85 
-          },
-          { 
-            left: `${endX}px`, 
-            top: `${endY - 30}px`, 
-            transform: 'translate(-50%, -50%) scale(0.8)', 
-            opacity: 0 
-          }
-        ], {
-          duration: 3000,
-          easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-          fill: 'forwards'
-        }).onfinish = () => toast.remove();
+      // 5回ごとに発動（5, 10, 15, ...）
+      if (clickCount % 5 === 0) {
+        spawnEasterEgg();
       }
     });
   </script>
