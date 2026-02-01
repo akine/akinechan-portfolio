@@ -447,14 +447,17 @@ import Layout from '../layouts/Layout.astro';
       return patterns[Math.floor(Math.random() * patterns.length)];
     };
 
-    const spawnEasterEgg = (forceMsg?: string) => {
+    const spawnEasterEgg = (forceMsg?: string, targetPos?: {x: number, y: number}) => {
       const rect = avatar!.getBoundingClientRect();
       const msg = forceMsg || messages[Math.floor(Math.random() * messages.length)];
       const path = getRandomPath(rect);
       
+      // ｶﾞｯの場合はぬるぽの位置に被せる
+      const isGatsu = msg === '⊂彡☆))Д´) ｶﾞｯ';
+      const endPos = targetPos || path.end;
+      
       const toast = document.createElement('div');
       toast.textContent = msg;
-      const isGatsu = msg === '⊂彡☆))Д´) ｶﾞｯ';
       toast.style.cssText = `
         position: fixed;
         left: ${path.start.x}px;
@@ -475,9 +478,9 @@ import Layout from '../layouts/Layout.astro';
 
       document.body.appendChild(toast);
       
-      // ぬるぽが出たら自動でｶﾞｯ
+      // ぬるぽが出たら自動でｶﾞｯ（同じ位置に被せる）
       if (msg === '(´∀`) ぬるぽ') {
-        setTimeout(() => spawnEasterEgg('⊂彡☆))Д´) ｶﾞｯ'), 400);
+        setTimeout(() => spawnEasterEgg('⊂彡☆))Д´) ｶﾞｯ', path.end), 400);
       }
 
       // スッと出て、止まって見せて、ふわっと消える
@@ -490,29 +493,29 @@ import Layout from '../layouts/Layout.astro';
           offset: 0
         },
         { 
-          left: `${path.end.x}px`, 
-          top: `${path.end.y}px`, 
+          left: `${endPos.x}px`, 
+          top: `${endPos.y}px`, 
           transform: 'translate(-50%, -50%) scale(1.05)', 
           opacity: 1,
           offset: 0.15
         },
         { 
-          left: `${path.end.x}px`, 
-          top: `${path.end.y}px`, 
+          left: `${endPos.x}px`, 
+          top: `${endPos.y}px`, 
           transform: 'translate(-50%, -50%) scale(1)', 
           opacity: 1,
           offset: 0.25
         },
         { 
-          left: `${path.end.x}px`, 
-          top: `${path.end.y}px`, 
+          left: `${endPos.x}px`, 
+          top: `${endPos.y}px`, 
           transform: 'translate(-50%, -50%) scale(1)', 
           opacity: 1,
           offset: 0.75
         },
         { 
-          left: `${path.end.x}px`, 
-          top: `${path.end.y - 15}px`, 
+          left: `${endPos.x}px`, 
+          top: `${endPos.y - 15}px`, 
           transform: 'translate(-50%, -50%) scale(0.9)', 
           opacity: 0,
           offset: 1
