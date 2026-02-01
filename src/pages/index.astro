@@ -528,11 +528,12 @@ import Layout from '../layouts/Layout.astro';
       clickCount++;
       
       if (clickTimer) clearTimeout(clickTimer);
-      clickTimer = setTimeout(() => { clickCount = 0; }, 1500);
+      clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
 
-      // 5回ごとに発動（5, 10, 15, ...）
+      // 5回ごとに発動（5, 10, 15, ...）- 連打OK、同時に複数出る
       if (clickCount % 5 === 0) {
-        spawnEasterEgg();
+        // 少しランダムな遅延で同時感を出す
+        setTimeout(() => spawnEasterEgg(), Math.random() * 100);
       }
     });
   </script>
