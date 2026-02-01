@@ -478,9 +478,10 @@ import Layout from '../layouts/Layout.astro';
 
       document.body.appendChild(toast);
       
-      // ぬるぽが出たら自動でｶﾞｯ（同じ位置に被せる）
+      // ぬるぽが出たら自動でｶﾞｯ（少しズラして被せる）
       if (msg === '(´∀`) ぬるぽ') {
-        setTimeout(() => spawnEasterEgg('⊂彡☆))Д´) ｶﾞｯ', path.end), 400);
+        const gatsuPos = { x: endPos.x + 15, y: endPos.y - 20 };
+        setTimeout(() => spawnEasterEgg('⊂彡☆))Д´) ｶﾞｯ', gatsuPos), 400);
       }
 
       // スッと出て、止まって見せて、ふわっと消える
