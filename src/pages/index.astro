@@ -1,0 +1,382 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Kojo Akine | Creative Director & Filmmaker">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-slate-800">KA</a>
+      <div class="flex gap-6 items-center">
+        <div class="flex gap-8 text-sm">
+          <a href="#about" class="text-slate-500 hover:text-slate-800 transition" data-en="About" data-ja="概要">About</a>
+          <a href="#skills" class="text-slate-500 hover:text-slate-800 transition" data-en="Skills" data-ja="スキル">Skills</a>
+          <a href="#works" class="text-slate-500 hover:text-slate-800 transition" data-en="Works" data-ja="実績">Works</a>
+          <a href="#contact" class="text-slate-500 hover:text-slate-800 transition" data-en="Contact" data-ja="連絡先">Contact</a>
+        </div>
+        <button id="lang-toggle" class="text-sm bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-full transition">
+          English
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+    <div class="max-w-4xl text-center">
+      <img src="/avatar.jpg" alt="Kojo Akine" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 shadow-lg border-4 border-white object-cover" />
+      <h1 class="text-5xl md:text-7xl font-bold text-slate-800 mb-8">
+        <span data-en="Kojo Akine" data-ja="小城 昭根">Kojo Akine</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-slate-600 mb-4 max-w-2xl mx-auto" data-en="I make short dramas." data-ja="ショートドラマを作ってます。">
+        ショートドラマを作ってます。
+      </p>
+      <p class="text-xl md:text-2xl text-slate-600 mb-8 max-w-2xl mx-auto" data-en="This site? Built it with my AI partner." data-ja="このサイトもAIと一緒に作りました。">
+        このサイトもAIと一緒に作りました。
+      </p>
+      <p class="text-slate-500 mb-12 max-w-xl mx-auto">
+        <span data-en="50+ video projects delivered." data-ja="50本以上の映像プロジェクトを手掛ける。">50本以上の映像プロジェクトを手掛ける。</span><br>
+        <span data-en="YouTube & TikTok: 1M+ views each. 8 years teaching film." data-ja="YouTube・TikTok各100万再生。映像教育8年。">YouTube・TikTok各100万再生。映像教育8年。</span>
+      </p>
+      <div class="flex gap-4 justify-center">
+        <a href="#works" class="bg-sky-500 hover:bg-sky-400 text-white px-8 py-3 rounded-full font-medium transition" data-en="View Works" data-ja="実績を見る">
+          View Works
+        </a>
+        <a href="#contact" class="border border-slate-400 hover:border-slate-600 text-slate-700 px-8 py-3 rounded-full font-medium transition" data-en="Get in Touch" data-ja="連絡する">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-32 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-slate-800 mb-16 text-center" data-en="About" data-ja="概要">About</h2>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="Background" data-ja="経歴">Background</h3>
+          <p class="text-slate-600 leading-relaxed mb-6" data-en="Studied screenwriting at Scenario Center and directing at ENBU Seminar Film Director Course (2020). For 8+ years, I've been teaching film production at Tokyo Metropolitan Kogei High School as an official external instructor commissioned by Tokyo Metropolitan Government. My students' work was selected for PIA Film Festival (22 out of 795 submissions)." data-ja="シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学ぶ。8年以上にわたり東京都立工芸高校で映画部の外部講師として指導（東京都公式委嘱）。指導した生徒の作品は、ぴあフィルムフェスティバルで入選（795作品中22作品）。">
+            シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学ぶ。8年以上にわたり東京都立工芸高校で映画部の外部講師として指導（東京都公式委嘱）。指導した生徒の作品は、ぴあフィルムフェスティバルで入選（795作品中22作品）。
+          </p>
+          <p class="text-slate-600 leading-relaxed mb-6" data-en="In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project." data-ja="2025年には、YouTubeで50本以上のショートドラマを監督・編集し、100万再生を達成。TikTokでもVFXコンテンツで100万再生を突破。Adoプロデュースのファントムシータなど大型案件も担当。">
+            In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project.
+          </p>
+          <p class="text-slate-600 leading-relaxed" data-en="Previously worked as a Web Engineer for 4 years (Rails, React). Now combining creative direction with technical expertise. Also developed VR training systems for emergency medical professionals using Unreal Engine and Meta Quest 3." data-ja="以前はWebエンジニアとして4年間勤務（Rails, React）。現在はクリエイティブディレクションと技術を融合。Unreal EngineとMeta Quest 3を使った救命救急士向けVRトレーニングシステムの開発経験もあり。">
+            以前はWebエンジニアとして4年間勤務（Rails, React）。現在はクリエイティブディレクションと技術を融合。Unreal EngineとMeta Quest 3を使った救命救急士向けVRトレーニングシステムの開発経験もあり。
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="What I Bring" data-ja="強み">What I Bring</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="text-sky-500 mt-1">▸</span>
+              <span class="text-slate-600"><strong class="text-slate-800" data-en="Creative Direction" data-ja="クリエイティブ・ディレクション">Creative Direction</strong> — <span data-en="Team of 10+ staff & 10+ actors managed" data-ja="スタッフ10人・演者10人超のチームを統括">Team of 10+ staff & 10+ actors managed</span></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-sky-500 mt-1">▸</span>
+              <span class="text-slate-600"><strong class="text-slate-800" data-en="Viral Content" data-ja="バズコンテンツ">Viral Content</strong> — <span data-en="YouTube 1M+ views, TikTok 1M+ views" data-ja="YouTube 100万再生、TikTok 100万再生">YouTube 1M+ views, TikTok 1M+ views</span></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-sky-500 mt-1">▸</span>
+              <span class="text-slate-600"><strong class="text-slate-800" data-en="Rapid Delivery" data-ja="高速納品">Rapid Delivery</strong> — <span data-en="Ado's Phantom Theta: 3-day turnaround" data-ja="Adoプロデュースのファントムシータ：3日納品">Ado's Phantom Theta: 3-day turnaround</span></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-sky-500 mt-1">▸</span>
+              <span class="text-slate-600"><strong class="text-slate-800" data-en="Tech Background" data-ja="技術バックグラウンド">Tech Background</strong> — <span data-en="4 years as Web Engineer (Rails, React)" data-ja="Webエンジニア4年（Rails、React）">4 years as Web Engineer (Rails, React)</span></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-sky-500 mt-1">▸</span>
+              <span class="text-slate-600"><strong class="text-slate-800" data-en="VR Development" data-ja="VR開発">VR Development</strong> — <span data-en="Unreal Engine, Meta Quest 3, Metahuman" data-ja="Unreal Engine、Meta Quest 3、Metahuman">Unreal Engine, Meta Quest 3, Metahuman</span></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-sky-500 mt-1">▸</span>
+              <span class="text-slate-600"><strong class="text-slate-800" data-en="Languages" data-ja="言語">Languages</strong> — <span data-en="Japanese (Native), English (Conversational), Tagalog" data-ja="日本語（ネイティブ）、英語（日常会話）、タガログ語">Japanese (Native), English (Conversational), Tagalog</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Development Environment -->
+      <div class="mt-16 p-8 bg-white rounded-2xl border border-slate-200 shadow-sm">
+        <h3 class="text-lg font-semibold text-slate-800 mb-4" data-en="Development Environment" data-ja="開発環境">Development Environment</h3>
+        <div class="grid md:grid-cols-2 gap-6 text-slate-600">
+          <div>
+            <p class="text-slate-500 text-sm mb-2">Workstation</p>
+            <ul class="space-y-1 text-sm">
+              <li>• Intel Core i9-14900K</li>
+              <li>• 128GB DDR5 RAM</li>
+              <li>• NVIDIA RTX 4090 24GB</li>
+              <li>• Multi-NVMe SSD</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-slate-500 text-sm mb-2" data-en="Ready for Heavy Workloads" data-ja="高負荷作業対応">Ready for Heavy Workloads</p>
+            <ul class="space-y-1 text-sm">
+              <li data-en="• 4K+ Video Editing" data-ja="• 4K以上の動画編集">• 4K+ Video Editing</li>
+              <li data-en="• VR Development & Testing" data-ja="• VR開発 & テスト">• VR Development & Testing</li>
+              <li data-en="• 3D Rendering (Blender)" data-ja="• 3Dレンダリング（Blender）">• 3D Rendering (Blender)</li>
+              <li data-en="• AI/ML Local Processing" data-ja="• AI/MLローカル処理">• AI/ML Local Processing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-32 px-6 bg-slate-100">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-slate-800 mb-16 text-center" data-en="Skills" data-ja="スキル">Skills</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Film & Video -->
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+          <div class="text-4xl mb-4">🎬</div>
+          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="Direction & Editing" data-ja="演出 & 編集">Direction & Editing</h3>
+          <ul class="space-y-2 text-slate-600">
+            <li>• DaVinci Resolve Studio</li>
+            <li data-en="• Directing & Scriptwriting" data-ja="• 監督 & 脚本">• Directing & Scriptwriting</li>
+            <li>• Blender (VFX)</li>
+            <li>• Adobe Lightroom Classic</li>
+            <li data-en="• LEICA Q2 Photography" data-ja="• LEICA Q2 写真撮影">• LEICA Q2 Photography</li>
+          </ul>
+        </div>
+        <!-- VR & 3D -->
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+          <div class="text-4xl mb-4">🥽</div>
+          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="VR & 3D" data-ja="VR & 3D">VR & 3D</h3>
+          <ul class="space-y-2 text-slate-600">
+            <li>• Unreal Engine</li>
+            <li>• Unity</li>
+            <li>• Meta Quest 3</li>
+            <li>• Metahuman</li>
+            <li data-en="• Medical Training Systems" data-ja="• 医療トレーニングシステム">• Medical Training Systems</li>
+          </ul>
+        </div>
+        <!-- Tech -->
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+          <div class="text-4xl mb-4">💻</div>
+          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="Tech Background" data-ja="技術バックグラウンド">Tech Background</h3>
+          <ul class="space-y-2 text-slate-600">
+            <li>• Ruby on Rails</li>
+            <li>• React / Vue.js</li>
+            <li>• Python / AWS / Docker</li>
+            <li>• Claude / OpenClaw</li>
+            <li data-en="• AI-Powered Workflow" data-ja="• AI活用ワークフロー">• AI-Powered Workflow</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Works -->
+  <section id="works" class="py-32 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-slate-800 mb-16 text-center" data-en="Works" data-ja="実績">Works</h2>
+      
+      <!-- Highlight Numbers -->
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+        <div class="text-center p-8 bg-gradient-to-br from-sky-100 to-white rounded-2xl border border-sky-200">
+          <p class="text-5xl font-bold text-sky-600 mb-2">1M+</p>
+          <p class="text-slate-600" data-en="YouTube Views" data-ja="YouTube再生">YouTube Views</p>
+        </div>
+        <div class="text-center p-8 bg-gradient-to-br from-pink-100 to-white rounded-2xl border border-pink-200">
+          <p class="text-5xl font-bold text-pink-600 mb-2">1M+</p>
+          <p class="text-slate-600" data-en="TikTok VFX Views" data-ja="TikTok VFX再生">TikTok VFX Views</p>
+        </div>
+        <div class="text-center p-8 bg-gradient-to-br from-amber-100 to-white rounded-2xl border border-amber-200">
+          <p class="text-5xl font-bold text-amber-600 mb-2">8+</p>
+          <p class="text-slate-600" data-en="Years Teaching Film" data-ja="年間映像教育">Years Teaching Film</p>
+        </div>
+      </div>
+
+      <!-- Featured Videos -->
+      <div class="mb-16">
+        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Videos" data-ja="映像作品">Videos</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <a href="https://youtu.be/sdFzPconxMU" target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-slate-100 relative overflow-hidden">
+              <img src="https://img.youtube.com/vi/sdFzPconxMU/maxresdefault.jpg" alt="Short Drama" class="w-full h-full object-cover group-hover:scale-105 transition" />
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <span class="text-6xl text-white">▶</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h4 class="text-slate-800 font-medium mb-2" data-en="Short Drama — Director & Editor" data-ja="ショートドラマ — 監督 & 編集">Short Drama — Director & Editor</h4>
+              <p class="text-slate-500 text-sm" data-en="Full creative control from concept to final cut" data-ja="企画から最終カットまで完全なクリエイティブコントロール">Full creative control from concept to final cut</p>
+            </div>
+          </a>
+          <a href="https://youtu.be/Yf-x1o9uxJE" target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-slate-100 relative overflow-hidden">
+              <img src="https://img.youtube.com/vi/Yf-x1o9uxJE/maxresdefault.jpg" alt="Short Drama" class="w-full h-full object-cover group-hover:scale-105 transition" />
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <span class="text-6xl text-white">▶</span>
+              </div>
+              <span class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded" data-en="High Retention" data-ja="高維持率">High Retention</span>
+            </div>
+            <div class="p-6">
+              <h4 class="text-slate-800 font-medium mb-2" data-en="Short Drama — Planning, Direction & Editing" data-ja="ショートドラマ — 企画・監督・編集">Short Drama — Planning, Direction & Editing</h4>
+              <p class="text-slate-500 text-sm" data-en="Exceptionally high viewer retention rate" data-ja="驚異的な視聴維持率を達成">Exceptionally high viewer retention rate</p>
+            </div>
+          </a>
+          <a href="https://www.tiktok.com/@akine1818/video/6833870784293801218" target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-pink-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-gradient-to-br from-pink-100 to-pink-200 relative overflow-hidden flex items-center justify-center">
+              <span class="text-6xl text-pink-400 group-hover:text-pink-500 group-hover:scale-110 transition">▶</span>
+              <span class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded">TikTok 1M+</span>
+            </div>
+            <div class="p-6">
+              <h4 class="text-slate-800 font-medium mb-2" data-en="VFX Video — Blender" data-ja="VFX動画 — Blender">VFX Video — Blender</h4>
+              <p class="text-slate-500 text-sm" data-en="1M+ views on TikTok" data-ja="TikTokで100万再生突破">1M+ views on TikTok</p>
+            </div>
+          </a>
+          <a href="https://www.youtube.com/watch?v=xDXpPpCxRuA" target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-slate-100 relative overflow-hidden">
+              <img src="https://img.youtube.com/vi/xDXpPpCxRuA/maxresdefault.jpg" alt="Phantom Theta" class="w-full h-full object-cover group-hover:scale-105 transition" />
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <span class="text-6xl text-white">▶</span>
+              </div>
+              <span class="absolute top-2 right-2 bg-sky-500 text-white text-xs px-2 py-1 rounded">Ado</span>
+            </div>
+            <div class="p-6">
+              <h4 class="text-slate-800 font-medium mb-2" data-en="Phantom Theta (Ado Produced) — Direction" data-ja="ファントムシータ（Adoプロデュース）— ディレクション">Phantom Theta (Ado Produced) — Direction</h4>
+              <p class="text-slate-500 text-sm" data-en="3-day turnaround for birthday celebration video" data-ja="誕生日企画動画を3日で納品">3-day turnaround for birthday celebration video</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Production Credits -->
+      <div class="mb-16">
+        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Production Credits" data-ja="制作実績">Production Credits</h3>
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+          <p class="text-slate-600 mb-6" data-en="50+ short dramas and promotional videos delivered in 2025, including:" data-ja="2025年に50本以上のショートドラマ・プロモーション動画を手掛ける：">
+            50+ short dramas and promotional videos delivered in 2025, including:
+          </p>
+          <ul class="grid md:grid-cols-2 gap-4 text-slate-600">
+            <li class="flex items-center gap-2">
+              <span class="text-sky-500">▸</span>
+              <span data-en="DMM TV 'TTM' — Offline Editor" data-ja="DMM TV「TTM」— オフライン編集">DMM TV "TTM" — Offline Editor</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-sky-500">▸</span>
+              <span data-en="Merupuchi Official — MV & Promotion" data-ja="めるぷち Official — MV & プロモーション">Merupuchi Official — MV & Promotion</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-sky-500">▸</span>
+              <span data-en="CUL DRAMA Series — Director & Editor" data-ja="CUL DRAMAシリーズ — 監督 & 編集">CUL DRAMA Series — Director & Editor</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-sky-500">▸</span>
+              <span data-en="VR Training System — Solo Development" data-ja="VRトレーニングシステム — 単独開発">VR Training System — Solo Development</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-sky-500">▸</span>
+              <span data-en="PIA Film Festival Selected (Student Work)" data-ja="ぴあ映画祭入選（指導生徒作品）">PIA Film Festival Selected (Student Work)</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-sky-500">▸</span>
+              <span data-en="Phantom Theta (Ado Produced) — Direction" data-ja="ファントムシータ（Adoプロデュース）— ディレクション">Phantom Theta (Ado Produced) — Direction</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Company" data-ja="会社">Company</h3>
+        <a href="https://undone.jp" target="_blank" class="block bg-white rounded-2xl p-8 border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+          <div class="flex items-center gap-4 mb-4">
+            <h4 class="text-2xl font-bold text-slate-800">Undone LLC.</h4>
+            <span class="text-slate-500 text-sm" data-en="Founded April 2025" data-ja="2025年4月設立">Founded April 2025</span>
+          </div>
+          <p class="text-slate-600 mb-4" data-en="Creative production studio. Planning, scriptwriting, shooting, and editing — all in one team." data-ja="映像制作スタジオ。企画・脚本・撮影・編集をワンチームで一貫対応。">Creative production studio. Planning, scriptwriting, shooting, and editing — all in one team.</p>
+          <span class="text-sky-500">undone.jp →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Partner -->
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-gradient-to-br from-sky-50 to-white rounded-2xl p-8 border border-sky-200">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="text-4xl">🦞</span>
+          <div>
+            <h3 class="text-xl font-semibold text-slate-800" data-en="AI Partner: Rob-chan" data-ja="AIパートナー: ロブちゃん">AI Partner: Rob-chan</h3>
+            <p class="text-slate-500 text-sm" data-en="A lobster-type AI assistant from outer space" data-ja="宇宙から来たロブスター型AIアシスタント">A lobster-type AI assistant from outer space</p>
+          </div>
+        </div>
+        <p class="text-slate-600 mb-4" data-en="Working with AI isn't just about using tools — it's about collaboration. Rob-chan helps with research, documentation, brainstorming, and more. This portfolio? We built it together." data-ja="AIを使うのではなく、AIと一緒に働く。リサーチ、ドキュメント整理、壁打ち相手として活躍中。このポートフォリオも一緒に作りました。">
+          AIを使うのではなく、AIと一緒に働く。リサーチ、ドキュメント整理、壁打ち相手として活躍中。このポートフォリオも一緒に作りました。
+        </p>
+        <a href="https://moltbook.com/u/robchan" target="_blank" class="text-sky-500 hover:underline text-sm">moltbook.com/u/robchan →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-32 px-6 bg-slate-100">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-slate-800 mb-8" data-en="Let's Work Together" data-ja="一緒に仕事しませんか？">Let's Work Together</h2>
+      <p class="text-slate-600 mb-12 max-w-xl mx-auto" data-en="Available for full remote work worldwide. Looking for creative direction and video production projects." data-ja="フルリモートで世界中どこからでも対応可能。クリエイティブディレクション、映像制作のプロジェクトを探しています。">
+        フルリモートで世界中どこからでも対応可能。クリエイティブディレクション、映像制作のプロジェクトを探しています。
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="https://www.linkedin.com/in/akinechan/" target="_blank" class="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-3 rounded-full transition shadow-sm">
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/akine" target="_blank" class="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-3 rounded-full transition shadow-sm">
+          <span>GitHub</span>
+        </a>
+        <a href="https://x.com/akinecool" target="_blank" class="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-3 rounded-full transition shadow-sm">
+          <span>X (Twitter)</span>
+        </a>
+        <a href="https://www.instagram.com/akinex" target="_blank" class="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-3 rounded-full transition shadow-sm">
+          <span>Instagram</span>
+        </a>
+        <a href="https://note.com/akinechan" target="_blank" class="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-3 rounded-full transition shadow-sm">
+          <span>Note</span>
+        </a>
+        <a href="https://sizu.me/akine" target="_blank" class="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-3 rounded-full transition shadow-sm">
+          <span data-en="Shizukana Internet" data-ja="しずかなインターネット">Shizukana Internet</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-slate-200">
+    <div class="max-w-6xl mx-auto text-center text-slate-500 text-sm">
+      <p>© 2026 Kojo Akine / Undone LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Language Toggle Script -->
+  <script>
+    const langToggle = document.getElementById('lang-toggle');
+    let currentLang = 'ja';
+
+    // 初期表示を日本語に
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('[data-en][data-ja]').forEach(el => {
+        const text = el.getAttribute('data-ja');
+        if (text) {
+          el.textContent = text;
+        }
+      });
+    });
+
+    langToggle?.addEventListener('click', () => {
+      currentLang = currentLang === 'ja' ? 'en' : 'ja';
+      langToggle.textContent = currentLang === 'ja' ? 'English' : '日本語';
+      
+      document.querySelectorAll('[data-en][data-ja]').forEach(el => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (text) {
+          el.textContent = text;
+        }
+      });
+    });
+  </script>
+</Layout>
