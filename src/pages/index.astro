@@ -415,7 +415,8 @@ import Layout from '../layouts/Layout.astro';
     const messages = [
       '🎬 Action!', '📹 Rolling!', '✂️ Good cut!', '🎥 Wrap!', '💡',
       '🎮 GG!', '🐂 アリスター！', '🥋 ジェイミー！', '🦞', '🍻', '💖', '✨',
-      '(´・ω・｀)', '( ˘ω˘ )', '٩( \'ω\' )و', '🦐 エビじゃないよ'
+      '(´・ω・｀)', '( ˘ω˘ )', '٩( \'ω\' )و', '🦐 エビじゃないよ',
+      'ちゅむ 💕', '(´∀`) ぬるぽ'
     ];
 
     // 四方八方からの曲線パターン
@@ -446,32 +447,38 @@ import Layout from '../layouts/Layout.astro';
       return patterns[Math.floor(Math.random() * patterns.length)];
     };
 
-    const spawnEasterEgg = () => {
+    const spawnEasterEgg = (forceMsg?: string) => {
       const rect = avatar!.getBoundingClientRect();
-      const msg = messages[Math.floor(Math.random() * messages.length)];
+      const msg = forceMsg || messages[Math.floor(Math.random() * messages.length)];
       const path = getRandomPath(rect);
       
       const toast = document.createElement('div');
       toast.textContent = msg;
+      const isGatsu = msg === '⊂彡☆))Д´) ｶﾞｯ';
       toast.style.cssText = `
         position: fixed;
         left: ${path.start.x}px;
         top: ${path.start.y}px;
         transform: translate(-50%, -50%) scale(0);
-        background: white;
-        color: #334155;
+        background: ${isGatsu ? '#ef4444' : 'white'};
+        color: ${isGatsu ? 'white' : '#334155'};
         padding: 10px 18px;
         border-radius: 999px;
         font-size: 1rem;
         font-weight: 600;
-        z-index: 40;
+        z-index: ${isGatsu ? 41 : 40};
         box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        border: 2px solid #e2e8f0;
+        border: 2px solid ${isGatsu ? '#dc2626' : '#e2e8f0'};
         white-space: nowrap;
         pointer-events: none;
       `;
 
       document.body.appendChild(toast);
+      
+      // ぬるぽが出たら自動でｶﾞｯ
+      if (msg === '(´∀`) ぬるぽ') {
+        setTimeout(() => spawnEasterEgg('⊂彡☆))Д´) ｶﾞｯ'), 400);
+      }
 
       // スッと出て、止まって見せて、ふわっと消える
       toast.animate([
