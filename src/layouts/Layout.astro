@@ -6,8 +6,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
-const siteUrl = 'https://akinechan.com';
-const description = '小城昭根 - Technical Creative Director | 映像制作・脚本・AI活用開発 | 10年の映像教育実績';
+const siteUrl = 'https://agent.akinechan.com';
+const description = 'A.K. - Technical Creative Director | 映像制作・脚本・AI活用開発 | 10年の映像教育実績';
 ---
 
 <!doctype html>
@@ -16,7 +16,7 @@ const description = '小城昭根 - Technical Creative Director | 映像制作�
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="author" content="小城昭根 (Akine Kojo)" />
+    <meta name="author" content="A.K." />
     
     <!-- Canonical -->
     <link rel="canonical" href={siteUrl} />
@@ -28,17 +28,15 @@ const description = '小城昭根 - Technical Creative Director | 映像制作�
     <!-- OGP -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={siteUrl} />
-    <meta property="og:title" content="小城昭根 | クリエイティブディレクター・映像作家" />
+    <meta property="og:title" content="A.K. | クリエイティブディレクター・映像作家" />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
     <meta property="og:locale" content="ja_JP" />
-    <meta property="og:site_name" content="小城昭根 ポートフォリオ" />
+    <meta property="og:site_name" content="A.K. Portfolio" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@akinecool" />
-    <meta name="twitter:creator" content="@akinecool" />
-    <meta name="twitter:title" content="小城昭根 | クリエイティブディレクター・映像作家" />
+    <meta name="twitter:title" content="A.K. | クリエイティブディレクター・映像作家" />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
     
