@@ -287,14 +287,14 @@ import Layout from '../layouts/Layout.astro';
       <!-- Company -->
       <div>
         <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Company" data-ja="会社">Company</h3>
-        <a href="https://undone.jp" target="_blank" class="block bg-white rounded-2xl p-8 border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+        <div class="block bg-white rounded-2xl p-8 border border-slate-200">
           <div class="flex items-center gap-4 mb-4">
-            <h4 class="text-2xl font-bold text-slate-800">Undone LLC.</h4>
+            <h4 class="text-2xl font-bold text-slate-800" data-en="Video Production Studio" data-ja="映像制作スタジオ">映像制作スタジオ</h4>
             <span class="text-slate-500 text-sm" data-en="Founded April 2025" data-ja="2025年4月設立">Founded April 2025</span>
           </div>
-          <p class="text-slate-600 mb-4" data-en="Creative production studio. Planning, scriptwriting, shooting, and editing — all in one team." data-ja="映像制作スタジオ。企画・脚本・撮影・編集をワンチームで一貫対応。">Creative production studio. Planning, scriptwriting, shooting, and editing — all in one team.</p>
-          <span class="text-sky-500">undone.jp →</span>
-        </a>
+          <p class="text-slate-600 mb-4" data-en="Creative production studio. Planning, scriptwriting, shooting, and editing — all in one team." data-ja="映像制作スタジオ。企画・脚本・撮影・編集をワンチームで一貫対応。">映像制作スタジオ。企画・脚本・撮影・編集をワンチームで一貫対応。</p>
+          <p class="text-slate-500 text-sm" data-en="Company details available via agency." data-ja="会社詳細はエージェント経由でご確認いただけます。">会社詳細はエージェント経由でご確認いただけます。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -329,8 +329,9 @@ import Layout from '../layouts/Layout.astro';
       
       <!-- Contact via Agent -->
       <div class="bg-white rounded-2xl p-8 border border-slate-200 max-w-lg mx-auto">
-        <p class="text-slate-600" data-en="This portfolio is shared via an agency. Please contact the agency for inquiries." data-ja="本ポートフォリオはエージェント経由でご覧いただいています。お問い合わせはエージェントまでお願いいたします。">
-          本ポートフォリオはエージェント経由でご覧いただいています。お問い合わせはエージェントまでお願いいたします。
+        <p class="text-slate-600">
+          <span data-en="This portfolio is shared via an agency." data-ja="本ポートフォリオはエージェント経由でご覧いただいています。">本ポートフォリオはエージェント経由でご覧いただいています。</span><br>
+          <span data-en="Please contact the agency for inquiries." data-ja="お問い合わせはエージェントまでお願いいたします。">お問い合わせはエージェントまでお願いいたします。</span>
         </p>
       </div>
     </div>
