@@ -6,22 +6,47 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const siteUrl = 'https://akinechan.com';
+const description = '小城昭根 - Technical Creative Director | 映像制作・脚本・AI活用開発 | 10年の映像教育実績';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Kojo Akine - Technical Creative Director | Film & Web Engineer | AI-Powered Development" />
+    <meta name="description" content={description} />
+    <meta name="author" content="小城昭根 (Akine Kojo)" />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href={siteUrl} />
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta property="og:image" content="/og-image.jpg" />
-    <meta property="og:title" content="Kojo Akine | Creative Director & Filmmaker" />
-    <meta property="og:description" content="Technical Creative Director | Film & Web Engineer | AI-Powered Development" />
+    
+    <!-- OGP -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content="小城昭根 | Creative Director & Filmmaker" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="Akine Kojo Portfolio" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@akinecool" />
+    <meta name="twitter:creator" content="@akinecool" />
+    <meta name="twitter:title" content="小城昭根 | Creative Director & Filmmaker" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <title>{title}</title>
   </head>
   <body class="font-sans antialiased">
