@@ -35,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
         このサイトもAIと一緒に作りました。
       </p>
       <p class="text-slate-500 mb-12 max-w-xl mx-auto">
-        <span data-en="50+ video projects delivered." data-ja="50本以上の映像プロジェクトを手掛ける。">50本以上の映像プロジェクトを手掛ける。</span><br>
+        <span data-en="50+ video projects delivered. EXILE dome tour screen visuals." data-ja="50本以上の映像プロジェクト。EXILEドームツアーのスクリーン映像。">50本以上の映像プロジェクト。EXILEドームツアーのスクリーン映像。</span><br>
         <span data-en="YouTube & TikTok: 1M+ views each. 10 years teaching film." data-ja="YouTube・TikTok各100万再生。映像教育10年。">YouTube・TikTok各100万再生。映像教育10年。</span>
       </p>
       <div class="flex gap-4 justify-center">
@@ -190,7 +190,43 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Featured Videos -->
+      <!-- EXILE LIVE TOUR - Featured -->
+      <div class="mb-16">
+        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Featured" data-ja="注目作品">Featured</h3>
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md mb-8">
+          <!-- Image Gallery -->
+          <div class="relative">
+            <div id="exile-gallery" class="overflow-hidden">
+              <div id="exile-slides" class="flex transition-transform duration-500 ease-out">
+                <img src="/exile-tour-thumb.jpg" alt="EXILE LIVE TOUR 2025 Screen Visual" class="w-full aspect-video object-cover flex-shrink-0" />
+                <img src="/exile-tour-neon-city.jpg" alt="Neon City Visual" class="w-full aspect-video object-cover flex-shrink-0" />
+                <img src="/exile-tour-title.jpg" alt="Title Visual" class="w-full aspect-video object-cover flex-shrink-0" />
+                <img src="/exile-tour-wontbelong.jpg" alt="WON'T BE LONG Visual" class="w-full aspect-video object-cover flex-shrink-0" />
+              </div>
+            </div>
+            <!-- Gallery Controls -->
+            <button id="exile-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition text-lg">‹</button>
+            <button id="exile-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition text-lg">›</button>
+            <!-- Dots -->
+            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+              <button class="exile-dot w-2 h-2 rounded-full bg-white/90 transition" data-index="0"></button>
+              <button class="exile-dot w-2 h-2 rounded-full bg-white/40 transition" data-index="1"></button>
+              <button class="exile-dot w-2 h-2 rounded-full bg-white/40 transition" data-index="2"></button>
+              <button class="exile-dot w-2 h-2 rounded-full bg-white/40 transition" data-index="3"></button>
+            </div>
+            <span class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded" data-en="DOME TOUR" data-ja="ドームツアー">DOME TOUR</span>
+          </div>
+          <div class="p-8">
+            <h4 class="text-xl text-slate-800 font-bold mb-2">EXILE LIVE TOUR 2025 "THE REASON"</h4>
+            <p class="text-sky-600 font-medium mb-3" data-en="Screen Visual — Creative Direction & Concept Design" data-ja="スクリーン映像 — クリエイティブディレクション & コンセプトデザイン">Screen Visual — Creative Direction & Concept Design</p>
+            <p class="text-slate-600 text-sm leading-relaxed" data-en="Creative direction and concept design for the screen visuals of 'WON'T BE LONG' at Fukuoka PayPay Dome. Led the visual concept from ideation through production, collaborating with the CG team to deliver immersive stage graphics for a dome-scale live performance." data-ja="福岡PayPayドーム公演『WON'T BE LONG』のスクリーン映像におけるクリエイティブディレクションおよびコンセプトデザイン。映像コンセプトの企画立案からCG制作チームとの協働まで一貫して担当し、ドーム規模のライブパフォーマンスに没入感のあるステージグラフィックスを実現。">
+              福岡PayPayドーム公演『WON'T BE LONG』のスクリーン映像におけるクリエイティブディレクションおよびコンセプトデザイン。映像コンセプトの企画立案からCG制作チームとの協働まで一貫して担当し、ドーム規模のライブパフォーマンスに没入感のあるステージグラフィックスを実現。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Videos -->
       <div class="mb-16">
         <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Videos" data-ja="映像作品">Videos</h3>
         <div class="grid md:grid-cols-2 gap-6">
@@ -256,6 +292,10 @@ import Layout from '../layouts/Layout.astro';
             50+ short dramas and promotional videos delivered in 2025, including:
           </p>
           <ul class="grid md:grid-cols-2 gap-4 text-slate-600">
+            <li class="flex items-center gap-2">
+              <span class="text-amber-500">★</span>
+              <span data-en="EXILE LIVE TOUR 2025 — Screen Visual Direction" data-ja="EXILE LIVE TOUR 2025 — スクリーン映像ディレクション"><strong>EXILE LIVE TOUR 2025 — Screen Visual Direction</strong></span>
+            </li>
             <li class="flex items-center gap-2">
               <span class="text-sky-500">▸</span>
               <span data-en="CUL DRAMA Series — Director & Editor" data-ja="CUL DRAMAシリーズ — 監督 & 編集">CUL DRAMA Series — Director & Editor</span>
@@ -370,6 +410,42 @@ import Layout from '../layouts/Layout.astro';
         }
       });
     });
+
+    // EXILE Gallery Slider
+    (() => {
+      const slides = document.getElementById('exile-slides');
+      const dots = document.querySelectorAll('.exile-dot');
+      const prev = document.getElementById('exile-prev');
+      const next = document.getElementById('exile-next');
+      if (!slides) return;
+      let current = 0;
+      const total = dots.length;
+      
+      const goTo = (i: number) => {
+        current = ((i % total) + total) % total;
+        slides.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, idx) => {
+          (d as HTMLElement).style.opacity = idx === current ? '0.9' : '0.4';
+        });
+      };
+      
+      prev?.addEventListener('click', () => goTo(current - 1));
+      next?.addEventListener('click', () => goTo(current + 1));
+      dots.forEach(d => d.addEventListener('click', () => goTo(Number((d as HTMLElement).dataset.index))));
+      
+      // Touch swipe support
+      let startX = 0;
+      slides.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+      slides.addEventListener('touchend', (e) => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+      });
+      
+      // Auto-advance every 5s
+      let timer = setInterval(() => goTo(current + 1), 5000);
+      slides.parentElement?.addEventListener('mouseenter', () => clearInterval(timer));
+      slides.parentElement?.addEventListener('mouseleave', () => { timer = setInterval(() => goTo(current + 1), 5000); });
+    })();
 
     // 🥚 Easter Egg
     const avatar = document.getElementById('avatar');
