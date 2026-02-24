@@ -282,7 +282,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="grid md:grid-cols-2 gap-6">
 
           <!-- SceneScope -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
+          <div class="bg-white rounded-2xl p-8 border border-sky-200 hover:shadow-lg transition relative overflow-hidden ring-1 ring-sky-100">
+            <div class="absolute top-3 right-3">
+              <span class="inline-flex items-center gap-1 text-xs font-semibold bg-sky-500 text-white px-2.5 py-1 rounded-full animate-pulse">Coming Soon</span>
+            </div>
             <div class="flex items-center gap-3 mb-3">
               <span class="text-3xl">🎬</span>
               <h4 class="text-lg font-bold text-slate-800">SceneScope</h4>
