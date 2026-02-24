@@ -282,7 +282,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="grid md:grid-cols-2 gap-6">
 
           <!-- SceneScope -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
+          <div class="bg-white rounded-2xl p-8 border border-sky-200 hover:shadow-lg transition relative overflow-hidden ring-1 ring-sky-100">
+            <div class="absolute top-3 right-3">
+              <span class="inline-flex items-center gap-1 text-xs font-semibold bg-sky-500 text-white px-2.5 py-1 rounded-full animate-pulse">Coming Soon</span>
+            </div>
             <div class="flex items-center gap-3 mb-3">
               <span class="text-3xl">🎬</span>
               <h4 class="text-lg font-bold text-slate-800">SceneScope</h4>
@@ -456,18 +459,6 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Company -->
-      <div>
-        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Company" data-ja="会社">Company</h3>
-        <div class="block bg-white rounded-2xl p-8 border border-slate-200">
-          <div class="flex items-center gap-4 mb-4">
-            <h4 class="text-2xl font-bold text-slate-800" data-en="Video Production Studio" data-ja="映像制作スタジオ">映像制作スタジオ</h4>
-            <span class="text-slate-500 text-sm" data-en="Founded April 2025" data-ja="2025年4月設立">Founded April 2025</span>
-          </div>
-          <p class="text-slate-600 mb-4" data-en="Creative production studio. Planning, scriptwriting, shooting, and editing — all in one team." data-ja="映像制作スタジオ。企画・脚本・撮影・編集をワンチームで一貫対応。">映像制作スタジオ。企画・脚本・撮影・編集をワンチームで一貫対応。</p>
-          <p class="text-slate-500 text-sm" data-en="Company details available via agency." data-ja="会社詳細はエージェント経由でご確認いただけます。">会社詳細はエージェント経由でご確認いただけます。</p>
-        </div>
-      </div>
     </div>
   </section>
 
