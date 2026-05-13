@@ -8,6 +8,24 @@ interface Props {
 const { title } = Astro.props;
 const siteUrl = 'https://akinechan.com';
 const description = '小城昭根 - Technical Creative Director | 映像制作・脚本・AI活用開発 | 10年の映像教育実績';
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Kojo Akine',
+  alternateName: '小城昭根',
+  url: siteUrl,
+  jobTitle: 'Creative Director & Filmmaker',
+  description,
+  sameAs: [
+    'https://www.linkedin.com/in/akinechan/',
+    'https://github.com/akine',
+    'https://x.com/akinecool',
+    'https://www.instagram.com/akinex',
+    'https://note.com/akinechan',
+    'https://sizu.me/akine'
+  ]
+};
+const personSchemaJson = JSON.stringify(personSchema);
 ---
 
 <!doctype html>
@@ -17,6 +35,7 @@ const description = '小城昭根 - Technical Creative Director | 映像制作�
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="小城昭根 (Akine Kojo)" />
+    <meta name="theme-color" content="#0f172a" />
     
     <!-- Canonical -->
     <link rel="canonical" href={siteUrl} />
@@ -41,6 +60,9 @@ const description = '小城昭根 - Technical Creative Director | 映像制作�
     <meta name="twitter:title" content="小城昭根 | クリエイティブディレクター・映像作家" />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={personSchemaJson} />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
