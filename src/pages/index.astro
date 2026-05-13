@@ -1,5 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import avatarImage from '../assets/avatar.png';
+import exileTourThumb from '../assets/exile-tour-thumb.jpg';
+import exileTourNeonCity from '../assets/exile-tour-neon-city.jpg';
+import exileTourTitle from '../assets/exile-tour-title.jpg';
+import exileTourWontbelong from '../assets/exile-tour-wontbelong.jpg';
+import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
 ---
 
 <Layout title="Kojo Akine | Creative Director & Filmmaker">
@@ -24,7 +31,7 @@ import Layout from '../layouts/Layout.astro';
   <!-- Hero -->
   <section class="min-h-screen flex items-center justify-center px-6 pt-20">
     <div class="max-w-4xl text-center">
-      <img src="/avatar.jpg" alt="Kojo Akine" id="avatar" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 shadow-lg border-4 border-white object-cover cursor-pointer select-none relative z-50" />
+      <Image src={avatarImage} alt="Kojo Akine" id="avatar" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 shadow-lg border-4 border-white object-cover cursor-pointer select-none relative z-50" widths={[160, 320]} sizes="(min-width: 768px) 160px, 128px" format="webp" loading="eager" fetchpriority="high" />
       <h1 class="text-5xl md:text-7xl font-bold text-slate-800 mb-8">
         <span data-en="Kojo Akine" data-ja="小城 昭根">Kojo Akine</span>
       </h1>
@@ -59,8 +66,8 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-slate-600 leading-relaxed mb-6" data-en="Studied screenwriting at Scenario Center and directing at ENBU Seminar Film Director Course (2020). For 10 years, I've been teaching film production at Tokyo Metropolitan Kogei High School as an official external instructor commissioned by Tokyo Metropolitan Government. My students' work was selected for PIA Film Festival (22 out of 795 submissions)." data-ja="シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学ぶ。10年にわたり東京都立工芸高校で映画部の外部講師として指導（東京都公式委嘱）。指導した生徒の作品は、ぴあフィルムフェスティバルで入選（795作品中22作品）。">
             シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学ぶ。10年にわたり東京都立工芸高校で映画部の外部講師として指導（東京都公式委嘱）。指導した生徒の作品は、ぴあフィルムフェスティバルで入選（795作品中22作品）。
           </p>
-          <p class="text-slate-600 leading-relaxed mb-6" data-en="In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project." data-ja="2025年には、YouTubeで50本以上のショートドラマを監督・編集し、100万再生を達成。TikTokでもVFXコンテンツで100万再生を突破。Adoプロデュースのファントムシータなど大型案件も担当。">
-            In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project.
+          <p class="text-slate-600 leading-relaxed mb-6" data-en="In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project. Currently active on DeviantArt as an AI artist, publishing original visual works." data-ja="2025年には、YouTubeで50本以上のショートドラマを監督・編集し、100万再生を達成。TikTokでもVFXコンテンツで100万再生を突破。Adoプロデュースのファントムシータなど大型案件も担当。現在はDeviantArtでAI絵師として活動し、オリジナルのビジュアル作品を公開中。">
+            In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project. Currently active on DeviantArt as an AI artist, publishing original visual works.
           </p>
           <p class="text-slate-600 leading-relaxed" data-en="Web Engineer for 5 years (Rails, React), then VR training systems (Unreal Engine, Meta Quest 3). Now merging creative direction with AI. Beyond video production, also builds bots and apps with AI — turning ideas into reality from concept to launch." data-ja="Webエンジニア5年（Rails, React）、VRトレーニングシステム開発（Unreal Engine, Meta Quest 3）を経て、現在はクリエイティブディレクションとAI活用を融合。映像制作に加えて、AIを使ったBot開発やアプリ制作も手がけ、「作りたいもの」を企画から実装まで一貫して形にする。">
             Webエンジニア5年（Rails, React）、VRトレーニングシステム開発（Unreal Engine, Meta Quest 3）を経て、現在はクリエイティブディレクションとAI活用を融合。映像制作に加えて、AIを使ったBot開発やアプリ制作も手がけ、「作りたいもの」を企画から実装まで一貫して形にする。
@@ -142,6 +149,7 @@ import Layout from '../layouts/Layout.astro';
             <li data-en="• Bots, apps, websites at production speed" data-ja="• Bot・アプリ・Webサイトを量産">• Bot・アプリ・Webサイトを量産</li>
             <li data-en="• Custom production pipelines" data-ja="• 制作パイプラインを自分で設計・構築">• 制作パイプラインを自分で設計・構築</li>
             <li data-en="• AI image generation workflow" data-ja="• AI画像生成ワークフロー">• AI画像生成ワークフロー</li>
+            <li data-en="• Active AI artist on DeviantArt" data-ja="• DeviantArtでAI絵師として活動中">• DeviantArtでAI絵師として活動中</li>
           </ul>
         </div>
         <!-- Everything Connects -->
@@ -187,10 +195,10 @@ import Layout from '../layouts/Layout.astro';
           <div class="relative">
             <div id="exile-gallery" class="overflow-hidden">
               <div id="exile-slides" class="flex transition-transform duration-500 ease-out">
-                <img src="/exile-tour-thumb.jpg" alt="EXILE LIVE TOUR 2025 Screen Visual" class="w-full aspect-video object-cover flex-shrink-0" />
-                <img src="/exile-tour-neon-city.jpg" alt="Neon City Visual" class="w-full aspect-video object-cover flex-shrink-0" />
-                <img src="/exile-tour-title.jpg" alt="Title Visual" class="w-full aspect-video object-cover flex-shrink-0" />
-                <img src="/exile-tour-wontbelong.jpg" alt="WON'T BE LONG Visual" class="w-full aspect-video object-cover flex-shrink-0" />
+                <Image src={exileTourThumb} alt="EXILE LIVE TOUR 2025 Screen Visual" class="w-full aspect-video object-cover flex-shrink-0" widths={[768, 1280, 1920]} sizes="(max-width: 768px) 100vw, 1280px" format="webp" loading="eager" />
+                <Image src={exileTourNeonCity} alt="Neon City Visual" class="w-full aspect-video object-cover flex-shrink-0" widths={[768, 1280, 1920]} sizes="(max-width: 768px) 100vw, 1280px" format="webp" loading="lazy" />
+                <Image src={exileTourTitle} alt="Title Visual" class="w-full aspect-video object-cover flex-shrink-0" widths={[768, 1280, 1920]} sizes="(max-width: 768px) 100vw, 1280px" format="webp" loading="lazy" />
+                <Image src={exileTourWontbelong} alt="WON'T BE LONG Visual" class="w-full aspect-video object-cover flex-shrink-0" widths={[768, 1280, 1920]} sizes="(max-width: 768px) 100vw, 1280px" format="webp" loading="lazy" />
               </div>
             </div>
             <!-- Gallery Controls -->
@@ -222,7 +230,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="mb-16">
         <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Videos" data-ja="映像作品">Videos</h3>
         <div class="grid md:grid-cols-2 gap-6">
-          <a href="https://youtu.be/sdFzPconxMU" target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+          <a href="https://youtu.be/sdFzPconxMU" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
             <div class="aspect-video bg-slate-100 relative overflow-hidden">
               <img src="https://img.youtube.com/vi/sdFzPconxMU/maxresdefault.jpg" alt="Short Drama" class="w-full h-full object-cover group-hover:scale-105 transition" />
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
@@ -234,7 +242,7 @@ import Layout from '../layouts/Layout.astro';
               <p class="text-slate-500 text-sm" data-en="Full creative control from concept to final cut" data-ja="企画から最終カットまで完全なクリエイティブコントロール">Full creative control from concept to final cut</p>
             </div>
           </a>
-          <a href="https://youtu.be/Yf-x1o9uxJE" target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+          <a href="https://youtu.be/Yf-x1o9uxJE" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
             <div class="aspect-video bg-slate-100 relative overflow-hidden">
               <img src="https://img.youtube.com/vi/Yf-x1o9uxJE/maxresdefault.jpg" alt="Short Drama" class="w-full h-full object-cover group-hover:scale-105 transition" />
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
@@ -247,9 +255,9 @@ import Layout from '../layouts/Layout.astro';
               <p class="text-slate-500 text-sm" data-en="Exceptionally high viewer retention rate" data-ja="驚異的な視聴維持率を達成">Exceptionally high viewer retention rate</p>
             </div>
           </a>
-          <a href="https://www.tiktok.com/@akine1818/video/6833870784293801218" target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-pink-400 hover:shadow-lg transition">
+          <a href="https://www.tiktok.com/@akine1818/video/6833870784293801218" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-pink-400 hover:shadow-lg transition">
             <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <img src="/tiktok-vfx.jpg" alt="VFX Video" class="w-full h-full object-cover group-hover:scale-105 transition" />
+              <Image src={tiktokVfxImage} alt="VFX Video" class="w-full h-full object-cover group-hover:scale-105 transition" widths={[640, 960, 1280]} sizes="(max-width: 768px) 100vw, 50vw" format="webp" loading="lazy" />
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
                 <span class="text-6xl text-white">▶</span>
               </div>
@@ -260,7 +268,7 @@ import Layout from '../layouts/Layout.astro';
               <p class="text-slate-500 text-sm" data-en="1M+ views on TikTok" data-ja="TikTokで100万再生突破">1M+ views on TikTok</p>
             </div>
           </a>
-          <a href="https://www.youtube.com/watch?v=xDXpPpCxRuA" target="_blank" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+          <a href="https://www.youtube.com/watch?v=xDXpPpCxRuA" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
             <div class="aspect-video bg-slate-100 relative overflow-hidden">
               <img src="https://img.youtube.com/vi/xDXpPpCxRuA/maxresdefault.jpg" alt="Phantom Theta" class="w-full h-full object-cover group-hover:scale-105 transition" />
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
@@ -315,7 +323,7 @@ import Layout from '../layouts/Layout.astro';
             <p class="text-slate-600 text-sm leading-relaxed" data-en="On-set recording log app for film production. One-click timer, scene management with sequential registration, and CSV export." data-ja="映像制作現場向け撮影記録アプリ。ワンクリックでタイマー管理、シーン連番登録、CSV出力。">
               映像制作現場向け撮影記録アプリ。ワンクリックでタイマー管理、シーン連番登録、CSV出力。
             </p>
-            <a href="https://github.com/akine/clapperlog" target="_blank" class="text-sky-500 hover:underline text-sm mt-3 inline-block">GitHub →</a>
+            <a href="https://github.com/akine/clapperlog" target="_blank" rel="noopener noreferrer" class="text-sky-500 hover:underline text-sm mt-3 inline-block">GitHub →</a>
           </div>
 
           <!-- Discord Relationship Analyzer -->
@@ -382,7 +390,7 @@ import Layout from '../layouts/Layout.astro';
             <p class="text-slate-600 text-sm leading-relaxed" data-en="Meme coloring game for kids on Roblox. From concept to playable in 2 days. Trend-driven content with RTA battles." data-ja="Roblox上のMeme塗り絵ゲーム。企画から2日でプレイ可能に。トレンド連動型コンテンツ、RTA対戦機能付き。">
               Roblox上のMeme塗り絵ゲーム。企画から2日でプレイ可能に。トレンド連動型コンテンツ、RTA対戦機能付き。
             </p>
-            <a href="https://www.roblox.com/ja/games/100279499752468/Meme-Paint-Rush" target="_blank" class="text-sky-500 hover:underline text-sm mt-3 inline-block" data-en="Play on Roblox →" data-ja="Robloxでプレイ →">Robloxでプレイ →</a>
+            <a href="https://www.roblox.com/ja/games/100279499752468/Meme-Paint-Rush" target="_blank" rel="noopener noreferrer" class="text-sky-500 hover:underline text-sm mt-3 inline-block" data-en="Play on Roblox →" data-ja="Robloxでプレイ →">Robloxでプレイ →</a>
           </div>
 
           <!-- Family Check-in App -->
@@ -463,25 +471,6 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- AI Partner -->
-  <section class="py-16 px-6">
-    <div class="max-w-4xl mx-auto">
-      <div class="bg-gradient-to-br from-sky-50 to-white rounded-2xl p-8 border border-sky-200">
-        <div class="flex items-center gap-4 mb-4">
-          <span class="text-4xl">🦞</span>
-          <div>
-            <h3 class="text-xl font-semibold text-slate-800" data-en="AI Partner: Rob-chan" data-ja="AIパートナー: ロブちゃん">AI Partner: Rob-chan</h3>
-            <p class="text-slate-500 text-sm" data-en="A lobster-type AI assistant from outer space" data-ja="宇宙から来たロブスター型AIアシスタント">A lobster-type AI assistant from outer space</p>
-          </div>
-        </div>
-        <p class="text-slate-600 mb-4" data-en="AI isn't a tool — it's a partner. From brainstorming to development to visual production. The answer to &quot;Can you build this?&quot; is usually &quot;Already done.&quot;" data-ja="AIは道具じゃなくて、相棒。企画の壁打ちから開発、映像の素材生成まで。「これ作れる？」に対する答えは、だいたい「もうできた」。">
-          AIは道具じゃなくて、相棒。企画の壁打ちから開発、映像の素材生成まで。「これ作れる？」に対する答えは、だいたい「もうできた」。
-        </p>
-        <a href="https://moltbook.com/u/robchan" target="_blank" class="text-sky-500 hover:underline text-sm">moltbook.com/u/robchan →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact -->
   <section id="contact" class="py-32 px-6 bg-slate-100">
     <div class="max-w-4xl mx-auto text-center">
@@ -511,27 +500,27 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="flex flex-wrap gap-6 justify-center items-center">
         <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/akinechan/" target="_blank" class="text-slate-400 hover:text-[#0A66C2] transition" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/akinechan/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#0A66C2] transition" title="LinkedIn">
           <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <!-- GitHub -->
-        <a href="https://github.com/akine" target="_blank" class="text-slate-400 hover:text-slate-800 transition" title="GitHub">
+        <a href="https://github.com/akine" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-800 transition" title="GitHub">
           <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
         <!-- X -->
-        <a href="https://x.com/akinecool" target="_blank" class="text-slate-400 hover:text-slate-800 transition" title="X">
+        <a href="https://x.com/akinecool" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-800 transition" title="X">
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
         <!-- Instagram -->
-        <a href="https://www.instagram.com/akinex" target="_blank" class="text-slate-400 hover:text-[#E4405F] transition" title="Instagram">
+        <a href="https://www.instagram.com/akinex" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#E4405F] transition" title="Instagram">
           <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
         <!-- note -->
-        <a href="https://note.com/akinechan" target="_blank" class="text-slate-400 hover:text-[#41C9B4] transition" title="note">
+        <a href="https://note.com/akinechan" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#41C9B4] transition" title="note">
           <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M0 .279c4.623 0 10.953-.235 15.498-.117 6.099.156 8.39 2.813 8.468 9.374.077 3.71 0 14.335 0 14.335h-6.598c0-9.296.04-10.83 0-13.759-.078-2.578-.814-3.807-2.795-4.041-2.097-.235-7.975-.04-7.975-.04v17.84H0Z"/></svg>
         </a>
         <!-- しずかなインターネット -->
-        <a href="https://sizu.me/akine" target="_blank" class="text-slate-400 hover:text-slate-600 transition" title="しずかなインターネット">
+        <a href="https://sizu.me/akine" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-600 transition" title="しずかなインターネット">
           <svg class="w-7 h-7" viewBox="0 0 70 88" fill="none" stroke="currentColor" stroke-width="5"><path d="m23,63.5c2.9-1.9,6-3.8,9.5-4.2s7.5,1.2,8.6,4.5c1.5,4.2-2.2,8.4-5.8,11-3.4,2.5-7.1,4.6-11.2,5.6-4.1,1-8.6.7-12.3-1.3-4.3-2.4-6.9-7-7.9-11.8s-.4-9.7.4-14.5C7.4,36,14.5,19.7,26.2,7.3c2.5-2.7,6.1-5.4,9.6-4,3.4,1.4,4.2,5.8,4.1,9.5-.3,11.3-3.3,22.4-8.7,32.3-.7,1.2-1.4,2.5-2.6,3.3s-2.8,1.1-4-.4c-2.2-1.4-1.3-4.9.3-7,3.4-4.8,8.2-8.4,13.8-10.4,3.9-1.4,8.6-1.7,11.7.9,2.4,2.1,3.2,5.5,2.7,8.6s-2.2,5.9-4.1,8.4c-1.4,1.8-3.7,3.6-5.6,2.4-2.2-1.3-1.1-4.7.4-6.8,2.7-4,6.3-8.2,11.1-8.8,5.2-.6,10.1,3.3,11.8,8.2s.7,10.3-1.5,15c-4,8.9-12,15.9-21.4,18.7"/></svg>
         </a>
       </div>
