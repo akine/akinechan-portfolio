@@ -31,9 +31,10 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
   <!-- Hero -->
   <section class="min-h-screen flex items-center justify-center px-6 pt-20">
     <div class="max-w-4xl text-center">
-      <div class="relative inline-flex group mb-8">
+      <div id="avatar-card" class="relative inline-flex group mb-8 [perspective:900px]">
         <span aria-hidden="true" class="pointer-events-none absolute -inset-5 rounded-full bg-sky-300/35 blur-2xl opacity-0 scale-95 transition duration-300 ease-out group-hover:opacity-100 group-hover:scale-100"></span>
-        <Image src={avatarImage} alt="Kojo Akine" id="avatar" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white object-cover cursor-pointer select-none relative z-50 transition duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-2xl" widths={[160, 320]} sizes="(min-width: 768px) 160px, 128px" format="webp" loading="eager" fetchpriority="high" />
+        <span aria-hidden="true" class="pointer-events-none absolute inset-0 z-40 rounded-full opacity-0 transition duration-200 ease-out group-hover:opacity-100" style="background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(15,23,42,0.24), rgba(15,23,42,0) 45%);"></span>
+        <Image src={avatarImage} alt="Kojo Akine" id="avatar" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white object-cover cursor-pointer select-none relative z-50 transition duration-200 ease-out will-change-transform group-hover:shadow-2xl" style="transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1));" widths={[160, 320]} sizes="(min-width: 768px) 160px, 128px" format="webp" loading="eager" fetchpriority="high" />
       </div>
       <h1 class="text-5xl md:text-7xl font-bold text-slate-800 mb-8">
         <span data-en="Kojo Akine" data-ja="小城 昭根">Kojo Akine</span>
@@ -609,6 +610,7 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
 
     // 🥚 Easter Egg
     const avatar = document.getElementById('avatar');
+    const avatarCard = document.getElementById('avatar-card');
     let clickCount = 0;
     let clickTimer: ReturnType<typeof setTimeout> | null = null;
     const messages = [
@@ -738,6 +740,74 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
         // 少しランダムな遅延で同時感を出す
         setTimeout(() => spawnEasterEgg(), Math.random() * 100);
       }
+    });
+
+    let targetPx = 0.5;
+    let targetPy = 0.5;
+    let currentPx = 0.5;
+    let currentPy = 0.5;
+    let wobble = 0;
+    let wobblePhase = 0;
+    let avatarRaf: number | null = null;
+    let isAvatarHovering = false;
+
+    const runAvatarAnimation = () => {
+      if (!avatarCard) return;
+
+      currentPx += (targetPx - currentPx) * 0.14;
+      currentPy += (targetPy - currentPy) * 0.14;
+
+      const drift = Math.abs(targetPx - currentPx) + Math.abs(targetPy - currentPy);
+      const targetWobble = isAvatarHovering ? Math.min(drift * 16, 1.8) : 0;
+      wobble += (targetWobble - wobble) * 0.12;
+      wobblePhase += 0.32;
+
+      // 位置追従 + ほんの少し遅れて揺れる（うねうね感）
+      const rx = (currentPy - 0.5) * 10 + Math.sin(wobblePhase) * wobble;
+      const ry = -(currentPx - 0.5) * 10 + Math.cos(wobblePhase * 0.9) * wobble;
+      const scale = isAvatarHovering ? 1.05 : 1;
+
+      avatarCard.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
+      avatarCard.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
+      avatarCard.style.setProperty('--mx', `${(currentPx * 100).toFixed(1)}%`);
+      avatarCard.style.setProperty('--my', `${(currentPy * 100).toFixed(1)}%`);
+      avatarCard.style.setProperty('--sc', scale.toString());
+
+      const settled = Math.abs(targetPx - currentPx) < 0.002 && Math.abs(targetPy - currentPy) < 0.002 && wobble < 0.01;
+      if (isAvatarHovering || !settled) {
+        avatarRaf = requestAnimationFrame(runAvatarAnimation);
+      } else {
+        avatarRaf = null;
+      }
+    };
+
+    const startAvatarAnimation = () => {
+      if (avatarRaf === null) {
+        avatarRaf = requestAnimationFrame(runAvatarAnimation);
+      }
+    };
+
+    avatarCard?.addEventListener('mouseenter', () => {
+      isAvatarHovering = true;
+      startAvatarAnimation();
+    });
+
+    avatarCard?.addEventListener('mousemove', (e) => {
+      if (!avatarCard) return;
+      const rect = avatarCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      targetPx = Math.min(Math.max(x / rect.width, 0), 1);
+      targetPy = Math.min(Math.max(y / rect.height, 0), 1);
+      startAvatarAnimation();
+    });
+
+    avatarCard?.addEventListener('mouseleave', () => {
+      isAvatarHovering = false;
+      targetPx = 0.5;
+      targetPy = 0.5;
+      startAvatarAnimation();
     });
   </script>
 </Layout>
