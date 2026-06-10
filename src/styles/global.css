@@ -14,3 +14,108 @@ html {
 body {
   @apply bg-slate-50 text-slate-800;
 }
+
+/* テキスト選択もちょっと可愛く */
+::selection {
+  background: #bae6fd;
+}
+
+/* ヒーロー背景：パステルの光がゆっくり漂う */
+@keyframes blob-float {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(2rem, -1.5rem) scale(1.08); }
+  100% { transform: translate(-1.5rem, 1.25rem) scale(0.95); }
+}
+.hero-blob {
+  animation: blob-float 16s ease-in-out infinite alternate;
+}
+.hero-blob-2 {
+  animation-duration: 21s;
+  animation-delay: -7s;
+}
+.hero-blob-3 {
+  animation-duration: 26s;
+  animation-delay: -13s;
+}
+
+/* セクション見出しにグラデーションの差し色 */
+section h2.text-center::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 0.3rem;
+  margin: 0.9rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8, #f472b6, #fbbf24);
+}
+
+/* ナビリンク：ホバーでグラデーション下線がすっと伸びる */
+nav a[href^="#"] {
+  position: relative;
+}
+nav a[href^="#"]::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8, #f472b6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+nav a[href^="#"]:hover::after {
+  transform: scaleX(1);
+}
+
+/* カードがふわっと持ち上がる */
+#skills .grid > div,
+#works .grid > a,
+#works .grid > div,
+#process .grid > div,
+#faq details {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+#skills .grid > div:hover,
+#works .grid > a:hover,
+#works .grid > div:hover,
+#process .grid > div:hover {
+  transform: translateY(-4px);
+}
+#faq details:hover {
+  transform: translateY(-2px);
+}
+
+/* 絵文字アイコンがくいっと挨拶 */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-10deg) scale(1.12); }
+  65% { transform: rotate(8deg) scale(1.05); }
+}
+#skills .grid > div:hover .text-4xl,
+#works .grid > div:hover .text-3xl,
+#process .grid > div:hover > span {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+/* スクロールでふわっと現れる（JSが .reveal を付与） */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob,
+  #skills .grid > div:hover .text-4xl,
+  #works .grid > div:hover .text-3xl,
+  #process .grid > div:hover > span {
+    animation: none;
+  }
+}

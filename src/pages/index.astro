@@ -19,6 +19,7 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
           <a href="#about" class="text-slate-500 hover:text-slate-800 transition" data-en="About" data-ja="概要">About</a>
           <a href="#skills" class="text-slate-500 hover:text-slate-800 transition" data-en="Skills" data-ja="スキル">Skills</a>
           <a href="#works" class="text-slate-500 hover:text-slate-800 transition" data-en="Works" data-ja="実績">Works</a>
+          <a href="#process" class="text-slate-500 hover:text-slate-800 transition" data-en="Flow" data-ja="流れ">Flow</a>
           <a href="#contact" class="text-slate-500 hover:text-slate-800 transition" data-en="Contact" data-ja="連絡先">Contact</a>
         </div>
         <button id="lang-toggle" class="text-sm bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-full transition">
@@ -29,20 +30,25 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
   </nav>
 
   <!-- Hero -->
-  <section class="min-h-screen flex items-center justify-center px-6 pt-20">
-    <div class="max-w-4xl text-center">
+  <section class="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="hero-blob absolute -top-24 -left-24 w-96 h-96 rounded-full bg-sky-200/50 blur-3xl"></div>
+      <div class="hero-blob hero-blob-2 absolute top-1/3 -right-32 w-[28rem] h-[28rem] rounded-full bg-pink-200/45 blur-3xl"></div>
+      <div class="hero-blob hero-blob-3 absolute -bottom-32 left-1/4 w-96 h-96 rounded-full bg-amber-200/40 blur-3xl"></div>
+    </div>
+    <div class="max-w-4xl text-center relative">
       <div id="avatar-card" class="relative inline-flex group mb-8 [perspective:900px]">
         <span aria-hidden="true" class="pointer-events-none absolute -inset-5 rounded-full bg-sky-300/35 blur-2xl opacity-0 scale-95 transition duration-300 ease-out group-hover:opacity-100 group-hover:scale-100"></span>
         <span aria-hidden="true" class="pointer-events-none absolute inset-0 z-40 rounded-full opacity-0 transition duration-200 ease-out group-hover:opacity-100" style="background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(15,23,42,0.24), rgba(15,23,42,0) 45%);"></span>
-        <Image src={avatarImage} alt="Kojo Akine" id="avatar" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white object-cover cursor-pointer select-none relative z-50 transition duration-200 ease-out will-change-transform group-hover:shadow-2xl" style="transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1));" widths={[160, 320]} sizes="(min-width: 768px) 160px, 128px" format="webp" loading="eager" fetchpriority="high" />
+        <Image src={avatarImage} alt="Kojo Akine" id="avatar" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white object-cover cursor-pointer select-none relative z-50 transition-shadow duration-300 ease-out will-change-transform group-hover:shadow-2xl" style="transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1));" widths={[160, 320]} sizes="(min-width: 768px) 160px, 128px" format="webp" loading="eager" fetchpriority="high" />
       </div>
       <h1 class="text-5xl md:text-7xl font-bold text-slate-800 mb-8">
         <span data-en="Kojo Akine" data-ja="小城 昭根">Kojo Akine</span>
       </h1>
-      <p class="text-xl md:text-2xl text-slate-600 mb-4 max-w-2xl mx-auto" data-en="I make short dramas." data-ja="ショートドラマを作ってます。">
-        ショートドラマを作ってます。
+      <p class="text-xl md:text-2xl text-slate-600 mb-4 max-w-2xl mx-auto" data-en="I used to create short dramas. Now I build things with AI." data-ja="ショートドラマを作っていた経験を活かして、いまはAIとものづくりをしています。">
+        ショートドラマを作っていた経験を活かして、いまはAIとものづくりをしています。
       </p>
-      <p class="text-xl md:text-2xl text-slate-600 mb-8 max-w-2xl mx-auto" data-en="This site? Built it with my AI partner." data-ja="このサイトもAIと一緒に作りました。">
+      <p class="text-xl md:text-2xl text-slate-600 mb-8 max-w-2xl mx-auto" data-en="I built this site with AI too." data-ja="このサイトもAIと一緒に作りました。">
         このサイトもAIと一緒に作りました。
       </p>
       <p class="text-slate-500 mb-12 max-w-xl mx-auto">
@@ -60,6 +66,9 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
       <p class="text-sm text-slate-500 mt-6" data-en="Creative Direction / Video Production / AI Visual Development" data-ja="クリエイティブディレクション / 映像制作 / AIビジュアル開発">
         クリエイティブディレクション / 映像制作 / AIビジュアル開発
       </p>
+      <p class="text-sm text-slate-400 mt-3">
+        <span data-en="Free consultation • Reply within 24 hours • Remote worldwide" data-ja="相談無料 • 原則24時間以内に返信 • フルリモート対応">相談無料 • 原則24時間以内に返信 • フルリモート対応</span>
+      </p>
     </div>
   </section>
 
@@ -73,8 +82,8 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
           <p class="text-slate-600 leading-relaxed mb-6" data-en="Studied screenwriting at Scenario Center and directing at ENBU Seminar Film Director Course (2020). For 10 years, I've been teaching film production at Tokyo Metropolitan Kogei High School as an official external instructor commissioned by Tokyo Metropolitan Government. My students' work was selected for PIA Film Festival (22 out of 795 submissions)." data-ja="シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学ぶ。10年にわたり東京都立工芸高校で映画部の外部講師として指導（東京都公式委嘱）。指導した生徒の作品は、ぴあフィルムフェスティバルで入選（795作品中22作品）。">
             シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学ぶ。10年にわたり東京都立工芸高校で映画部の外部講師として指導（東京都公式委嘱）。指導した生徒の作品は、ぴあフィルムフェスティバルで入選（795作品中22作品）。
           </p>
-          <p class="text-slate-600 leading-relaxed mb-6" data-en="In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project. On DeviantArt, I consistently publish mature AI art, entertaining audiences with professional work that balances allure and visual beauty." data-ja="2025年には、YouTubeで50本以上のショートドラマを監督・編集し、100万再生を達成。TikTokでもVFXコンテンツで100万再生を突破。Adoプロデュースのファントムシータなど大型案件も担当。DeviantArtでは大人向けAIアートを継続的に発表し、プロとして艶やかさと美しさを両立した作品でオーディエンスを楽しませています。">
-            In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project. On DeviantArt, I consistently publish mature AI art, entertaining audiences with professional work that balances allure and visual beauty.
+          <p class="text-slate-600 leading-relaxed mb-6" data-en="In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project. On DeviantArt, I regularly publish AI art that balances allure and beauty for audiences around the world (ask me about it when we meet)." data-ja="2025年には、YouTubeで50本以上のショートドラマを監督・編集し、100万再生を達成。TikTokでもVFXコンテンツで100万再生を突破。Adoプロデュースのファントムシータなど大型案件も担当。DeviantArtでは、艶やかさと美しさを両立したAIアートを継続的に発表し、世界中のオーディエンスを楽しませています（どんな作品かは、会ったときにでも聞いてください）。">
+            2025年には、YouTubeで50本以上のショートドラマを監督・編集し、100万再生を達成。TikTokでもVFXコンテンツで100万再生を突破。Adoプロデュースのファントムシータなど大型案件も担当。DeviantArtでは、艶やかさと美しさを両立したAIアートを継続的に発表し、世界中のオーディエンスを楽しませています（どんな作品かは、会ったときにでも聞いてください）。
           </p>
           <p class="text-slate-600 leading-relaxed" data-en="Web Engineer for 5 years (Rails, React), then VR training systems (Unreal Engine, Meta Quest 3). Now merging creative direction with AI. Beyond video production, also builds bots and apps with AI — turning ideas into reality from concept to launch." data-ja="Webエンジニア5年（Rails, React）、VRトレーニングシステム開発（Unreal Engine, Meta Quest 3）を経て、現在はクリエイティブディレクションとAI活用を融合。映像制作に加えて、AIを使ったBot開発やアプリ制作も手がけ、「作りたいもの」を企画から実装まで一貫して形にする。">
             Webエンジニア5年（Rails, React）、VRトレーニングシステム開発（Unreal Engine, Meta Quest 3）を経て、現在はクリエイティブディレクションとAI活用を融合。映像制作に加えて、AIを使ったBot開発やアプリ制作も手がけ、「作りたいもの」を企画から実装まで一貫して形にする。
@@ -131,7 +140,7 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
             <li data-en="• Bots, apps, websites at production speed" data-ja="• Bot・アプリ・Webサイトを量産">• Bot・アプリ・Webサイトを量産</li>
             <li data-en="• Custom production pipelines" data-ja="• 制作パイプラインを自分で設計・構築">• 制作パイプラインを自分で設計・構築</li>
             <li data-en="• AI image generation workflow" data-ja="• AI画像生成ワークフロー">• AI画像生成ワークフロー</li>
-            <li data-en="• Professional production and publishing of mature AI art" data-ja="• 大人向けAIアートをプロとして継続制作・発信">• 大人向けAIアートをプロとして継続制作・発信</li>
+            <li data-en="• Alluring AI art, published regularly on DeviantArt" data-ja="• 艶のあるAIアートをDeviantArtで継続発表">• 艶のあるAIアートをDeviantArtで継続発表</li>
           </ul>
         </div>
         <!-- Everything Connects -->
@@ -267,6 +276,136 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
               <p class="text-xs text-slate-400 mt-2" data-en="Role: Direction / Delivery Speed: 3 Days" data-ja="担当: ディレクション / 納期: 3日">担当: ディレクション / 納期: 3日</p>
             </div>
           </a>
+        </div>
+      </div>
+
+      <!-- Client Productions (Moved from Undone Portfolio) -->
+      <div class="mb-16">
+        <h3 class="text-xl font-semibold text-slate-800 mb-3" data-en="Client Productions" data-ja="クライアント実績">Client Productions</h3>
+        <p class="text-slate-500 text-sm mb-8" data-en="Selected projects from entertainment, brand, and streaming work. Curated from past production records and presented as individual credits." data-ja="エンタメ・ブランド・配信領域の代表案件を抜粋。過去の制作実績を個人クレジットとして再編集して掲載。">
+          エンタメ・ブランド・配信領域の代表案件を抜粋。過去の制作実績を個人クレジットとして再編集して掲載。
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <a href="https://www.youtube.com/watch?v=StRwGB4z9tM" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-slate-100 relative overflow-hidden">
+              <img src="https://img.youtube.com/vi/StRwGB4z9tM/maxresdefault.jpg" alt="CUL DRAMA" class="w-full h-full object-cover group-hover:scale-105 transition" />
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <span class="text-6xl text-white">▶</span>
+              </div>
+              <span class="absolute top-2 right-2 bg-sky-500 text-white text-xs px-2 py-1 rounded">YouTube</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">YouTube Drama</span>
+                <span class="text-xs text-slate-400">CUL DRAMA</span>
+              </div>
+              <h4 class="text-slate-800 font-semibold mb-2" data-en="CUL DRAMA — Teen Drama Episode" data-ja="CUL DRAMA — 学園ショートドラマ">CUL DRAMA — Teen Drama Episode</h4>
+              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Planned, directed, and edited story-driven short drama episodes for youth audiences." data-ja="ティーン向けショートドラマを企画・監督・編集まで一貫して担当。">
+                ティーン向けショートドラマを企画・監督・編集まで一貫して担当。
+              </p>
+              <p class="text-xs text-slate-400" data-en="Role: Planning / Direction / Editing" data-ja="担当: 企画 / 監督 / 編集">担当: 企画 / 監督 / 編集</p>
+            </div>
+          </a>
+
+          <a href="https://youtu.be/3tHl6a6tjMY?si=aaM1Ew-DB5zt-xMH" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-pink-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-slate-100 relative overflow-hidden">
+              <img src="https://img.youtube.com/vi/3tHl6a6tjMY/maxresdefault.jpg" alt="Merupuchi Official Music Video" class="w-full h-full object-cover group-hover:scale-105 transition" />
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <span class="text-6xl text-white">▶</span>
+              </div>
+              <span class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded">MV</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">MV / Entertainment</span>
+                <span class="text-xs text-slate-400">Merupuchi</span>
+              </div>
+              <h4 class="text-slate-800 font-semibold mb-2" data-en="Merupuchi Official — Music Video" data-ja="めるぷち official — MV制作">Merupuchi Official — Music Video</h4>
+              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Supported production and delivered editing, 2D effects, and VFX for a high-tempo idol MV." data-ja="撮影補助から編集、2Dエフェクト、VFXまで担当し、テンポ重視のMVを制作。">
+                撮影補助から編集、2Dエフェクト、VFXまで担当し、テンポ重視のMVを制作。
+              </p>
+              <p class="text-xs text-slate-400" data-en="Role: Editing / 2D Effects / VFX" data-ja="担当: 編集 / 2Dエフェクト / VFX">担当: 編集 / 2Dエフェクト / VFX</p>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=xDXpPpCxRuA&t=815s" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-slate-100 relative overflow-hidden">
+              <img src="https://img.youtube.com/vi/xDXpPpCxRuA/maxresdefault.jpg" alt="Phantom Theta Birthday Project" class="w-full h-full object-cover group-hover:scale-105 transition" />
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <span class="text-6xl text-white">▶</span>
+              </div>
+              <span class="absolute top-2 right-2 bg-sky-500 text-white text-xs px-2 py-1 rounded">Ado</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">YouTube Entertainment</span>
+                <span class="text-xs text-slate-400">Phantom Theta</span>
+              </div>
+              <h4 class="text-slate-800 font-semibold mb-2" data-en="Phantom Theta Birthday Project" data-ja="ファントムシータ誕生日企画">Phantom Theta Birthday Project</h4>
+              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Edited a celebration video project for Phantom Theta with fast turnaround and social-ready pacing." data-ja="ファントムシータの誕生日企画動画を編集。短納期でSNS向けテンポを設計。">
+                ファントムシータの誕生日企画動画を編集。短納期でSNS向けテンポを設計。
+              </p>
+              <p class="text-xs text-slate-400" data-en="Role: Editing" data-ja="担当: 編集">担当: 編集</p>
+            </div>
+          </a>
+
+          <a href="https://tv.dmm.com/shorts/detail/?season=gfkw9ar3v5stxz83bvabgjpbg" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-amber-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-slate-100 relative overflow-hidden">
+              <img src="https://awsimgsrc.dmm.com/dig/dmmtv/video/gfkw9ar3v5stxz83bvabgjpbg/package_1.png?w=1280&h=720&t=margin" alt="TTM DMM TV Key Visual" class="w-full h-full object-cover group-hover:scale-105 transition" />
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <span class="text-6xl text-white">▶</span>
+              </div>
+              <span class="absolute top-2 right-2 bg-amber-500 text-white text-xs px-2 py-1 rounded">DMM TV</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">DMM TV</span>
+                <span class="text-xs text-slate-400">Short Drama</span>
+              </div>
+              <h4 class="text-slate-800 font-semibold mb-2">TTM (たったら負け)</h4>
+              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Handled offline editing for a distribution-ready short drama title on DMM TV." data-ja="DMM TV向けショートドラマ作品のオフライン編集を担当。">
+                DMM TV向けショートドラマ作品のオフライン編集を担当。
+              </p>
+              <p class="text-xs text-slate-400" data-en="Role: Offline Editing" data-ja="担当: オフライン編集">担当: オフライン編集</p>
+            </div>
+          </a>
+
+          <a href="https://www.tiktok.com/@fumakilla_jp/video/7526839555647999240" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-pink-400 hover:shadow-lg transition">
+            <div class="aspect-video bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 relative overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center text-white/90 text-6xl">📱</div>
+              <div class="absolute inset-0 bg-black/15"></div>
+              <span class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded border border-white/30">TikTok</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">TikTok Campaign</span>
+                <span class="text-xs text-slate-400">FUMAKILLA</span>
+              </div>
+              <h4 class="text-slate-800 font-semibold mb-2" data-en="FUMAKILLA TikTok Series" data-ja="FUMAKILLA TikTokシリーズ">FUMAKILLA TikTok Series</h4>
+              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Produced multiple TikTok shorts for a consumer brand campaign, focusing on edit speed and clarity." data-ja="消費者向けブランド施策として複数のTikTokショートを制作。短尺で伝わる編集設計を担当。">
+                消費者向けブランド施策として複数のTikTokショートを制作。短尺で伝わる編集設計を担当。
+              </p>
+              <p class="text-xs text-slate-400" data-en="Role: Editing / Partial Shooting" data-ja="担当: 編集 / 一部撮影">担当: 編集 / 一部撮影</p>
+            </div>
+          </a>
+
+          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200">
+            <div class="aspect-video bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500 relative overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center text-white/90 text-6xl">🎓</div>
+              <span class="absolute top-2 right-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded">Academic</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">Academic / Live Streaming</span>
+                <span class="text-xs text-slate-400">Public / Education</span>
+              </div>
+              <h4 class="text-slate-800 font-semibold mb-2" data-en="National Mathematics Education Symposium" data-ja="全国算数・数学教育研究大会シンポジウム">全国算数・数学教育研究大会シンポジウム</h4>
+              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Managed on-site capture, live streaming operations, and visual design for an academic symposium event." data-ja="学術シンポジウムにおける撮影・配信オペレーション・デザイン制作を一括で担当。">
+                学術シンポジウムにおける撮影・配信オペレーション・デザイン制作を一括で担当。
+              </p>
+              <p class="text-xs text-slate-400" data-en="Role: Shooting / Streaming / Design" data-ja="担当: 撮影 / 配信 / デザイン">担当: 撮影 / 配信 / デザイン</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -457,6 +596,125 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
     </div>
   </section>
 
+  <!-- Hiring Banner -->
+  <section class="px-6 pb-12 bg-white">
+    <div class="max-w-5xl mx-auto rounded-3xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-sky-50 p-8 md:p-10 shadow-sm">
+      <p class="inline-flex items-center gap-2 text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full mb-4" data-en="Open to Part-time / Contract Work" data-ja="バイト・業務委託ともに歓迎">
+        バイト・業務委託ともに歓迎
+      </p>
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-3" data-en="Available Now for Remote Creative & Editing Roles" data-ja="現在、映像編集・制作系のお仕事を探しています">
+        現在、映像編集・制作系のお仕事を探しています
+      </h2>
+      <p class="text-slate-600 leading-relaxed mb-6" data-en="If you're hiring for video editing, creative direction, short-form content production, or AI-assisted visual workflows, I can contribute immediately." data-ja="映像編集、クリエイティブディレクション、ショート動画制作、AI活用の制作フロー構築まで、即戦力として参加できます。">
+        映像編集、クリエイティブディレクション、ショート動画制作、AI活用の制作フロー構築まで、即戦力として参加できます。
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 text-left">
+        <div class="bg-white/80 border border-emerald-100 rounded-xl px-4 py-3">
+          <p class="text-[11px] font-semibold text-slate-500 mb-1" data-en="Availability" data-ja="稼働開始">稼働開始</p>
+          <p class="text-sm font-semibold text-slate-700" data-en="Immediate" data-ja="即日〜">即日〜</p>
+        </div>
+        <div class="bg-white/80 border border-emerald-100 rounded-xl px-4 py-3">
+          <p class="text-[11px] font-semibold text-slate-500 mb-1" data-en="Work Style" data-ja="働き方">働き方</p>
+          <p class="text-sm font-semibold text-slate-700" data-en="Part-time / Contract" data-ja="バイト / 業務委託">バイト / 業務委託</p>
+        </div>
+        <div class="bg-white/80 border border-emerald-100 rounded-xl px-4 py-3">
+          <p class="text-[11px] font-semibold text-slate-500 mb-1" data-en="Time Zone" data-ja="稼働時間">稼働時間</p>
+          <p class="text-sm font-semibold text-slate-700" data-en="JST, Flexible" data-ja="JSTベース（柔軟対応）">JSTベース（柔軟対応）</p>
+        </div>
+        <div class="bg-white/80 border border-emerald-100 rounded-xl px-4 py-3">
+          <p class="text-[11px] font-semibold text-slate-500 mb-1" data-en="Compensation" data-ja="希望条件">希望条件</p>
+          <p class="text-sm font-semibold text-slate-700" data-en="Negotiable" data-ja="時給・単価は応相談">時給・単価は応相談</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="#contact" class="bg-emerald-500 hover:bg-emerald-400 text-white px-6 py-3 rounded-full font-medium transition" data-en="Contact Me" data-ja="連絡する">連絡する</a>
+        <a href="mailto:kojo@akinechan.com?subject=%E3%80%90%E3%81%94%E7%9B%B8%E8%AB%87%E3%80%91%E6%98%A0%E5%83%8F%E5%88%B6%E4%BD%9C%E3%83%BB%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BE%9D%E9%A0%BC&body=%E3%81%94%E4%BE%9D%E9%A0%BC%E5%86%85%E5%AE%B9%EF%BC%9A%0A%0A%E3%81%94%E4%BA%88%E7%AE%97%EF%BC%88%E7%9B%AE%E5%AE%89%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%EF%BC%89%EF%BC%9A%0A%0A%E5%B8%8C%E6%9C%9B%E7%B4%8D%E6%9C%9F%EF%BC%9A%0A%0A%E3%81%94%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%AA%E3%81%A9%EF%BC%9A%0A" class="border border-slate-300 hover:border-slate-500 text-slate-700 px-6 py-3 rounded-full font-medium transition">kojo@akinechan.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-slate-800 mb-4 text-center" data-en="How It Works" data-ja="ご依頼の流れ">ご依頼の流れ</h2>
+      <p class="text-slate-500 text-center mb-16 max-w-xl mx-auto" data-en="From first message to delivery — simple and fast. Small projects welcome." data-ja="最初のご連絡から納品までシンプル＆スピーディー。小さな案件も歓迎です。">
+        最初のご連絡から納品までシンプル＆スピーディー。小さな案件も歓迎です。
+      </p>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 text-sky-600 font-bold mb-4">1</span>
+          <h3 class="font-semibold text-slate-800 mb-2" data-en="Free Consultation" data-ja="無料相談">無料相談</h3>
+          <p class="text-sm text-slate-600 leading-relaxed" data-en="Email me what you have in mind. A rough idea is enough — I'll help shape it." data-ja="メールでざっくり相談。ふわっとしたアイデア段階でもOK、一緒に形にします。">メールでざっくり相談。ふわっとしたアイデア段階でもOK、一緒に形にします。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 text-sky-600 font-bold mb-4">2</span>
+          <h3 class="font-semibold text-slate-800 mb-2" data-en="Proposal & Quote" data-ja="ご提案・お見積もり">ご提案・お見積もり</h3>
+          <p class="text-sm text-slate-600 leading-relaxed" data-en="I propose an approach, timeline, and quote that fits your budget." data-ja="ご予算に合わせて、進め方・スケジュール・お見積もりをご提案します。">ご予算に合わせて、進め方・スケジュール・お見積もりをご提案します。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 text-sky-600 font-bold mb-4">3</span>
+          <h3 class="font-semibold text-slate-800 mb-2" data-en="Production" data-ja="制作">制作</h3>
+          <p class="text-sm text-slate-600 leading-relaxed" data-en="Regular progress updates so there are no surprises. AI-powered workflow keeps it fast." data-ja="進捗をこまめに共有しながら制作。AI活用ワークフローでスピード感を保ちます。">進捗をこまめに共有しながら制作。AI活用ワークフローでスピード感を保ちます。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 text-sky-600 font-bold mb-4">4</span>
+          <h3 class="font-semibold text-slate-800 mb-2" data-en="Delivery & Revisions" data-ja="納品・修正対応">納品・修正対応</h3>
+          <p class="text-sm text-slate-600 leading-relaxed" data-en="Delivered in your preferred format. Revision rounds and scope are agreed in the quote — extra rounds available as paid add-ons." data-ja="ご希望の形式で納品。修正は回数・範囲をお見積もり時に決めて対応（追加修正は別途お見積もり）。">ご希望の形式で納品。修正は回数・範囲をお見積もり時に決めて対応（追加修正は別途お見積もり）。</p>
+        </div>
+      </div>
+      <p class="text-center text-sm text-slate-500 mt-10">
+        <span data-en="Track record: 3-day turnaround on the Phantom Theta (Ado) project. Rush jobs welcome — just ask." data-ja="実績：ファントムシータ（Ado）案件は相談から3日で納品。お急ぎの案件もまずはご相談ください。">実績：ファントムシータ（Ado）案件は相談から3日で納品。お急ぎの案件もまずはご相談ください。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-24 px-6 bg-slate-50">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-slate-800 mb-16 text-center" data-en="FAQ" data-ja="よくある質問">よくある質問</h2>
+      <div class="space-y-4">
+        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
+            <span data-en="How much does it cost?" data-ja="料金はどのくらいですか？">料金はどのくらいですか？</span>
+            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
+          </summary>
+          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="It depends on scope, so I quote per project. Tell me your budget upfront and I'll propose the best plan within it — small budgets are welcome too." data-ja="内容によって変わるため案件ごとにお見積もりしています。先にご予算を教えていただければ、その範囲でベストなプランをご提案します。少額のご予算でも歓迎です。">内容によって変わるため案件ごとにお見積もりしています。先にご予算を教えていただければ、その範囲でベストなプランをご提案します。少額のご予算でも歓迎です。</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
+            <span data-en="What kind of work can I ask for?" data-ja="どんな仕事を頼めますか？">どんな仕事を頼めますか？</span>
+            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
+          </summary>
+          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Video editing, short-form content, creative direction, VFX, and AI-assisted production (visuals, bots, apps, websites). From a single video edit to building your whole content pipeline." data-ja="映像編集、ショート動画、クリエイティブディレクション、VFX、AI活用の制作（ビジュアル・Bot・アプリ・Webサイト）まで。動画1本の編集から、コンテンツ制作フローの構築まで対応します。">映像編集、ショート動画、クリエイティブディレクション、VFX、AI活用の制作（ビジュアル・Bot・アプリ・Webサイト）まで。動画1本の編集から、コンテンツ制作フローの構築まで対応します。</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
+            <span data-en="How fast can you deliver?" data-ja="納期はどのくらいですか？">納期はどのくらいですか？</span>
+            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
+          </summary>
+          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Depends on the project, but speed is my strength — the Phantom Theta (Ado) video went from brief to delivery in 3 days. Tell me your deadline and I'll be straight about whether it's doable." data-ja="案件によりますが、スピードは強みです。ファントムシータ（Ado）案件は依頼から3日で納品しました。希望納期を教えていただければ、対応可否を正直にお答えします。">案件によりますが、スピードは強みです。ファントムシータ（Ado）案件は依頼から3日で納品しました。希望納期を教えていただければ、対応可否を正直にお答えします。</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
+            <span data-en="Do you work remotely only?" data-ja="リモートのみの対応ですか？">リモートのみの対応ですか？</span>
+            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
+          </summary>
+          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Fully remote worldwide is my default, but on-site work in the Tokyo area (shoots, live streaming, etc.) is also possible — just ask." data-ja="基本はフルリモートで世界中どこでも対応します。東京近郊での現場対応（撮影・配信など）も可能ですので、ご相談ください。">基本はフルリモートで世界中どこでも対応します。東京近郊での現場対応（撮影・配信など）も可能ですので、ご相談ください。</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
+            <span data-en="Can you join an ongoing team or project?" data-ja="既存のチームや進行中の案件にも入れますか？">既存のチームや進行中の案件にも入れますか？</span>
+            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
+          </summary>
+          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Yes. I've led teams of 10+ staff and actors, and I also slot into existing workflows as an editor or director. Part-time and contract arrangements both work." data-ja="可能です。スタッフ・演者10人超のチームを統括した経験があり、編集者・ディレクターとして既存のワークフローに入ることもできます。バイト・業務委託どちらの形でも大丈夫です。">可能です。スタッフ・演者10人超のチームを統括した経験があり、編集者・ディレクターとして既存のワークフローに入ることもできます。バイト・業務委託どちらの形でも大丈夫です。</p>
+        </details>
+      </div>
+      <div class="text-center mt-12">
+        <a href="#contact" class="bg-sky-500 hover:bg-sky-400 text-white px-8 py-3 rounded-full font-medium transition inline-block" data-en="Ask Anything — It's Free" data-ja="まずは気軽に相談する（無料）">まずは気軽に相談する（無料）</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section id="contact" class="py-32 px-6 bg-slate-100">
     <div class="max-w-4xl mx-auto text-center">
@@ -466,7 +724,8 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
       </p>
       <p class="text-slate-600 mb-12 max-w-xl mx-auto">
         <span data-en="Available for full remote work worldwide." data-ja="フルリモートで世界中どこからでも対応可能。">フルリモートで世界中どこからでも対応可能。</span><br>
-        <span data-en="Looking for creative direction and video production projects." data-ja="クリエイティブディレクション、映像制作のプロジェクトを探しています。">クリエイティブディレクション、映像制作のプロジェクトを探しています。</span>
+        <span data-en="Looking for creative direction and video production projects." data-ja="クリエイティブディレクション、映像制作のプロジェクトを探しています。">クリエイティブディレクション、映像制作のプロジェクトを探しています。</span><br>
+        <span data-en="I reply within 24 hours. A one-line email is enough to start." data-ja="原則24時間以内に返信します。一行のメールからで大丈夫です。">原則24時間以内に返信します。一行のメールからで大丈夫です。</span>
       </p>
 
       <div class="grid md:grid-cols-3 gap-3 max-w-3xl mx-auto mb-10">
@@ -486,11 +745,11 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
 
       <!-- Direct Contact -->
       <div class="flex flex-wrap gap-6 justify-center mb-12">
-        <a href="mailto:weezer.and.you@gmail.com" class="flex items-center gap-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-4 rounded-2xl transition shadow-sm">
+        <a href="mailto:kojo@akinechan.com?subject=%E3%80%90%E3%81%94%E7%9B%B8%E8%AB%87%E3%80%91%E6%98%A0%E5%83%8F%E5%88%B6%E4%BD%9C%E3%83%BB%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BE%9D%E9%A0%BC&body=%E3%81%94%E4%BE%9D%E9%A0%BC%E5%86%85%E5%AE%B9%EF%BC%9A%0A%0A%E3%81%94%E4%BA%88%E7%AE%97%EF%BC%88%E7%9B%AE%E5%AE%89%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%EF%BC%89%EF%BC%9A%0A%0A%E5%B8%8C%E6%9C%9B%E7%B4%8D%E6%9C%9F%EF%BC%9A%0A%0A%E3%81%94%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%AA%E3%81%A9%EF%BC%9A%0A" class="flex items-center gap-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-4 rounded-2xl transition shadow-sm">
           <span class="text-2xl">✉️</span>
           <span class="text-left">
             <span class="block text-xs text-slate-500">Email</span>
-            <span class="font-medium">weezer.and.you@gmail.com</span>
+            <span class="font-medium">kojo@akinechan.com</span>
           </span>
         </a>
         <a href="tel:+818034930723" class="flex items-center gap-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-4 rounded-2xl transition shadow-sm">
@@ -535,6 +794,9 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
   <footer class="py-8 px-6 border-t border-slate-200">
     <div class="max-w-6xl mx-auto text-center text-slate-500 text-sm">
       <p>© 2026 Kojo Akine. All rights reserved.</p>
+      <p class="mt-2 text-xs text-slate-400">
+        <span data-en="Made with AI, playfulness, and a little ちゅむ 💕" data-ja="AIと遊び心と、ちょっとの ちゅむ 💕 でできています">AIと遊び心と、ちょっとの ちゅむ 💕 でできています</span>
+      </p>
     </div>
   </footer>
 
@@ -746,43 +1008,58 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
     let targetPy = 0.5;
     let currentPx = 0.5;
     let currentPy = 0.5;
+    let currentScale = 1;
     let wobble = 0;
     let wobblePhase = 0;
     let avatarRaf: number | null = null;
     let isAvatarHovering = false;
+    let lastFrameTime: number | null = null;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const runAvatarAnimation = () => {
+    const runAvatarAnimation = (now: number) => {
       if (!avatarCard) return;
+      // 60Hzでも120Hzでも同じ速度になるよう経過時間ベースで補間
+      const dt = lastFrameTime === null ? 16.7 : Math.min(now - lastFrameTime, 50);
+      lastFrameTime = now;
+      const posEase = 1 - Math.exp(-dt / 110);
+      const scaleEase = 1 - Math.exp(-dt / 90);
+      const wobbleEase = 1 - Math.exp(-dt / 150);
 
-      currentPx += (targetPx - currentPx) * 0.14;
-      currentPy += (targetPy - currentPy) * 0.14;
+      currentPx += (targetPx - currentPx) * posEase;
+      currentPy += (targetPy - currentPy) * posEase;
+      currentScale += ((isAvatarHovering ? 1.05 : 1) - currentScale) * scaleEase;
 
       const drift = Math.abs(targetPx - currentPx) + Math.abs(targetPy - currentPy);
-      const targetWobble = isAvatarHovering ? Math.min(drift * 16, 1.8) : 0;
-      wobble += (targetWobble - wobble) * 0.12;
-      wobblePhase += 0.32;
+      const targetWobble = isAvatarHovering ? Math.min(drift * 10, 1.2) : 0;
+      wobble += (targetWobble - wobble) * wobbleEase;
+      wobblePhase += dt * 0.011;
 
       // 位置追従 + ほんの少し遅れて揺れる（うねうね感）
       const rx = (currentPy - 0.5) * 10 + Math.sin(wobblePhase) * wobble;
       const ry = -(currentPx - 0.5) * 10 + Math.cos(wobblePhase * 0.9) * wobble;
-      const scale = isAvatarHovering ? 1.05 : 1;
 
-      avatarCard.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
-      avatarCard.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
-      avatarCard.style.setProperty('--mx', `${(currentPx * 100).toFixed(1)}%`);
-      avatarCard.style.setProperty('--my', `${(currentPy * 100).toFixed(1)}%`);
-      avatarCard.style.setProperty('--sc', scale.toString());
+      avatarCard.style.setProperty('--rx', `${rx.toFixed(3)}deg`);
+      avatarCard.style.setProperty('--ry', `${ry.toFixed(3)}deg`);
+      avatarCard.style.setProperty('--mx', `${(currentPx * 100).toFixed(2)}%`);
+      avatarCard.style.setProperty('--my', `${(currentPy * 100).toFixed(2)}%`);
+      avatarCard.style.setProperty('--sc', currentScale.toFixed(4));
 
-      const settled = Math.abs(targetPx - currentPx) < 0.002 && Math.abs(targetPy - currentPy) < 0.002 && wobble < 0.01;
+      const settled = drift < 0.001 && wobble < 0.005 && Math.abs(currentScale - 1) < 0.001;
       if (isAvatarHovering || !settled) {
         avatarRaf = requestAnimationFrame(runAvatarAnimation);
       } else {
+        avatarCard.style.setProperty('--rx', '0deg');
+        avatarCard.style.setProperty('--ry', '0deg');
+        avatarCard.style.setProperty('--sc', '1');
         avatarRaf = null;
+        lastFrameTime = null;
       }
     };
 
     const startAvatarAnimation = () => {
+      if (prefersReducedMotion) return;
       if (avatarRaf === null) {
+        lastFrameTime = null;
         avatarRaf = requestAnimationFrame(runAvatarAnimation);
       }
     };
@@ -809,6 +1086,23 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
       targetPy = 0.5;
       startAvatarAnimation();
     });
+
+    // スクロールに合わせてセクションがふわっと現れる
+    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+      const revealEls = document.querySelectorAll('section h2, section h3, section .grid, #faq .space-y-4');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach((el) => {
+        el.classList.add('reveal');
+        revealObserver.observe(el);
+      });
+    }
   </script>
 </Layout>
 <!-- Auto-deploy test 2026-02-01 -->
