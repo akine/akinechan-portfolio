@@ -40,7 +40,7 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
       <div id="avatar-card" class="relative inline-flex group mb-8 [perspective:900px]">
         <span aria-hidden="true" class="pointer-events-none absolute -inset-5 rounded-full bg-sky-300/35 blur-2xl opacity-0 scale-95 transition duration-300 ease-out group-hover:opacity-100 group-hover:scale-100"></span>
         <span aria-hidden="true" class="pointer-events-none absolute inset-0 z-40 rounded-full opacity-0 transition duration-200 ease-out group-hover:opacity-100" style="background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(15,23,42,0.24), rgba(15,23,42,0) 45%);"></span>
-        <Image src={avatarImage} alt="Kojo Akine" id="avatar" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white object-cover cursor-pointer select-none relative z-50 transition-shadow duration-300 ease-out will-change-transform group-hover:shadow-2xl" style="transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1));" widths={[160, 320]} sizes="(min-width: 768px) 160px, 128px" format="webp" loading="eager" fetchpriority="high" />
+        <Image src={avatarImage} alt="Kojo Akine" id="avatar" draggable="false" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white object-cover cursor-grab active:cursor-grabbing select-none relative z-50 transition-shadow duration-300 ease-out will-change-transform group-hover:shadow-2xl" style="transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1)); touch-action: none;" widths={[160, 320]} sizes="(min-width: 768px) 160px, 128px" format="webp" loading="eager" fetchpriority="high" />
       </div>
       <h1 class="text-5xl md:text-7xl font-bold text-slate-800 mb-8">
         <span data-en="Kojo Akine" data-ja="小城 昭根">小城 昭根</span>
@@ -999,7 +999,13 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
 
     avatar?.addEventListener('click', () => {
       clickCount++;
-      
+
+      // 毎クリック：ぷにっと潰れて弾む（スケールのバネに下向きの勢いを足す）
+      if (!prefersReducedMotion) {
+        scV -= 3.6;
+        startAvatarAnimation();
+      }
+
       if (clickTimer) clearTimeout(clickTimer);
       clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
 
@@ -1010,52 +1016,80 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
       }
     });
 
+    // ── アバター物理アニメーション：カーソル追従 + 掴んで引っ張る + 投げる ──
     let targetPx = 0.5;
     let targetPy = 0.5;
     let currentPx = 0.5;
     let currentPy = 0.5;
-    let currentScale = 1;
+    let ox = 0, oy = 0, oxV = 0, oyV = 0; // 位置オフセット(px)とその速度
+    let sc = 1, scV = 0; // スケールとその速度
     let wobble = 0;
     let wobblePhase = 0;
     let avatarRaf: number | null = null;
     let isAvatarHovering = false;
+    let isDragging = false;
+    let dragBaseX = 0, dragBaseY = 0;
+    let dragX = 0, dragY = 0;
+    let moveVX = 0, moveVY = 0, lastMoveX = 0, lastMoveY = 0, lastMoveT = 0;
     let lastFrameTime: number | null = null;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    const DRAG_LIMIT = 90; // 引っ張れる最大距離(px)
+    const softClamp = (v: number, limit: number) => limit * Math.tanh(v / limit);
+
     const runAvatarAnimation = (now: number) => {
       if (!avatarCard) return;
-      // 60Hzでも120Hzでも同じ速度になるよう経過時間ベースで補間
-      const dt = lastFrameTime === null ? 16.7 : Math.min(now - lastFrameTime, 50);
+      // 60Hzでも120Hzでも同じ速度になるよう経過時間ベース（秒）で積分
+      const dt = Math.min(lastFrameTime === null ? 16.7 : now - lastFrameTime, 50) / 1000;
       lastFrameTime = now;
-      const posEase = 1 - Math.exp(-dt / 110);
-      const scaleEase = 1 - Math.exp(-dt / 90);
-      const wobbleEase = 1 - Math.exp(-dt / 150);
 
+      const posEase = 1 - Math.exp(-dt * 11);
       currentPx += (targetPx - currentPx) * posEase;
       currentPy += (targetPy - currentPy) * posEase;
-      currentScale += ((isAvatarHovering ? 1.05 : 1) - currentScale) * scaleEase;
 
+      // オフセット：ドラッグ中はしっかり追従、離すと低減衰バネでビヨンと戻る
+      const tx = isDragging ? dragX : isAvatarHovering ? (currentPx - 0.5) * 24 : 0;
+      const ty = isDragging ? dragY : isAvatarHovering ? (currentPy - 0.5) * 24 : 0;
+      const stiff = isDragging ? 380 : 150;
+      const damp = isDragging ? 28 : 9;
+      oxV += (tx - ox) * stiff * dt; oxV *= Math.exp(-damp * dt); ox += oxV * dt;
+      oyV += (ty - oy) * stiff * dt; oyV *= Math.exp(-damp * dt); oy += oyV * dt;
+
+      // スケール：掴むとむにっと大きく、クリックでぷにっと弾む
+      const tSc = isDragging ? 1.12 : isAvatarHovering ? 1.06 : 1;
+      scV += (tSc - sc) * 260 * dt; scV *= Math.exp(-14 * dt); sc += scV * dt;
+      sc = Math.min(Math.max(sc, 0.72), 1.3);
+
+      // 揺れ：動きの速さに応じてうねうね
+      const speed = Math.hypot(oxV, oyV);
       const drift = Math.abs(targetPx - currentPx) + Math.abs(targetPy - currentPy);
-      const targetWobble = isAvatarHovering ? Math.min(drift * 10, 1.2) : 0;
-      wobble += (targetWobble - wobble) * wobbleEase;
-      wobblePhase += dt * 0.011;
+      const targetWobble = Math.min(drift * 10 + speed * 0.006, 2.5);
+      wobble += (targetWobble - wobble) * (1 - Math.exp(-dt * 6.7));
+      wobblePhase += dt * 11;
 
-      // 位置追従 + ほんの少し遅れて揺れる（うねうね感）
-      const rx = (currentPy - 0.5) * 10 + Math.sin(wobblePhase) * wobble;
-      const ry = -(currentPx - 0.5) * 10 + Math.cos(wobblePhase * 0.9) * wobble;
+      // 傾き：カーソル位置 + 引っ張られている方向 + 揺れの余韻
+      const rx = (currentPy - 0.5) * 14 - oy * 0.28 + Math.sin(wobblePhase) * wobble;
+      const ry = -(currentPx - 0.5) * 14 + ox * 0.28 + Math.cos(wobblePhase * 0.9) * wobble;
 
       avatarCard.style.setProperty('--rx', `${rx.toFixed(3)}deg`);
       avatarCard.style.setProperty('--ry', `${ry.toFixed(3)}deg`);
+      avatarCard.style.setProperty('--tx', `${ox.toFixed(2)}px`);
+      avatarCard.style.setProperty('--ty', `${oy.toFixed(2)}px`);
       avatarCard.style.setProperty('--mx', `${(currentPx * 100).toFixed(2)}%`);
       avatarCard.style.setProperty('--my', `${(currentPy * 100).toFixed(2)}%`);
-      avatarCard.style.setProperty('--sc', currentScale.toFixed(4));
+      avatarCard.style.setProperty('--sc', sc.toFixed(4));
 
-      const settled = drift < 0.001 && wobble < 0.005 && Math.abs(currentScale - 1) < 0.001;
-      if (isAvatarHovering || !settled) {
+      const settled = !isDragging && !isAvatarHovering &&
+        drift < 0.001 && wobble < 0.01 &&
+        Math.abs(sc - 1) < 0.001 && Math.abs(scV) < 0.01 &&
+        Math.hypot(ox, oy) < 0.05 && speed < 0.5;
+      if (!settled) {
         avatarRaf = requestAnimationFrame(runAvatarAnimation);
       } else {
         avatarCard.style.setProperty('--rx', '0deg');
         avatarCard.style.setProperty('--ry', '0deg');
+        avatarCard.style.setProperty('--tx', '0px');
+        avatarCard.style.setProperty('--ty', '0px');
         avatarCard.style.setProperty('--sc', '1');
         avatarRaf = null;
         lastFrameTime = null;
@@ -1070,23 +1104,69 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
       }
     };
 
-    avatarCard?.addEventListener('mouseenter', () => {
+    avatarCard?.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'mouse') return; // タッチはドラッグだけで反応
       isAvatarHovering = true;
       startAvatarAnimation();
     });
 
-    avatarCard?.addEventListener('mousemove', (e) => {
-      if (!avatarCard) return;
-      const rect = avatarCard.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      targetPx = Math.min(Math.max(x / rect.width, 0), 1);
-      targetPy = Math.min(Math.max(y / rect.height, 0), 1);
+    avatarCard?.addEventListener('pointerdown', (e) => {
+      if (prefersReducedMotion || !avatarCard) return;
+      e.preventDefault();
+      isDragging = true;
+      avatarCard.setPointerCapture(e.pointerId);
+      // 現在のオフセットを引き継いで、掴んだ瞬間に跳ねないように
+      dragBaseX = e.clientX - ox;
+      dragBaseY = e.clientY - oy;
+      dragX = ox;
+      dragY = oy;
+      lastMoveX = e.clientX;
+      lastMoveY = e.clientY;
+      lastMoveT = performance.now();
+      moveVX = 0;
+      moveVY = 0;
       startAvatarAnimation();
     });
 
-    avatarCard?.addEventListener('mouseleave', () => {
+    avatarCard?.addEventListener('pointermove', (e) => {
+      if (!avatarCard) return;
+      const rect = avatarCard.getBoundingClientRect();
+      targetPx = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+      targetPy = Math.min(Math.max((e.clientY - rect.top) / rect.height, 0), 1);
+
+      if (isDragging) {
+        // ゴムひもみたいに、引っ張るほど重くなる
+        dragX = softClamp((e.clientX - dragBaseX) * 0.85, DRAG_LIMIT);
+        dragY = softClamp((e.clientY - dragBaseY) * 0.85, DRAG_LIMIT);
+        const t = performance.now();
+        const mdt = Math.max(t - lastMoveT, 1);
+        moveVX = moveVX * 0.7 + ((e.clientX - lastMoveX) / mdt) * 1000 * 0.3;
+        moveVY = moveVY * 0.7 + ((e.clientY - lastMoveY) / mdt) * 1000 * 0.3;
+        lastMoveX = e.clientX;
+        lastMoveY = e.clientY;
+        lastMoveT = t;
+      }
+      startAvatarAnimation();
+    });
+
+    const releaseAvatar = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      dragX = 0;
+      dragY = 0;
+      // 投げた勢いをバネに乗せる
+      oxV += softClamp(moveVX * 0.9, 1400);
+      oyV += softClamp(moveVY * 0.9, 1400);
+      // 勢いよく投げたら吹き出しが飛び出す
+      if (Math.hypot(moveVX, moveVY) > 900) {
+        setTimeout(() => spawnEasterEgg(), 80);
+      }
+      startAvatarAnimation();
+    };
+    avatarCard?.addEventListener('pointerup', releaseAvatar);
+    avatarCard?.addEventListener('pointercancel', releaseAvatar);
+
+    avatarCard?.addEventListener('pointerleave', () => {
       isAvatarHovering = false;
       targetPx = 0.5;
       targetPy = 0.5;

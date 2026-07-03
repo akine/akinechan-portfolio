@@ -38,6 +38,18 @@ body {
   animation-delay: -13s;
 }
 
+/* アバター：待機中もふわふわ浮いて「触れる」ことを匂わせる */
+@keyframes avatar-idle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+#avatar-card {
+  animation: avatar-idle-float 4.2s ease-in-out infinite;
+}
+#avatar-card:hover {
+  animation-play-state: paused;
+}
+
 /* セクション見出しにグラデーションの差し色 */
 section h2.text-center::after {
   content: '';
@@ -113,6 +125,7 @@ nav a[href^="#"]:hover::after {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-blob,
+  #avatar-card,
   #skills .grid > div:hover .text-4xl,
   #works .grid > div:hover .text-3xl,
   #process .grid > div:hover > span {
