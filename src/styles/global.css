@@ -9,6 +9,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* 固定ナビの高さぶん、アンカー着地位置を下げる */
+  scroll-padding-top: 4.5rem;
 }
 
 body {
@@ -80,6 +82,19 @@ nav a[href^="#"]::after {
 }
 nav a[href^="#"]:hover::after {
   transform: scaleX(1);
+}
+
+/* モバイルメニュー：開閉 + ハンバーガー⇔バツのモーフ */
+#mobile-menu.mobile-menu-open {
+  max-height: 20rem;
+  opacity: 1;
+  border-top-color: #e2e8f0;
+}
+#menu-toggle.menu-open .menu-bar:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+#menu-toggle.menu-open .menu-bar:last-child {
+  transform: translateY(-4px) rotate(-45deg);
 }
 
 /* カードがふわっと持ち上がる */

@@ -7,24 +7,43 @@ import exileTourNeonCity from '../assets/exile-tour-neon-city.jpg';
 import exileTourTitle from '../assets/exile-tour-title.jpg';
 import exileTourWontbelong from '../assets/exile-tour-wontbelong.jpg';
 import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
+import aiSteak from '../assets/ai-art/ai-steak.png';
+import aiKitchen from '../assets/ai-art/ai-kitchen.png';
+import aiWashoku from '../assets/ai-art/ai-washoku.png';
+import aiCaramel from '../assets/ai-art/ai-caramel.png';
+import aiCheesecake from '../assets/ai-art/ai-cheesecake.png';
 ---
 
 <Layout title="小城昭根 | 映像ディレクター・クリエイティブディレクター | Kojo Akine">
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/" class="text-xl font-bold text-slate-800">KA</a>
-      <div class="flex gap-6 items-center">
-        <div class="flex gap-8 text-sm">
+  <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200" style="padding-top: env(safe-area-inset-top);">
+    <div class="max-w-6xl mx-auto flex justify-between items-center h-14 md:h-16" style="padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right));">
+      <a href="/" class="text-xl font-bold text-slate-800 min-h-11 inline-flex items-center">KA</a>
+      <div class="flex items-center gap-2 md:gap-6">
+        <div class="hidden md:flex gap-8 text-sm">
           <a href="#about" class="text-slate-500 hover:text-slate-800 transition" data-en="About" data-ja="概要">概要</a>
           <a href="#skills" class="text-slate-500 hover:text-slate-800 transition" data-en="Skills" data-ja="スキル">スキル</a>
           <a href="#works" class="text-slate-500 hover:text-slate-800 transition" data-en="Works" data-ja="実績">実績</a>
           <a href="#process" class="text-slate-500 hover:text-slate-800 transition" data-en="Flow" data-ja="流れ">流れ</a>
           <a href="#contact" class="text-slate-500 hover:text-slate-800 transition" data-en="Contact" data-ja="連絡先">連絡先</a>
         </div>
-        <button id="lang-toggle" class="text-sm bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-full transition">
+        <button id="lang-toggle" class="text-sm bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 rounded-full transition min-h-10 md:min-h-9">
           English
         </button>
+        <button id="menu-toggle" class="md:hidden inline-flex flex-col items-center justify-center w-11 h-11 -mr-2 rounded-full text-slate-700 hover:bg-slate-100 transition" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="menu-bar block w-5 h-0.5 bg-current rounded-full transition-transform duration-300"></span>
+          <span class="menu-bar block w-5 h-0.5 bg-current rounded-full mt-1.5 transition-transform duration-300"></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t border-transparent" style="padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right));">
+      <div class="py-2">
+        <a href="#about" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="About" data-ja="概要">概要</a>
+        <a href="#skills" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="Skills" data-ja="スキル">スキル</a>
+        <a href="#works" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="Works" data-ja="実績">実績</a>
+        <a href="#process" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="Flow" data-ja="流れ">流れ</a>
+        <a href="#contact" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="Contact" data-ja="連絡先">連絡先</a>
       </div>
     </div>
   </nav>
@@ -139,7 +158,7 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
             <li data-en="• Concept to deployment, developed as a pair with AI" data-ja="• 企画から実装までAIとペアで開発">• 企画から実装までAIとペアで開発</li>
             <li data-en="• Bots, apps, websites at production speed" data-ja="• Bot・アプリ・Webサイトを量産">• Bot・アプリ・Webサイトを量産</li>
             <li data-en="• Custom production pipelines" data-ja="• 制作パイプラインを自分で設計・構築">• 制作パイプラインを自分で設計・構築</li>
-            <li data-en="• AI image generation workflow" data-ja="• AI画像生成ワークフロー">• AI画像生成ワークフロー</li>
+            <li data-en="• AI image generation workflows (ComfyUI)" data-ja="• AI画像生成ワークフロー（ComfyUI）">• AI画像生成ワークフロー（ComfyUI）</li>
             <li data-en="• AI art published regularly on DeviantArt" data-ja="• AIアートをDeviantArtで継続発表">• AIアートをDeviantArtで継続発表</li>
           </ul>
         </div>
@@ -193,14 +212,14 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
               </div>
             </div>
             <!-- Gallery Controls -->
-            <button id="exile-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition text-lg">‹</button>
-            <button id="exile-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition text-lg">›</button>
+            <button id="exile-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-11 h-11 rounded-full flex items-center justify-center transition text-lg" aria-label="前の画像">‹</button>
+            <button id="exile-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-11 h-11 rounded-full flex items-center justify-center transition text-lg" aria-label="次の画像">›</button>
             <!-- Dots -->
-            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-              <button class="exile-dot w-2 h-2 rounded-full bg-white/90 transition" data-index="0"></button>
-              <button class="exile-dot w-2 h-2 rounded-full bg-white/40 transition" data-index="1"></button>
-              <button class="exile-dot w-2 h-2 rounded-full bg-white/40 transition" data-index="2"></button>
-              <button class="exile-dot w-2 h-2 rounded-full bg-white/40 transition" data-index="3"></button>
+            <div class="absolute bottom-1 left-1/2 -translate-x-1/2 flex">
+              <button class="exile-dot p-2.5 transition" data-index="0" aria-label="1枚目"><span class="block w-2 h-2 rounded-full bg-white pointer-events-none"></span></button>
+              <button class="exile-dot p-2.5 transition opacity-40" data-index="1" aria-label="2枚目"><span class="block w-2 h-2 rounded-full bg-white pointer-events-none"></span></button>
+              <button class="exile-dot p-2.5 transition opacity-40" data-index="2" aria-label="3枚目"><span class="block w-2 h-2 rounded-full bg-white pointer-events-none"></span></button>
+              <button class="exile-dot p-2.5 transition opacity-40" data-index="3" aria-label="4枚目"><span class="block w-2 h-2 rounded-full bg-white pointer-events-none"></span></button>
             </div>
             <span class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded" data-en="DOME TOUR" data-ja="ドームツアー">ドームツアー</span>
           </div>
@@ -277,6 +296,58 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
             </div>
           </a>
         </div>
+      </div>
+
+      <!-- AI Generated Visuals (ComfyUI) -->
+      <div class="mb-16">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="text-xl font-semibold text-slate-800" data-en="AI Generated Visuals" data-ja="AI生成ビジュアル">AI生成ビジュアル</h3>
+          <span class="text-xs font-semibold bg-violet-100 text-violet-700 px-2.5 py-1 rounded-full">ComfyUI</span>
+        </div>
+        <p class="text-slate-500 text-sm mb-8" data-en="Food photography series generated entirely with ComfyUI. I build my own node-based workflows — from prompt design to generation pipelines — and publish AI art regularly on DeviantArt." data-ja="ComfyUIで生成したフードフォトシリーズ。ノードベースのワークフローを自分で組み、プロンプト設計から生成パイプラインまで自作しています。AIアートはDeviantArtでも継続発表中。">
+          ComfyUIで生成したフードフォトシリーズ。ノードベースのワークフローを自分で組み、プロンプト設計から生成パイプラインまで自作しています。AIアートはDeviantArtでも継続発表中。
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="group relative col-span-2 row-span-2 rounded-2xl overflow-hidden border border-slate-200">
+            <Image src={aiSteak} alt="AI generated food photography — steak on slate plate" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[640, 1024]} sizes="(max-width: 768px) 100vw, 640px" format="webp" loading="lazy" />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-10 pb-3 opacity-0 group-hover:opacity-100 transition">
+              <p class="text-white text-sm font-medium" data-en="Steak — Food Photography" data-ja="ステーキ — フードフォト">ステーキ — フードフォト</p>
+            </div>
+          </div>
+          <div class="group relative rounded-2xl overflow-hidden border border-slate-200">
+            <Image src={aiKitchen} alt="AI generated kitchen scene with chefs and open flame" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[320, 640]} sizes="(max-width: 768px) 50vw, 320px" format="webp" loading="lazy" />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-8 pb-3 opacity-0 group-hover:opacity-100 transition">
+              <p class="text-white text-xs font-medium" data-en="Kitchen Scene" data-ja="厨房シーン">厨房シーン</p>
+            </div>
+          </div>
+          <div class="group relative rounded-2xl overflow-hidden border border-slate-200">
+            <Image src={aiWashoku} alt="AI generated Japanese cuisine flat lay on dark wood table" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[320, 640]} sizes="(max-width: 768px) 50vw, 320px" format="webp" loading="lazy" />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-8 pb-3 opacity-0 group-hover:opacity-100 transition">
+              <p class="text-white text-xs font-medium" data-en="Japanese Flat Lay" data-ja="和食俯瞰">和食俯瞰</p>
+            </div>
+          </div>
+          <div class="group relative rounded-2xl overflow-hidden border border-slate-200">
+            <Image src={aiCaramel} alt="AI generated caramel pouring over chocolate dessert with gold splash" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[320, 640]} sizes="(max-width: 768px) 50vw, 320px" format="webp" loading="lazy" />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-8 pb-3 opacity-0 group-hover:opacity-100 transition">
+              <p class="text-white text-xs font-medium" data-en="Caramel Splash" data-ja="キャラメルスプラッシュ">キャラメルスプラッシュ</p>
+            </div>
+          </div>
+          <div class="group relative rounded-2xl overflow-hidden border border-slate-200">
+            <Image src={aiCheesecake} alt="AI generated steaming basque cheesecake close-up" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[320, 640]} sizes="(max-width: 768px) 50vw, 320px" format="webp" loading="lazy" />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-8 pb-3 opacity-0 group-hover:opacity-100 transition">
+              <p class="text-white text-xs font-medium" data-en="Basque Cheesecake" data-ja="バスクチーズケーキ">バスクチーズケーキ</p>
+            </div>
+          </div>
+        </div>
+        <!-- Generated Videos -->
+        <div class="flex flex-col sm:flex-row sm:justify-center sm:items-stretch gap-4 mt-4">
+          <video class="ai-video rounded-2xl border border-slate-200 w-full sm:w-auto sm:h-96 object-cover" src="/ai-art/ai-steak.mp4" poster="/ai-art/ai-steak-poster.jpg" muted loop playsinline preload="none" aria-label="AI生成動画：湯気の立つステーキ"></video>
+          <video class="ai-video rounded-2xl border border-slate-200 w-full sm:w-auto sm:h-96 object-cover" src="/ai-art/ai-caramel.mp4" poster="/ai-art/ai-caramel-poster.jpg" muted loop playsinline preload="none" aria-label="AI生成動画：キャラメルソースを注ぐデザート"></video>
+          <video class="ai-video rounded-2xl border border-slate-200 w-full sm:w-auto sm:h-96 object-cover" src="/ai-art/ai-cheese.mp4" poster="/ai-art/ai-cheese-poster.jpg" muted loop playsinline preload="none" aria-label="AI生成動画：伸びるチーズ"></video>
+        </div>
+        <p class="text-slate-400 text-xs mt-4" data-en="All stills and videos generated with ComfyUI — custom node workflows, no stock footage." data-ja="静止画も動画もすべてComfyUIによる生成。ワークフローは自作、ストック素材不使用。">
+          静止画も動画もすべてComfyUIによる生成。ワークフローは自作、ストック素材不使用。
+        </p>
       </div>
 
       <!-- Client Productions (Moved from Undone Portfolio) -->
@@ -837,6 +908,49 @@ import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
         }
       });
     });
+
+    // Mobile Menu
+    (() => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (!menuToggle || !mobileMenu) return;
+
+      const setOpen = (open: boolean) => {
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+        menuToggle.classList.toggle('menu-open', open);
+        mobileMenu.classList.toggle('mobile-menu-open', open);
+      };
+
+      menuToggle.addEventListener('click', () => {
+        setOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
+
+    // AI生成動画：見えている間だけ再生（省電力・省帯域）
+    (() => {
+      const videos = document.querySelectorAll<HTMLVideoElement>('.ai-video');
+      if (!videos.length) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        videos.forEach(v => { v.controls = true; });
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const v = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            v.play().catch(() => { v.controls = true; });
+          } else {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.35 });
+      videos.forEach(v => observer.observe(v));
+    })();
 
     // EXILE Gallery Slider
     (() => {
