@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # raw source assets (not for deploy)
 assets-raw/
+
+# Browser test output
+/test-results/
+/playwright-report/

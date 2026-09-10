@@ -1,0 +1,17 @@
+---
+interface Props {
+  ja: string;
+  en: string;
+  as?: 'span' | 'p' | 'h1' | 'h2' | 'h3';
+  class?: string;
+}
+const { ja, en, as: Tag = 'span', class: className }: Props = Astro.props;
+---
+
+<Tag
+  class={className}
+  data-ja={ja.replace(/\\n/g, '\n')}
+  data-en={en.replace(/\\n/g, '\n')}
+>
+  {ja.replace(/\\n/g, '\n')}
+</Tag>

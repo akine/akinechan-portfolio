@@ -1,1306 +1,811 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Text from '../components/Text.astro';
 import { Image } from 'astro:assets';
-import avatarImage from '../assets/avatar.png';
-import exileTourThumb from '../assets/exile-tour-thumb.jpg';
-import exileTourNeonCity from '../assets/exile-tour-neon-city.jpg';
-import exileTourTitle from '../assets/exile-tour-title.jpg';
-import exileTourWontbelong from '../assets/exile-tour-wontbelong.jpg';
-import tiktokVfxImage from '../assets/tiktok-vfx.jpg';
-import aiSteak from '../assets/ai-art/ai-steak.png';
-import aiKitchen from '../assets/ai-art/ai-kitchen.png';
-import aiWashoku from '../assets/ai-art/ai-washoku.png';
-import aiCaramel from '../assets/ai-art/ai-caramel.png';
-import aiCheesecake from '../assets/ai-art/ai-cheesecake.png';
+import {
+  works,
+  otherWorks,
+  services,
+  email,
+  mailto,
+  mailtoEn,
+} from '../data/portfolio';
+import avatar from '../assets/avatar.png';
+import exile from '../assets/exile-tour-thumb.jpg';
+import neon from '../assets/exile-tour-neon-city.jpg';
+import title from '../assets/exile-tour-title.jpg';
+import wontbelong from '../assets/exile-tour-wontbelong.jpg';
+import vfx from '../assets/tiktok-vfx.jpg';
+import steak from '../assets/ai-art/ai-steak.png';
+import kitchen from '../assets/ai-art/ai-kitchen.png';
+import washoku from '../assets/ai-art/ai-washoku.png';
+import caramel from '../assets/ai-art/ai-caramel.png';
+import cheesecake from '../assets/ai-art/ai-cheesecake.png';
+const navigation = [
+  { id: 'works', ja: '制作実績', en: 'Work' },
+  { id: 'skills', ja: 'できること', en: 'Services' },
+  { id: 'lab', ja: 'AI・開発', en: 'AI & Dev' },
+  { id: 'about', ja: 'プロフィール', en: 'About' },
+];
+const gallery = [
+  { image: exile, alt: 'WON’T BE LONG — ネオンの街とクラシックカー' },
+  { image: neon, alt: 'ドームステージの複数面スクリーン向け映像レイアウト' },
+  { image: title, alt: 'EXILE LIVE TOUR — タイトルビジュアル' },
+  { image: wontbelong, alt: 'WON’T BE LONG — ステージ映像の別カット' },
+];
 ---
 
-<Layout title="小城昭根 | 映像ディレクター・クリエイティブディレクター | Kojo Akine">
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200" style="padding-top: env(safe-area-inset-top);">
-    <div class="max-w-6xl mx-auto flex justify-between items-center h-14 md:h-16" style="padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right));">
-      <a href="/" class="text-xl font-bold text-slate-800 min-h-11 inline-flex items-center">KA</a>
-      <div class="flex items-center gap-2 md:gap-6">
-        <div class="hidden md:flex gap-8 text-sm">
-          <a href="#about" class="text-slate-500 hover:text-slate-800 transition" data-en="About" data-ja="概要">概要</a>
-          <a href="#skills" class="text-slate-500 hover:text-slate-800 transition" data-en="Skills" data-ja="スキル">スキル</a>
-          <a href="#works" class="text-slate-500 hover:text-slate-800 transition" data-en="Works" data-ja="実績">実績</a>
-          <a href="#process" class="text-slate-500 hover:text-slate-800 transition" data-en="Flow" data-ja="流れ">流れ</a>
-          <a href="#contact" class="text-slate-500 hover:text-slate-800 transition" data-en="Contact" data-ja="連絡先">連絡先</a>
-        </div>
-        <button id="lang-toggle" class="text-sm bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 rounded-full transition min-h-10 md:min-h-9">
+<Layout title="小城昭根 | 映像ディレクター・編集・AI開発 | Kojo Akine">
+  <a class="skip-link" href="#main">
+    <Text ja="本文へスキップ" en="Skip to content" />
+  </a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="/" aria-label="Kojo Akine — Home">
+        akine<span class="brand-dot">.</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main">
+        {navigation.map((link) => (
+          <a href={`#${link.id}`}>
+            <Text {...link} />
+          </a>
+        ))}
+      </nav>
+      <div class="header-actions">
+        <button id="lang-toggle" class="language-button" type="button" hidden>
           English
         </button>
-        <button id="menu-toggle" class="md:hidden inline-flex flex-col items-center justify-center w-11 h-11 -mr-2 rounded-full text-slate-700 hover:bg-slate-100 transition" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
-          <span class="menu-bar block w-5 h-0.5 bg-current rounded-full transition-transform duration-300"></span>
-          <span class="menu-bar block w-5 h-0.5 bg-current rounded-full mt-1.5 transition-transform duration-300"></span>
+        <a class="contact-nav" href="#contact">
+          <Text ja="仕事の相談" en="Let’s talk" />
+          <span aria-hidden="true">↗</span>
+        </a>
+        <button
+          id="menu-toggle"
+          class="menu-button"
+          type="button"
+          aria-label="メニューを開く"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          hidden
+        >
+          <span></span>
+          <span></span>
         </button>
       </div>
     </div>
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t border-transparent" style="padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right));">
-      <div class="py-2">
-        <a href="#about" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="About" data-ja="概要">概要</a>
-        <a href="#skills" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="Skills" data-ja="スキル">スキル</a>
-        <a href="#works" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="Works" data-ja="実績">実績</a>
-        <a href="#process" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="Flow" data-ja="流れ">流れ</a>
-        <a href="#contact" class="flex items-center min-h-12 px-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium transition" data-en="Contact" data-ja="連絡先">連絡先</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
-      <div class="hero-blob absolute -top-24 -left-24 w-96 h-96 rounded-full bg-sky-200/50 blur-3xl"></div>
-      <div class="hero-blob hero-blob-2 absolute top-1/3 -right-32 w-[28rem] h-[28rem] rounded-full bg-pink-200/45 blur-3xl"></div>
-      <div class="hero-blob hero-blob-3 absolute -bottom-32 left-1/4 w-96 h-96 rounded-full bg-amber-200/40 blur-3xl"></div>
-    </div>
-    <div class="max-w-4xl text-center relative">
-      <div id="avatar-card" class="relative inline-flex group mb-8 [perspective:900px]">
-        <span aria-hidden="true" class="pointer-events-none absolute -inset-5 rounded-full bg-sky-300/35 blur-2xl opacity-0 scale-95 transition duration-300 ease-out group-hover:opacity-100 group-hover:scale-100"></span>
-        <span aria-hidden="true" class="pointer-events-none absolute inset-0 z-40 rounded-full opacity-0 transition duration-200 ease-out group-hover:opacity-100" style="background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(15,23,42,0.24), rgba(15,23,42,0) 45%);"></span>
-        <Image src={avatarImage} alt="Kojo Akine" id="avatar" draggable="false" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-lg border-4 border-white object-cover cursor-grab active:cursor-grabbing select-none relative z-50 transition-shadow duration-300 ease-out will-change-transform group-hover:shadow-2xl" style="transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1)); touch-action: none;" widths={[160, 320]} sizes="(min-width: 768px) 160px, 128px" format="webp" loading="eager" fetchpriority="high" />
-      </div>
-      <h1 class="text-5xl md:text-7xl font-bold text-slate-800 mb-8">
-        <span data-en="Kojo Akine" data-ja="小城 昭根">小城 昭根</span>
-      </h1>
-      <p class="text-xl md:text-2xl text-slate-600 mb-4 max-w-2xl mx-auto" data-en="I direct and edit short dramas — and build things with AI." data-ja="ショートドラマの監督・編集をしながら、AIとものづくりをしています。">
-        ショートドラマの監督・編集をしながら、AIとものづくりをしています。
-      </p>
-      <p class="text-xl md:text-2xl text-slate-600 mb-8 max-w-2xl mx-auto" data-en="I built this site with AI too." data-ja="このサイトもAIと一緒に作りました。">
-        このサイトもAIと一緒に作りました。
-      </p>
-      <p class="text-slate-500 mb-12 max-w-xl mx-auto">
-        <span data-en="50+ video projects delivered. EXILE dome tour screen visuals." data-ja="50本以上の映像プロジェクト。EXILEドームツアーのスクリーン映像。">50本以上の映像プロジェクト。EXILEドームツアーのスクリーン映像。</span><br>
-        <span data-en="YouTube & TikTok: 1M+ views each. 10 years teaching film." data-ja="YouTube・TikTok各100万再生。映像教育10年。">YouTube・TikTok各100万再生。映像教育10年。</span>
-      </p>
-      <div class="flex gap-4 justify-center">
-        <a href="#contact" class="bg-sky-500 hover:bg-sky-400 text-white px-8 py-3 rounded-full font-medium transition" data-en="Let's Talk" data-ja="気軽に声をかける">
-          気軽に声をかける
+    <nav id="mobile-menu" aria-label="Mobile" hidden>
+      {navigation.map((link) => (
+        <a href={`#${link.id}`}>
+          <Text {...link} />
+          <span aria-hidden="true">↗</span>
         </a>
-        <a href="#works" class="border border-slate-400 hover:border-slate-600 text-slate-700 px-8 py-3 rounded-full font-medium transition" data-en="See Case Results" data-ja="成果を見る">
-          成果を見る
+      ))}
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-topline">
+        <span class="eyebrow">INDEPENDENT CREATIVE / JAPAN</span>
+        <span class="availability">
+          <i aria-hidden="true"></i>
+          <Text ja="お仕事のご相談、受付中" en="Open to project inquiries" />
+        </span>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">DIRECTOR. EDITOR. BUILDER.</p>
+          <h1 id="hero-title">
+            KOJO
+            <br />
+            AKINE<span class="name-dot">.</span>
+          </h1>
+          <p class="japanese-name">
+            <Text ja="小城 昭根" en="小城 昭根 / Kojo Akine" />
+            <Text ja="映像 × テクノロジー" en="Film × Technology" />
+          </p>
+          <Text
+            as="p"
+            class="hero-promise"
+            ja="心を動かす映像を。\nアイデアを、動くかたちに。"
+            en="Stories that move people.\nIdeas brought to life."
+          />
+          <Text
+            as="p"
+            class="hero-description"
+            ja="映像の企画・監督・編集から、AIを使った制作と開発まで。つくりたいものに、現場と技術の両方で応えます。"
+            en="Direction, editing, AI visuals and development. Creative production and engineering, working together to bring your idea to life."
+          />
+          <div class="hero-links">
+            <a class="button button-dark" href="#works">
+              <Text ja="制作実績を見る" en="Explore my work" />
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a class="text-link" href="#contact">
+              <Text ja="仕事を相談する" en="Discuss a project" />
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+        <a
+          class="hero-feature"
+          href="#featured"
+          aria-label="EXILE LIVE TOUR 2025 — 制作詳細"
+        >
+          <div class="feature-image">
+            <Image
+              src={exile}
+              alt="EXILE LIVE TOUR 2025に制作した、ネオンの街とクラシックカーのスクリーン映像"
+              widths={[640, 960, 1440]}
+              sizes="(max-width: 760px) 100vw, 58vw"
+              format="webp"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <span class="frame-corner top-left" aria-hidden="true"></span>
+            <span class="frame-corner bottom-right" aria-hidden="true"></span>
+            <span class="image-label">SELECTED WORK / 01</span>
+            <span class="feature-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+          <div class="feature-caption">
+            <div>
+              <span class="eyebrow">LIVE VISUAL / 2025</span>
+              <h2>
+                EXILE LIVE TOUR
+                <br />
+                “THE REASON”
+              </h2>
+            </div>
+            <Text
+              class="feature-role"
+              ja="スクリーン映像\nクリエイティブディレクション"
+              en="Screen visuals\nCreative direction"
+            />
+          </div>
+          <div class="feature-sticker" aria-hidden="true">
+            FROM
+            <br />
+            IDEA TO
+            <br />
+            <em>IMPACT.</em>
+          </div>
         </a>
       </div>
-      <p class="text-sm text-slate-500 mt-6" data-en="Creative Direction / Video Production / AI Visual Development" data-ja="クリエイティブディレクション / 映像制作 / AIビジュアル開発">
-        クリエイティブディレクション / 映像制作 / AIビジュアル開発
-      </p>
-      <p class="text-sm text-slate-400 mt-3">
-        <span data-en="Free consultation • Reply within 24 hours • Remote worldwide" data-ja="相談無料 • 原則24時間以内に返信 • フルリモート対応">相談無料 • 原則24時間以内に返信 • フルリモート対応</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="py-32 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-slate-800 mb-16 text-center" data-en="About" data-ja="概要">概要</h2>
-      <div class="grid md:grid-cols-2 gap-12">
+      <div class="proof-strip" aria-label="実績の概要">
         <div>
-          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="Background" data-ja="経歴">経歴</h3>
-          <p class="text-slate-600 leading-relaxed mb-6" data-en="Studied screenwriting at Scenario Center and directing at ENBU Seminar Film Director Course (2020). For 10 years, I've been teaching film production at Tokyo Metropolitan Kogei High School as an official external instructor commissioned by Tokyo Metropolitan Government. My students' work was selected for PIA Film Festival (22 out of 795 submissions)." data-ja="シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学ぶ。10年にわたり東京都立工芸高校で映画部の外部講師として指導（東京都公式委嘱）。指導した生徒の作品は、ぴあフィルムフェスティバルで入選（795作品中22作品）。">
-            シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学ぶ。10年にわたり東京都立工芸高校で映画部の外部講師として指導（東京都公式委嘱）。指導した生徒の作品は、ぴあフィルムフェスティバルで入選（795作品中22作品）。
-          </p>
-          <p class="text-slate-600 leading-relaxed mb-6" data-en="In 2025, I directed and edited 50+ short dramas for YouTube, achieving 1M+ views. Also produced VFX content on TikTok with 1M+ views. Worked with major artists including Ado's Phantom Theta project. I also publish AI art regularly on DeviantArt." data-ja="2025年には、YouTubeで50本以上のショートドラマを監督・編集し、100万再生を達成。TikTokでもVFXコンテンツで100万再生を突破。Adoプロデュースのファントムシータなど大型案件も担当。DeviantArtではAIアートを継続的に発表しています。">
-            2025年には、YouTubeで50本以上のショートドラマを監督・編集し、100万再生を達成。TikTokでもVFXコンテンツで100万再生を突破。Adoプロデュースのファントムシータなど大型案件も担当。DeviantArtではAIアートを継続的に発表しています。
-          </p>
-          <p class="text-slate-600 leading-relaxed" data-en="Web Engineer for 5 years (Rails, React), then VR training systems (Unreal Engine, Meta Quest 3). Now merging creative direction with AI. Beyond video production, also builds bots and apps with AI — turning ideas into reality from concept to launch." data-ja="Webエンジニア5年（Rails, React）、VRトレーニングシステム開発（Unreal Engine, Meta Quest 3）を経て、現在はクリエイティブディレクションとAI活用を融合。映像制作に加えて、AIを使ったBot開発やアプリ制作も手がけ、「作りたいもの」を企画から実装まで一貫して形にする。">
-            Webエンジニア5年（Rails, React）、VRトレーニングシステム開発（Unreal Engine, Meta Quest 3）を経て、現在はクリエイティブディレクションとAI活用を融合。映像制作に加えて、AIを使ったBot開発やアプリ制作も手がけ、「作りたいもの」を企画から実装まで一貫して形にする。
-          </p>
+          <strong>
+            50<span>+</span>
+          </strong>
+          <Text ja="2025年の映像制作" en="Video projects in 2025" />
         </div>
         <div>
-          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="What I Bring" data-ja="強み">強み</h3>
-          <ul class="space-y-4">
-            <li class="flex items-start gap-3">
-              <span class="text-sky-500 mt-1">▸</span>
-              <span class="text-slate-600"><strong class="text-slate-800" data-en="Creative Direction" data-ja="クリエイティブ・ディレクション">クリエイティブ・ディレクション</strong> — <span data-en="EXILE dome tour screen visuals — from concept design to collaboration with the CG team." data-ja="EXILEドームツアーの映像演出。コンセプト設計からCGチームとの協働まで担当。">EXILEドームツアーの映像演出。コンセプト設計からCGチームとの協働まで担当。</span></span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-sky-500 mt-1">▸</span>
-              <span class="text-slate-600"><strong class="text-slate-800" data-en="1M+ Views Content" data-ja="100万再生を作れる">100万再生を作れる</strong> — <span data-en="YouTube & TikTok, both 1M+ views. Content designed to perform." data-ja="YouTube・TikTok両方で100万再生突破。数字を出すコンテンツ設計。">YouTube・TikTok両方で100万再生突破。数字を出すコンテンツ設計。</span></span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-sky-500 mt-1">▸</span>
-              <span class="text-slate-600"><strong class="text-slate-800" data-en="Builds with AI" data-ja="AIで何でも形にする">AIで何でも形にする</strong> — <span data-en="Video production, bot development, apps, websites — anything, built as a pair with AI." data-ja="映像制作もBot開発もアプリもサイトも。AIとペアで、思いついたら作れる。">映像制作もBot開発もアプリもサイトも。AIとペアで、思いついたら作れる。</span></span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-sky-500 mt-1">▸</span>
-              <span class="text-slate-600"><strong class="text-slate-800" data-en="Unreasonably Fast" data-ja="異常に速い">異常に速い</strong> — <span data-en="Phantom Theta (Ado): 3-day turnaround. Small team × AI × tech for large-scale projects." data-ja="ファントムシータ（Ado）3日納品。少人数×AI×技術力で大規模案件に対応。">ファントムシータ（Ado）3日納品。少人数×AI×技術力で大規模案件に対応。</span></span>
-            </li>
-          </ul>
+          <strong>
+            1M<span>+</span>
+          </strong>
+          <Text
+            ja="YouTube・TikTok 各再生実績"
+            en="Views on both YouTube & TikTok"
+          />
+        </div>
+        <div>
+          <strong>
+            10<span>years</span>
+          </strong>
+          <Text ja="高校映画部での映像教育" en="Teaching film at high school" />
+        </div>
+        <a href="#works" class="proof-note">
+          <Text
+            ja="数字の先に、作品がある。"
+            en="The work behind the numbers."
+          />
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="works" class="section container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / SELECTED WORK</p>
+          <Text as="h2" ja="つくってきたもの。" en="Selected work." />
+        </div>
+        <Text
+          as="p"
+          ja="映像の企画から、最後の1カットまで。\n案件ごとの担当範囲とともにご紹介します。"
+          en="From the first idea to the final cut.\nSelected projects, with my role in each."
+        />
+      </div>
+      <article id="featured" class="featured-project">
+        <div
+          class="gallery"
+          role="region"
+          aria-label="EXILE LIVE TOUR gallery"
+          tabindex="0"
+        >
+          <div class="gallery-track" id="gallery-track">
+            {gallery.map((item, i) => (
+              <figure
+                class="gallery-slide"
+                aria-hidden={i > 0 ? 'true' : 'false'}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  widths={[640, 1280, 1920]}
+                  sizes="(max-width: 760px) 100vw, 85vw"
+                  format="webp"
+                  loading="lazy"
+                />
+              </figure>
+            ))}
+          </div>
+          <div class="gallery-controls" hidden>
+            <span class="eyebrow">EXILE / SCREEN VISUAL</span>
+            <div>
+              <button type="button" id="gallery-prev" aria-label="前の画像">
+                ←
+              </button>
+              <span id="gallery-status" role="status" aria-live="polite">
+                01 / 04
+              </span>
+              <button type="button" id="gallery-next" aria-label="次の画像">
+                →
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="featured-description">
+          <div>
+            <p class="eyebrow">LIVE VISUAL / 2025</p>
+            <h3>
+              EXILE LIVE TOUR 2025
+              <br />
+              “THE REASON”
+            </h3>
+          </div>
+          <div>
+            <Text
+              as="p"
+              class="role"
+              ja="担当：クリエイティブディレクション・コンセプトデザイン"
+              en="Role: Creative direction / Concept design"
+            />
+            <Text
+              as="p"
+              ja="福岡ドーム公演「WON’T BE LONG」のスクリーン映像。コンセプトの企画立案からCG制作チームとの協働まで担当し、複数面の大型LEDスクリーンに展開する映像を制作しました。"
+              en="Screen visuals for “WON’T BE LONG” at the Fukuoka dome show. I developed the visual concept and collaborated with the CG production team on visuals for the stage’s large, multi-panel LED screens."
+            />
+          </div>
+        </div>
+      </article>
+      <div class="work-grid">
+        {works.map((work, i) => (
+          <article class="work-card">
+            <a
+              href={work.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="work-image-link"
+            >
+              <div class="work-image">
+                {work.youtube ? (
+                  <img
+                    src={`https://img.youtube.com/vi/${work.youtube}/hqdefault.jpg`}
+                    width="480"
+                    height="360"
+                    alt={work.title.ja}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <Image
+                    src={vfx}
+                    alt="Blenderで制作したVFX動画"
+                    widths={[640, 960]}
+                    sizes="(max-width: 760px) 100vw, 45vw"
+                    format="webp"
+                    loading="lazy"
+                  />
+                )}
+                <span class="work-index">
+                  0{i + 2} / {work.category}
+                </span>
+                <span class="play-button" aria-hidden="true">
+                  ↗
+                </span>
+              </div>
+              <div class="work-heading">
+                <Text as="h3" {...work.title} />
+                <span class="external-label">
+                  <Text ja="作品を見る" en="View work" /> ↗
+                </span>
+              </div>
+            </a>
+            <Text as="p" class="role" {...work.role} />
+            <Text as="p" class="work-description" {...work.description} />
+          </article>
+        ))}
+      </div>
+      <details class="more-work">
+        <summary>
+          <Text ja="その他の制作実績" en="More production credits" />
+          <span aria-hidden="true">＋</span>
+        </summary>
+        <div class="credit-list">
+          {otherWorks.map((work) => (
+            <a href={work.url} target="_blank" rel="noopener noreferrer">
+              <Text ja={work.title} en={work.en} />
+              <Text ja={work.role} en={work.roleEn} />
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+          <div>
+            <Text
+              ja="全国算数・数学教育研究大会シンポジウム"
+              en="National Mathematics Education Symposium"
+            />
+            <Text
+              ja="撮影・配信・デザイン"
+              en="Capture / Live streaming / Design"
+            />
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="skills" class="services-section section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / WHAT I CAN DO</p>
+            <Text
+              as="h2"
+              ja="こんなとき、声をかけてください。"
+              en="Where I can help."
+            />
+          </div>
+        </div>
+        <div class="services-grid">
+          {services.map((service) => (
+            <article class="service">
+              <div class="service-top">
+                <span>{service.number}</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+              <p class="eyebrow">{service.label}</p>
+              <Text as="h3" {...service.title} />
+              <Text as="p" {...service.description} />
+              <Text as="p" class="service-tools" {...service.items} />
+              <a href="#contact" class="text-link">
+                <Text ja="この内容で相談する" en="Let’s discuss it" />
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+          ))}
         </div>
       </div>
-      
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills -->
-  <section id="skills" class="py-32 px-6 bg-slate-100">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-slate-800 mb-16 text-center" data-en="Skills" data-ja="スキル">スキル</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Create -->
-        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-          <div class="text-4xl mb-4">🎬</div>
-          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="Create" data-ja="つくる">つくる</h3>
-          <ul class="space-y-2 text-slate-600">
-            <li data-en="• Dome tour screen visuals" data-ja="• ドームツアー映像演出">• ドームツアー映像演出</li>
-            <li data-en="• 50+ short dramas" data-ja="• ショートドラマ50本+">• ショートドラマ50本+</li>
-            <li data-en="• 1M+ view content" data-ja="• 100万再生コンテンツ">• 100万再生コンテンツ</li>
-            <li data-en="• VFX / Motion Graphics" data-ja="• VFX / モーショングラフィックス">• VFX / モーショングラフィックス</li>
-          </ul>
-        </div>
-        <!-- Build with AI -->
-        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-          <div class="text-4xl mb-4">🤖</div>
-          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="Build with AI" data-ja="AIと組む">AIと組む</h3>
-          <ul class="space-y-2 text-slate-600">
-            <li data-en="• Concept to deployment, developed as a pair with AI" data-ja="• 企画から実装までAIとペアで開発">• 企画から実装までAIとペアで開発</li>
-            <li data-en="• Bots, apps, websites at production speed" data-ja="• Bot・アプリ・Webサイトを量産">• Bot・アプリ・Webサイトを量産</li>
-            <li data-en="• Custom production pipelines" data-ja="• 制作パイプラインを自分で設計・構築">• 制作パイプラインを自分で設計・構築</li>
-            <li data-en="• AI image generation workflows (ComfyUI)" data-ja="• AI画像生成ワークフロー（ComfyUI）">• AI画像生成ワークフロー（ComfyUI）</li>
-            <li data-en="• AI art published regularly on DeviantArt" data-ja="• AIアートをDeviantArtで継続発表">• AIアートをDeviantArtで継続発表</li>
-          </ul>
-        </div>
-        <!-- Everything Connects -->
-        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-          <div class="text-4xl mb-4">⚡</div>
-          <h3 class="text-xl font-semibold text-slate-800 mb-4" data-en="Everything Connects" data-ja="全部つながる">全部つながる</h3>
-          <ul class="space-y-2 text-slate-600">
-            <li data-en="• Video, design, and dev — speaks every language" data-ja="• 映像もデザインも開発もわかるから話が早い">• 映像もデザインも開発もわかるから話が早い</li>
-            <li data-en="• Concept to delivery, all under one roof" data-ja="• 企画から納品までワンストップで対応可能">• 企画から納品までワンストップで対応可能</li>
-            <li data-en="• Adapts to team or solo, whatever the project needs" data-ja="• チームでもソロでも最適な形で動ける">• チームでもソロでも最適な形で動ける</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Works -->
-  <section id="works" class="py-32 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-slate-800 mb-16 text-center" data-en="Works" data-ja="実績">実績</h2>
-      
-      <!-- Highlight Numbers -->
-      <div class="grid md:grid-cols-3 gap-6 mb-16">
-        <div class="text-center p-8 bg-gradient-to-br from-sky-100 to-white rounded-2xl border border-sky-200">
-          <p class="text-5xl font-bold text-sky-600 mb-2">1M+</p>
-          <p class="text-slate-600" data-en="YouTube Views" data-ja="YouTube再生">YouTube再生</p>
-        </div>
-        <div class="text-center p-8 bg-gradient-to-br from-pink-100 to-white rounded-2xl border border-pink-200">
-          <p class="text-5xl font-bold text-pink-600 mb-2">1M+</p>
-          <p class="text-slate-600" data-en="TikTok VFX Views" data-ja="TikTok VFX再生">TikTok VFX再生</p>
-        </div>
-        <div class="text-center p-8 bg-gradient-to-br from-amber-100 to-white rounded-2xl border border-amber-200">
-          <p class="text-5xl font-bold text-amber-600 mb-2">10</p>
-          <p class="text-slate-600" data-en="Years Teaching Film" data-ja="年間映像教育">年間映像教育</p>
-        </div>
-      </div>
-
-      <!-- EXILE LIVE TOUR - Featured -->
-      <div class="mb-16">
-        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Featured" data-ja="注目作品">注目作品</h3>
-        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md mb-8">
-          <!-- Image Gallery -->
-          <div class="relative">
-            <div id="exile-gallery" class="overflow-hidden">
-              <div id="exile-slides" class="flex transition-transform duration-500 ease-out">
-                <Image src={exileTourThumb} alt="EXILE LIVE TOUR 2025 Screen Visual" class="w-full aspect-video object-cover flex-shrink-0" widths={[768, 1280, 1920]} sizes="(max-width: 768px) 100vw, 1280px" format="webp" loading="eager" />
-                <Image src={exileTourNeonCity} alt="Neon City Visual" class="w-full aspect-video object-cover flex-shrink-0" widths={[768, 1280, 1920]} sizes="(max-width: 768px) 100vw, 1280px" format="webp" loading="lazy" />
-                <Image src={exileTourTitle} alt="Title Visual" class="w-full aspect-video object-cover flex-shrink-0" widths={[768, 1280, 1920]} sizes="(max-width: 768px) 100vw, 1280px" format="webp" loading="lazy" />
-                <Image src={exileTourWontbelong} alt="WON'T BE LONG Visual" class="w-full aspect-video object-cover flex-shrink-0" widths={[768, 1280, 1920]} sizes="(max-width: 768px) 100vw, 1280px" format="webp" loading="lazy" />
-              </div>
-            </div>
-            <!-- Gallery Controls -->
-            <button id="exile-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-11 h-11 rounded-full flex items-center justify-center transition text-lg" aria-label="前の画像">‹</button>
-            <button id="exile-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-11 h-11 rounded-full flex items-center justify-center transition text-lg" aria-label="次の画像">›</button>
-            <!-- Dots -->
-            <div class="absolute bottom-1 left-1/2 -translate-x-1/2 flex">
-              <button class="exile-dot p-2.5 transition" data-index="0" aria-label="1枚目"><span class="block w-2 h-2 rounded-full bg-white pointer-events-none"></span></button>
-              <button class="exile-dot p-2.5 transition opacity-40" data-index="1" aria-label="2枚目"><span class="block w-2 h-2 rounded-full bg-white pointer-events-none"></span></button>
-              <button class="exile-dot p-2.5 transition opacity-40" data-index="2" aria-label="3枚目"><span class="block w-2 h-2 rounded-full bg-white pointer-events-none"></span></button>
-              <button class="exile-dot p-2.5 transition opacity-40" data-index="3" aria-label="4枚目"><span class="block w-2 h-2 rounded-full bg-white pointer-events-none"></span></button>
-            </div>
-            <span class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded" data-en="DOME TOUR" data-ja="ドームツアー">ドームツアー</span>
+    <section id="lab" class="lab-section section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 / CREATIVE TECHNOLOGY</p>
+            <Text
+              as="h2"
+              ja="映像の外にも、つくる力を。"
+              en="Beyond the frame."
+            />
           </div>
-          <div class="p-8">
-            <h4 class="text-xl text-slate-800 font-bold mb-2">EXILE LIVE TOUR 2025 "THE REASON"</h4>
-            <p class="text-sky-600 font-medium mb-3" data-en="Screen Visual — Creative Direction & Concept Design" data-ja="スクリーン映像 — クリエイティブディレクション & コンセプトデザイン">スクリーン映像 — クリエイティブディレクション & コンセプトデザイン</p>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="Creative direction and concept design for the screen visuals of 'WON'T BE LONG' at Fukuoka PayPay Dome. Led the visual concept from ideation through production, collaborating with the CG team to deliver immersive stage graphics for a dome-scale live performance." data-ja="福岡PayPayドーム公演『WON'T BE LONG』のスクリーン映像におけるクリエイティブディレクションおよびコンセプトデザイン。映像コンセプトの企画立案からCG制作チームとの協働まで一貫して担当し、ドーム規模のライブパフォーマンスに没入感のあるステージグラフィックスを実現。">
-              福岡PayPayドーム公演『WON'T BE LONG』のスクリーン映像におけるクリエイティブディレクションおよびコンセプトデザイン。映像コンセプトの企画立案からCG制作チームとの協働まで一貫して担当し、ドーム規模のライブパフォーマンスに没入感のあるステージグラフィックスを実現。
-            </p>
-            <p class="text-slate-400 text-xs mt-3" data-en="Produced for the large LED screens on the dome stage. Displayed across multiple screen panels in the venue." data-ja="ドームステージの大型LEDスクリーン向けに制作。会場では複数面のスクリーンに映し出されます。">
-              ドームステージの大型LEDスクリーン向けに制作。会場では複数面のスクリーンに映し出されます。
-            </p>
+          <Text
+            as="p"
+            ja="Webエンジニアとして5年。\n映像制作の経験を、AIとソフトウェアにも。"
+            en="Five years in web engineering.\nA filmmaker’s perspective on AI and software."
+          />
+        </div>
+        <article class="creator-operations" aria-labelledby="creator-title">
+          <div class="creator-intro">
+            <span class="lab-tag">AI PRODUCTION / CREATOR BUSINESS</span>
+            <h3 id="creator-title">
+              <Text
+                ja="生成して終わらない。制作から、運営まで。"
+                en="Beyond generation. Production and creator operations."
+              />
+            </h3>
+            <Text
+              as="p"
+              ja="DeviantArtで3アカウントを運営し、合計約2万人のフォロワーを獲得。ComfyUIでのワークフロー構築やMiniMaxの活用に加え、継続的な作品発信とコミッション制作に取り組んできました。"
+              en="Operated three DeviantArt accounts with a combined following of just under 20,000. My experience spans building ComfyUI workflows, using MiniMax, publishing work consistently and producing commissions."
+            />
           </div>
-        </div>
-      </div>
-
-      <!-- Videos -->
-      <div class="mb-16">
-        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Videos" data-ja="映像作品">映像作品</h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <a href="https://youtu.be/sdFzPconxMU" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <img src="https://img.youtube.com/vi/sdFzPconxMU/maxresdefault.jpg" alt="Short Drama" class="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" decoding="async" />
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-6xl text-white">▶</span>
-              </div>
+          <dl class="creator-metrics">
+            <div>
+              <dt>
+                <Text ja="アカウント運営実績" en="Accounts operated" />
+              </dt>
+              <dd>3</dd>
             </div>
-            <div class="p-6">
-              <h4 class="text-slate-800 font-medium mb-2" data-en="Short Drama — Director & Editor" data-ja="ショートドラマ — 監督 & 編集">ショートドラマ — 監督 & 編集</h4>
-              <p class="text-slate-500 text-sm" data-en="Full creative control from concept to final cut" data-ja="企画から最終カットまで完全なクリエイティブコントロール">企画から最終カットまで完全なクリエイティブコントロール</p>
-              <p class="text-xs text-slate-400 mt-2" data-en="Role: Direction & Editing / Deliverable: Short Drama" data-ja="担当: 監督・編集 / 成果物: ショートドラマ">担当: 監督・編集 / 成果物: ショートドラマ</p>
+            <div>
+              <dt>
+                <Text
+                  ja="FOLLOWERS / 合計フォロワー"
+                  en="FOLLOWERS / Combined audience"
+                />
+              </dt>
+              <dd>
+                <span>≈20K</span>
+              </dd>
             </div>
-          </a>
-          <a href="https://youtu.be/Yf-x1o9uxJE" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <img src="https://img.youtube.com/vi/Yf-x1o9uxJE/maxresdefault.jpg" alt="Short Drama" class="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" decoding="async" />
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-6xl text-white">▶</span>
-              </div>
-              <span class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded" data-en="High Retention" data-ja="高維持率">高維持率</span>
+          </dl>
+          <div class="creator-practice">
+            <div>
+              <span class="eyebrow">01 / WORKFLOW</span>
+              <Text as="h3" ja="制作フローを組む" en="Build the workflow" />
+              <Text
+                as="p"
+                ja="ComfyUIのノードベースのワークフローを構築。MiniMaxも活用し、AIを使った制作を継続的に実践。"
+                en="Build node-based workflows in ComfyUI and use MiniMax as part of an ongoing AI production practice."
+              />
             </div>
-            <div class="p-6">
-              <h4 class="text-slate-800 font-medium mb-2" data-en="Short Drama — Planning, Direction & Editing" data-ja="ショートドラマ — 企画・監督・編集">ショートドラマ — 企画・監督・編集</h4>
-              <p class="text-slate-500 text-sm" data-en="Exceptionally high viewer retention rate" data-ja="驚異的な視聴維持率を達成">驚異的な視聴維持率を達成</p>
-              <p class="text-xs text-slate-400 mt-2" data-en="Role: Planning to Final Edit / Result: High Retention Performance" data-ja="担当: 企画から最終編集まで / 実績: 高い視聴維持率">担当: 企画から最終編集まで / 実績: 高い視聴維持率</p>
+            <div>
+              <span class="eyebrow">02 / PUBLISHING</span>
+              <Text
+                as="h3"
+                ja="発信を続け、運営する"
+                en="Publish and operate"
+              />
+              <Text
+                as="p"
+                ja="3アカウントで作品の発信・運営を経験。制作だけでなく、見てもらう場所を育てるところまで。"
+                en="Experience publishing and operating across three accounts, developing an audience alongside the creative work."
+              />
             </div>
-          </a>
-          <a href="https://www.tiktok.com/@akine1818/video/6833870784293801218" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-pink-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <Image src={tiktokVfxImage} alt="VFX Video" class="w-full h-full object-cover group-hover:scale-105 transition" widths={[640, 960, 1280]} sizes="(max-width: 768px) 100vw, 50vw" format="webp" loading="lazy" />
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-6xl text-white">▶</span>
-              </div>
-              <span class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded">TikTok 1M+</span>
-            </div>
-            <div class="p-6">
-              <h4 class="text-slate-800 font-medium mb-2" data-en="VFX Video — Blender" data-ja="VFX動画 — Blender">VFX動画 — Blender</h4>
-              <p class="text-slate-500 text-sm" data-en="1M+ views on TikTok" data-ja="TikTokで100万再生突破">TikTokで100万再生突破</p>
-              <p class="text-xs text-slate-400 mt-2" data-en="Role: VFX Production / Result: 1M+ Views" data-ja="担当: VFX制作 / 実績: 100万再生">担当: VFX制作 / 実績: 100万再生</p>
-            </div>
-          </a>
-          <a href="https://www.youtube.com/watch?v=xDXpPpCxRuA" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <img src="https://img.youtube.com/vi/xDXpPpCxRuA/maxresdefault.jpg" alt="Phantom Theta" class="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" decoding="async" />
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-6xl text-white">▶</span>
-              </div>
-              <span class="absolute top-2 right-2 bg-sky-500 text-white text-xs px-2 py-1 rounded">Ado</span>
-            </div>
-            <div class="p-6">
-              <h4 class="text-slate-800 font-medium mb-2" data-en="Phantom Theta (Ado Produced) — Direction" data-ja="ファントムシータ（Adoプロデュース）— ディレクション">ファントムシータ（Adoプロデュース）— ディレクション</h4>
-              <p class="text-slate-500 text-sm" data-en="3-day turnaround for birthday celebration video" data-ja="誕生日企画動画を3日で納品">誕生日企画動画を3日で納品</p>
-              <p class="text-xs text-slate-400 mt-2" data-en="Role: Direction / Delivery Speed: 3 Days" data-ja="担当: ディレクション / 納期: 3日">担当: ディレクション / 納期: 3日</p>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- AI Generated Visuals (ComfyUI) -->
-      <div class="mb-16">
-        <div class="flex items-center gap-3 mb-3">
-          <h3 class="text-xl font-semibold text-slate-800" data-en="AI Generated Visuals" data-ja="AI生成ビジュアル">AI生成ビジュアル</h3>
-          <span class="text-xs font-semibold bg-violet-100 text-violet-700 px-2.5 py-1 rounded-full">ComfyUI</span>
-        </div>
-        <p class="text-slate-500 text-sm mb-8" data-en="Food photography series generated entirely with ComfyUI. I build my own node-based workflows — from prompt design to generation pipelines — and publish AI art regularly on DeviantArt." data-ja="ComfyUIで生成したフードフォトシリーズ。ノードベースのワークフローを自分で組み、プロンプト設計から生成パイプラインまで自作しています。AIアートはDeviantArtでも継続発表中。">
-          ComfyUIで生成したフードフォトシリーズ。ノードベースのワークフローを自分で組み、プロンプト設計から生成パイプラインまで自作しています。AIアートはDeviantArtでも継続発表中。
-        </p>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="group relative col-span-2 row-span-2 rounded-2xl overflow-hidden border border-slate-200">
-            <Image src={aiSteak} alt="AI generated food photography — steak on slate plate" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[640, 1024]} sizes="(max-width: 768px) 100vw, 640px" format="webp" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-10 pb-3 opacity-0 group-hover:opacity-100 transition">
-              <p class="text-white text-sm font-medium" data-en="Steak — Food Photography" data-ja="ステーキ — フードフォト">ステーキ — フードフォト</p>
+            <div>
+              <span class="eyebrow">03 / COMMISSIONS</span>
+              <Text as="h3" ja="依頼を、作品にする" en="Create for a brief" />
+              <Text
+                as="p"
+                ja="コミッションを継続的に受け、依頼に応じた作品を制作。自主制作と受注制作の両方を経験。"
+                en="Regular commission work responding to individual requests, alongside self-directed creative production."
+              />
             </div>
           </div>
-          <div class="group relative rounded-2xl overflow-hidden border border-slate-200">
-            <Image src={aiKitchen} alt="AI generated kitchen scene with chefs and open flame" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[320, 640]} sizes="(max-width: 768px) 50vw, 320px" format="webp" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-8 pb-3 opacity-0 group-hover:opacity-100 transition">
-              <p class="text-white text-xs font-medium" data-en="Kitchen Scene" data-ja="厨房シーン">厨房シーン</p>
-            </div>
+          <Text
+            as="p"
+            class="creator-note"
+            ja="フォロワー数は3アカウントの運営時の合計実績です。"
+            en="Follower figures reflect the combined following achieved across the three accounts during their operation."
+          />
+        </article>
+        <div class="lab-lead">
+          <div>
+            <span class="lab-tag">AI VISUAL EXPLORATION</span>
+            <Text
+              as="h3"
+              ja="光も、質感も。\nワークフローから設計する。"
+              en="Light. Texture.\nA workflow of my own."
+            />
+            <Text
+              as="p"
+              ja="ComfyUIによる自主制作のフードビジュアル。プロンプト設計からノード構築まで自作し、静止画と動画を生成しています。"
+              en="An independent food visual series made with ComfyUI. Custom prompts and node workflows, from still images to motion."
+            />
+            <span class="eyebrow">COMFYUI / AI-GENERATED / PERSONAL WORK</span>
           </div>
-          <div class="group relative rounded-2xl overflow-hidden border border-slate-200">
-            <Image src={aiWashoku} alt="AI generated Japanese cuisine flat lay on dark wood table" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[320, 640]} sizes="(max-width: 768px) 50vw, 320px" format="webp" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-8 pb-3 opacity-0 group-hover:opacity-100 transition">
-              <p class="text-white text-xs font-medium" data-en="Japanese Flat Lay" data-ja="和食俯瞰">和食俯瞰</p>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl overflow-hidden border border-slate-200">
-            <Image src={aiCaramel} alt="AI generated caramel pouring over chocolate dessert with gold splash" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[320, 640]} sizes="(max-width: 768px) 50vw, 320px" format="webp" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-8 pb-3 opacity-0 group-hover:opacity-100 transition">
-              <p class="text-white text-xs font-medium" data-en="Caramel Splash" data-ja="キャラメルスプラッシュ">キャラメルスプラッシュ</p>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl overflow-hidden border border-slate-200">
-            <Image src={aiCheesecake} alt="AI generated steaming basque cheesecake close-up" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" widths={[320, 640]} sizes="(max-width: 768px) 50vw, 320px" format="webp" loading="lazy" />
-            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pt-8 pb-3 opacity-0 group-hover:opacity-100 transition">
-              <p class="text-white text-xs font-medium" data-en="Basque Cheesecake" data-ja="バスクチーズケーキ">バスクチーズケーキ</p>
-            </div>
-          </div>
+          <Image
+            src={steak}
+            alt="AI生成の自主制作：湯気の立つステーキのフードビジュアル"
+            widths={[640, 960]}
+            sizes="(max-width: 760px) 100vw, 50vw"
+            format="webp"
+            loading="lazy"
+          />
         </div>
-        <!-- Generated Videos -->
-        <div class="flex flex-col sm:flex-row sm:justify-center sm:items-stretch gap-4 mt-4">
-          <video class="ai-video rounded-2xl border border-slate-200 w-full sm:w-auto sm:h-96 object-cover" src="/ai-art/ai-steak.mp4" poster="/ai-art/ai-steak-poster.jpg" muted loop playsinline preload="none" aria-label="AI生成動画：湯気の立つステーキ"></video>
-          <video class="ai-video rounded-2xl border border-slate-200 w-full sm:w-auto sm:h-96 object-cover" src="/ai-art/ai-caramel.mp4" poster="/ai-art/ai-caramel-poster.jpg" muted loop playsinline preload="none" aria-label="AI生成動画：キャラメルソースを注ぐデザート"></video>
-          <video class="ai-video rounded-2xl border border-slate-200 w-full sm:w-auto sm:h-96 object-cover" src="/ai-art/ai-cheese.mp4" poster="/ai-art/ai-cheese-poster.jpg" muted loop playsinline preload="none" aria-label="AI生成動画：伸びるチーズ"></video>
+        <div class="ai-stills">
+          {[
+            { image: kitchen, alt: 'AI生成：炎の上がる厨房' },
+            { image: washoku, alt: 'AI生成：和食の俯瞰' },
+            { image: caramel, alt: 'AI生成：キャラメルのデザート' },
+            { image: cheesecake, alt: 'AI生成：バスクチーズケーキ' },
+          ].map((item) => (
+            <Image
+              src={item.image}
+              alt={item.alt}
+              widths={[320, 640]}
+              sizes="(max-width: 760px) 45vw, 22vw"
+              format="webp"
+              loading="lazy"
+            />
+          ))}
         </div>
-        <p class="text-slate-400 text-xs mt-4" data-en="All stills and videos generated with ComfyUI — custom node workflows, no stock footage." data-ja="静止画も動画もすべてComfyUIによる生成。ワークフローは自作、ストック素材不使用。">
-          静止画も動画もすべてComfyUIによる生成。ワークフローは自作、ストック素材不使用。
-        </p>
-      </div>
-
-      <!-- Client Productions (Moved from Undone Portfolio) -->
-      <div class="mb-16">
-        <h3 class="text-xl font-semibold text-slate-800 mb-3" data-en="Client Productions" data-ja="クライアント実績">クライアント実績</h3>
-        <p class="text-slate-500 text-sm mb-8" data-en="Selected projects from entertainment, brand, and streaming work. Curated from past production records and presented as individual credits." data-ja="エンタメ・ブランド・配信領域の代表案件を抜粋。過去の制作実績を個人クレジットとして再編集して掲載。">
-          エンタメ・ブランド・配信領域の代表案件を抜粋。過去の制作実績を個人クレジットとして再編集して掲載。
-        </p>
-        <div class="grid md:grid-cols-2 gap-6">
-          <a href="https://www.youtube.com/watch?v=StRwGB4z9tM" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <img src="https://img.youtube.com/vi/StRwGB4z9tM/maxresdefault.jpg" alt="CUL DRAMA" class="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" decoding="async" />
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-6xl text-white">▶</span>
-              </div>
-              <span class="absolute top-2 right-2 bg-sky-500 text-white text-xs px-2 py-1 rounded">YouTube</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between gap-3 mb-3">
-                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">YouTube Drama</span>
-                <span class="text-xs text-slate-400">CUL DRAMA</span>
-              </div>
-              <h4 class="text-slate-800 font-semibold mb-2" data-en="CUL DRAMA — Teen Drama Episode" data-ja="CUL DRAMA — 学園ショートドラマ">CUL DRAMA — 学園ショートドラマ</h4>
-              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Planned, directed, and edited story-driven short drama episodes for youth audiences." data-ja="ティーン向けショートドラマを企画・監督・編集まで一貫して担当。">
-                ティーン向けショートドラマを企画・監督・編集まで一貫して担当。
-              </p>
-              <p class="text-xs text-slate-400" data-en="Role: Planning / Direction / Editing" data-ja="担当: 企画 / 監督 / 編集">担当: 企画 / 監督 / 編集</p>
-            </div>
-          </a>
-
-          <a href="https://youtu.be/3tHl6a6tjMY?si=aaM1Ew-DB5zt-xMH" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-pink-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <img src="https://img.youtube.com/vi/3tHl6a6tjMY/maxresdefault.jpg" alt="Merupuchi Official Music Video" class="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" decoding="async" />
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-6xl text-white">▶</span>
-              </div>
-              <span class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded">MV</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between gap-3 mb-3">
-                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">MV / Entertainment</span>
-                <span class="text-xs text-slate-400">Merupuchi</span>
-              </div>
-              <h4 class="text-slate-800 font-semibold mb-2" data-en="Merupuchi Official — Music Video" data-ja="めるぷち official — MV制作">めるぷち official — MV制作</h4>
-              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Supported production and delivered editing, 2D effects, and VFX for a high-tempo idol MV." data-ja="撮影補助から編集、2Dエフェクト、VFXまで担当し、テンポ重視のMVを制作。">
-                撮影補助から編集、2Dエフェクト、VFXまで担当し、テンポ重視のMVを制作。
-              </p>
-              <p class="text-xs text-slate-400" data-en="Role: Editing / 2D Effects / VFX" data-ja="担当: 編集 / 2Dエフェクト / VFX">担当: 編集 / 2Dエフェクト / VFX</p>
-            </div>
-          </a>
-
-          <a href="https://www.youtube.com/watch?v=xDXpPpCxRuA&t=815s" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <img src="https://img.youtube.com/vi/xDXpPpCxRuA/maxresdefault.jpg" alt="Phantom Theta Birthday Project" class="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" decoding="async" />
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-6xl text-white">▶</span>
-              </div>
-              <span class="absolute top-2 right-2 bg-sky-500 text-white text-xs px-2 py-1 rounded">Ado</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between gap-3 mb-3">
-                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">YouTube Entertainment</span>
-                <span class="text-xs text-slate-400">Phantom Theta</span>
-              </div>
-              <h4 class="text-slate-800 font-semibold mb-2" data-en="Phantom Theta Birthday Project" data-ja="ファントムシータ誕生日企画">ファントムシータ誕生日企画</h4>
-              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Edited a celebration video project for Phantom Theta with fast turnaround and social-ready pacing." data-ja="ファントムシータの誕生日企画動画を編集。短納期でSNS向けテンポを設計。">
-                ファントムシータの誕生日企画動画を編集。短納期でSNS向けテンポを設計。
-              </p>
-              <p class="text-xs text-slate-400" data-en="Role: Editing" data-ja="担当: 編集">担当: 編集</p>
-            </div>
-          </a>
-
-          <a href="https://tv.dmm.com/shorts/detail/?season=gfkw9ar3v5stxz83bvabgjpbg" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-amber-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-slate-100 relative overflow-hidden">
-              <img src="https://awsimgsrc.dmm.com/dig/dmmtv/video/gfkw9ar3v5stxz83bvabgjpbg/package_1.png?w=1280&h=720&t=margin" alt="TTM DMM TV Key Visual" class="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" decoding="async" />
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span class="text-6xl text-white">▶</span>
-              </div>
-              <span class="absolute top-2 right-2 bg-amber-500 text-white text-xs px-2 py-1 rounded">DMM TV</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between gap-3 mb-3">
-                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">DMM TV</span>
-                <span class="text-xs text-slate-400">Short Drama</span>
-              </div>
-              <h4 class="text-slate-800 font-semibold mb-2">TTM (たったら負け)</h4>
-              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Handled offline editing for a distribution-ready short drama title on DMM TV." data-ja="DMM TV向けショートドラマ作品のオフライン編集を担当。">
-                DMM TV向けショートドラマ作品のオフライン編集を担当。
-              </p>
-              <p class="text-xs text-slate-400" data-en="Role: Offline Editing" data-ja="担当: オフライン編集">担当: オフライン編集</p>
-            </div>
-          </a>
-
-          <a href="https://www.tiktok.com/@fumakilla_jp/video/7526839555647999240" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-pink-400 hover:shadow-lg transition">
-            <div class="aspect-video bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 relative overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-white/90 text-6xl">📱</div>
-              <div class="absolute inset-0 bg-black/15"></div>
-              <span class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded border border-white/30">TikTok</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between gap-3 mb-3">
-                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">TikTok Campaign</span>
-                <span class="text-xs text-slate-400">FUMAKILLA</span>
-              </div>
-              <h4 class="text-slate-800 font-semibold mb-2" data-en="FUMAKILLA TikTok Series" data-ja="FUMAKILLA TikTokシリーズ">FUMAKILLA TikTokシリーズ</h4>
-              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Produced multiple TikTok shorts for a consumer brand campaign, focusing on edit speed and clarity." data-ja="消費者向けブランド施策として複数のTikTokショートを制作。短尺で伝わる編集設計を担当。">
-                消費者向けブランド施策として複数のTikTokショートを制作。短尺で伝わる編集設計を担当。
-              </p>
-              <p class="text-xs text-slate-400" data-en="Role: Editing / Partial Shooting" data-ja="担当: 編集 / 一部撮影">担当: 編集 / 一部撮影</p>
-            </div>
-          </a>
-
-          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200">
-            <div class="aspect-video bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500 relative overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center text-white/90 text-6xl">🎓</div>
-              <span class="absolute top-2 right-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded">Academic</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-start justify-between gap-3 mb-3">
-                <span class="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">Academic / Live Streaming</span>
-                <span class="text-xs text-slate-400">Public / Education</span>
-              </div>
-              <h4 class="text-slate-800 font-semibold mb-2" data-en="National Mathematics Education Symposium" data-ja="全国算数・数学教育研究大会シンポジウム">全国算数・数学教育研究大会シンポジウム</h4>
-              <p class="text-slate-600 text-sm leading-relaxed mb-3" data-en="Managed on-site capture, live streaming operations, and visual design for an academic symposium event." data-ja="学術シンポジウムにおける撮影・配信オペレーション・デザイン制作を一括で担当。">
-                学術シンポジウムにおける撮影・配信オペレーション・デザイン制作を一括で担当。
-              </p>
-              <p class="text-xs text-slate-400" data-en="Role: Shooting / Streaming / Design" data-ja="担当: 撮影 / 配信 / デザイン">担当: 撮影 / 配信 / デザイン</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Software & Apps -->
-      <div class="mb-16">
-        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Software & Apps" data-ja="ソフトウェア & アプリ">ソフトウェア & アプリ</h3>
-        <div class="grid md:grid-cols-2 gap-6">
-
-          <!-- SceneScope -->
-          <div class="bg-white rounded-2xl p-8 border border-sky-200 hover:shadow-lg transition relative overflow-hidden ring-1 ring-sky-100">
-            <div class="absolute top-3 right-3">
-              <span class="inline-flex items-center gap-1 text-xs font-semibold bg-sky-500 text-white px-2.5 py-1 rounded-full animate-pulse">Coming Soon</span>
-            </div>
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-3xl">🎬</span>
-              <h4 class="text-lg font-bold text-slate-800">SceneScope</h4>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Next.js</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Cloudflare Pages</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">D1</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Claude API</span>
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="AI-powered script breakdown tool. Upload a screenplay PDF and get automated scene analysis, element extraction, and project management." data-ja="AI脚本解析ツール。脚本PDFをアップロードすると、シーン分析・エレメント抽出・プロジェクト管理を自動化。">
-              AI脚本解析ツール。脚本PDFをアップロードすると、シーン分析・エレメント抽出・プロジェクト管理を自動化。
-            </p>
-          </div>
-
-          <!-- ClapperLog -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-3xl">📋</span>
-              <h4 class="text-lg font-bold text-slate-800">ClapperLog</h4>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">React</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Vite</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Tailwind CSS</span>
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="On-set recording log app for film production. One-click timer, scene management with sequential registration, and CSV export." data-ja="映像制作現場向け撮影記録アプリ。ワンクリックでタイマー管理、シーン連番登録、CSV出力。">
-              映像制作現場向け撮影記録アプリ。ワンクリックでタイマー管理、シーン連番登録、CSV出力。
-            </p>
-            <a href="https://github.com/akine/clapperlog" target="_blank" rel="noopener noreferrer" class="text-sky-500 hover:underline text-sm mt-3 inline-block">GitHub →</a>
-          </div>
-
-          <!-- Discord Relationship Analyzer -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-3xl">📊</span>
-              <h4 class="text-lg font-bold text-slate-800">Discord Relationship Analyzer</h4>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Python</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">React</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Cloudflare Workers</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Claude API</span>
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="AI analysis engine that reads Discord chat logs and generates relationship insights with evolution tracking. Self-improving system." data-ja="Discordチャットログから関係性の洞察を生成するAI分析エンジン。進化トラッキング付き自己改善型システム。">
-              Discordチャットログから関係性の洞察を生成するAI分析エンジン。進化トラッキング付き自己改善型システム。
-            </p>
-          </div>
-
-          <!-- muvo -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-3xl">🎵</span>
-              <h4 class="text-lg font-bold text-slate-800">muvo</h4>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">React PWA</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Cloudflare Pages</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">D1</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Web Audio API</span>
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="Private audio streaming PWA with DaVinci Resolve-style waveform visualization, marker import from editing timelines, and Zero Trust authentication." data-ja="DaVinci Resolve風波形表示を備えたプライベート音声ストリーミングPWA。編集タイムラインからのマーカーインポート、Zero Trust認証対応。">
-              DaVinci Resolve風波形表示を備えたプライベート音声ストリーミングPWA。編集タイムラインからのマーカーインポート、Zero Trust認証対応。
-            </p>
-          </div>
-
-          <!-- UGC Pipeline -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-3xl">⚙️</span>
-              <h4 class="text-lg font-bold text-slate-800" data-en="Roblox UGC Pipeline" data-ja="Roblox UGCパイプライン">Roblox UGCパイプライン</h4>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Gemini</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Trellis 2</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Blender</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Python</span>
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="Automated 3D asset pipeline. AI generates images, converts to 3D models, and optimizes for Roblox — taking minutes instead of hours." data-ja="AI画像生成→3D変換→最適化を自動化するパイプライン。手作業で数時間の工程を数分に短縮。">
-              AI画像生成→3D変換→最適化を自動化するパイプライン。手作業で数時間の工程を数分に短縮。
-            </p>
-          </div>
-
-          <!-- Meme Paint Rush -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-3xl">🎨</span>
-              <h4 class="text-lg font-bold text-slate-800">Meme Paint Rush</h4>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Roblox Studio</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Luau</span>
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="Meme coloring game for kids on Roblox. From concept to playable in 2 days. Trend-driven content with RTA battles." data-ja="Roblox上のMeme塗り絵ゲーム。企画から2日でプレイ可能に。トレンド連動型コンテンツ、RTA対戦機能付き。">
-              Roblox上のMeme塗り絵ゲーム。企画から2日でプレイ可能に。トレンド連動型コンテンツ、RTA対戦機能付き。
-            </p>
-            <a href="https://www.roblox.com/ja/games/100279499752468/Meme-Paint-Rush" target="_blank" rel="noopener noreferrer" class="text-sky-500 hover:underline text-sm mt-3 inline-block" data-en="Play on Roblox →" data-ja="Robloxでプレイ →">Robloxでプレイ →</a>
-          </div>
-
-          <!-- Family Check-in App -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-3xl">☀️</span>
-              <h4 class="text-lg font-bold text-slate-800" data-en="Family Check-in App" data-ja="家族見守りアプリ">家族見守りアプリ</h4>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Flutter</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Supabase</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Dart</span>
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="Cross-platform mobile app for families to share presence and moods. Real-time status updates with weather-themed emoji reactions and streak tracking." data-ja="家族間で在宅・外出状況や気持ちを共有するモバイルアプリ。天気テーマの絵文字リアクションとストリーク機能で日常をゆるくつなぐ。">
-              家族間で在宅・外出状況や気持ちを共有するモバイルアプリ。天気テーマの絵文字リアクションとストリーク機能で日常をゆるくつなぐ。
-            </p>
-          </div>
-
-          <!-- md-dashboard -->
-          <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="text-3xl">📄</span>
-              <h4 class="text-lg font-bold text-slate-800">md-dashboard</h4>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Astro 5</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Tailwind v4</span>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Cloudflare Pages</span>
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed" data-en="Auto-syncing markdown dashboard. Watches workspace files for changes, auto-deploys via systemd, and protected by Cloudflare Zero Trust." data-ja="Markdownファイルを自動同期して表示するダッシュボード。ファイル変更を検知→自動デプロイ、Zero Trust認証付き。">
-              Markdownファイルを自動同期して表示するダッシュボード。ファイル変更を検知→自動デプロイ、Zero Trust認証付き。
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Production Credits -->
-      <div class="mb-16">
-        <h3 class="text-xl font-semibold text-slate-800 mb-8" data-en="Production Credits" data-ja="制作実績">制作実績</h3>
-        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-          <p class="text-slate-600 mb-6" data-en="50+ short dramas and promotional videos delivered in 2025, including:" data-ja="2025年に50本以上のショートドラマ・プロモーション動画を手掛ける：">
-            2025年に50本以上のショートドラマ・プロモーション動画を手掛ける：
-          </p>
-          <ul class="grid md:grid-cols-2 gap-4 text-slate-600">
-            <li class="flex items-center gap-2">
-              <span class="text-amber-500">★</span>
-              <span data-en="EXILE LIVE TOUR 2025 — Screen Visual Direction" data-ja="EXILE LIVE TOUR 2025 — スクリーン映像ディレクション"><strong>EXILE LIVE TOUR 2025 — スクリーン映像ディレクション</strong></span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-sky-500">▸</span>
-              <span data-en="CUL DRAMA Series — Director & Editor" data-ja="CUL DRAMAシリーズ — 監督 & 編集">CUL DRAMAシリーズ — 監督 & 編集</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-sky-500">▸</span>
-              <span data-en="Merupuchi Official — MV & Promotion" data-ja="めるぷち Official — MV & プロモーション">めるぷち Official — MV & プロモーション</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-sky-500">▸</span>
-              <span data-en="DMM TV 'TTM (Tattara Make)' — Offline Editor" data-ja="DMM TV「TTM（たったら負け）」— オフライン編集">DMM TV「TTM（たったら負け）」— オフライン編集</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-sky-500">▸</span>
-              <span data-en="VR Training System — Solo Development" data-ja="VRトレーニングシステム — 単独開発">VRトレーニングシステム — 単独開発</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-sky-500">▸</span>
-              <span data-en="PIA Film Festival Selected (Student Work)" data-ja="ぴあ映画祭入選（指導生徒作品）">ぴあ映画祭入選（指導生徒作品）</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-sky-500">▸</span>
-              <span data-en="Phantom Theta (Ado Produced) — Direction" data-ja="ファントムシータ（Adoプロデュース）— ディレクション">ファントムシータ（Adoプロデュース）— ディレクション</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Hiring Banner -->
-  <section class="px-6 pb-12 bg-white">
-    <div class="max-w-5xl mx-auto rounded-3xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-sky-50 p-8 md:p-10 shadow-sm">
-      <p class="inline-flex items-center gap-2 text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full mb-4" data-en="Open to Part-time / Contract Work" data-ja="バイト・業務委託ともに歓迎">
-        バイト・業務委託ともに歓迎
-      </p>
-      <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-3" data-en="Available Now for Remote Creative & Editing Roles" data-ja="現在、映像編集・制作系のお仕事を探しています">
-        現在、映像編集・制作系のお仕事を探しています
-      </h2>
-      <p class="text-slate-600 leading-relaxed mb-6" data-en="If you're hiring for video editing, creative direction, short-form content production, or AI-assisted visual workflows, I can contribute immediately." data-ja="映像編集、クリエイティブディレクション、ショート動画制作、AI活用の制作フロー構築まで、即戦力として参加できます。">
-        映像編集、クリエイティブディレクション、ショート動画制作、AI活用の制作フロー構築まで、即戦力として参加できます。
-      </p>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 text-left">
-        <div class="bg-white/80 border border-emerald-100 rounded-xl px-4 py-3">
-          <p class="text-[11px] font-semibold text-slate-500 mb-1" data-en="Availability" data-ja="稼働開始">稼働開始</p>
-          <p class="text-sm font-semibold text-slate-700" data-en="Immediate" data-ja="即日〜">即日〜</p>
-        </div>
-        <div class="bg-white/80 border border-emerald-100 rounded-xl px-4 py-3">
-          <p class="text-[11px] font-semibold text-slate-500 mb-1" data-en="Work Style" data-ja="働き方">働き方</p>
-          <p class="text-sm font-semibold text-slate-700" data-en="Part-time / Contract" data-ja="バイト / 業務委託">バイト / 業務委託</p>
-        </div>
-        <div class="bg-white/80 border border-emerald-100 rounded-xl px-4 py-3">
-          <p class="text-[11px] font-semibold text-slate-500 mb-1" data-en="Time Zone" data-ja="稼働時間">稼働時間</p>
-          <p class="text-sm font-semibold text-slate-700" data-en="JST, Flexible" data-ja="JSTベース（柔軟対応）">JSTベース（柔軟対応）</p>
-        </div>
-        <div class="bg-white/80 border border-emerald-100 rounded-xl px-4 py-3">
-          <p class="text-[11px] font-semibold text-slate-500 mb-1" data-en="Compensation" data-ja="希望条件">希望条件</p>
-          <p class="text-sm font-semibold text-slate-700" data-en="Negotiable" data-ja="時給・単価は応相談">時給・単価は応相談</p>
-        </div>
-      </div>
-      <div class="flex flex-wrap gap-3">
-        <a href="#contact" class="bg-emerald-500 hover:bg-emerald-400 text-white px-6 py-3 rounded-full font-medium transition" data-en="Contact Me" data-ja="連絡する">連絡する</a>
-        <a href="mailto:kojo@akinechan.com?subject=%E3%80%90%E3%81%94%E7%9B%B8%E8%AB%87%E3%80%91%E6%98%A0%E5%83%8F%E5%88%B6%E4%BD%9C%E3%83%BB%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BE%9D%E9%A0%BC&body=%E3%81%94%E4%BE%9D%E9%A0%BC%E5%86%85%E5%AE%B9%EF%BC%9A%0A%0A%E3%81%94%E4%BA%88%E7%AE%97%EF%BC%88%E7%9B%AE%E5%AE%89%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%EF%BC%89%EF%BC%9A%0A%0A%E5%B8%8C%E6%9C%9B%E7%B4%8D%E6%9C%9F%EF%BC%9A%0A%0A%E3%81%94%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%AA%E3%81%A9%EF%BC%9A%0A" class="border border-slate-300 hover:border-slate-500 text-slate-700 px-6 py-3 rounded-full font-medium transition">kojo@akinechan.com</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section id="process" class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-slate-800 mb-4 text-center" data-en="How It Works" data-ja="ご依頼の流れ">ご依頼の流れ</h2>
-      <p class="text-slate-500 text-center mb-16 max-w-xl mx-auto" data-en="From first message to delivery — simple and fast. Small projects welcome." data-ja="最初のご連絡から納品までシンプル＆スピーディー。小さな案件も歓迎です。">
-        最初のご連絡から納品までシンプル＆スピーディー。小さな案件も歓迎です。
-      </p>
-      <div class="grid md:grid-cols-4 gap-6">
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 text-sky-600 font-bold mb-4">1</span>
-          <h3 class="font-semibold text-slate-800 mb-2" data-en="Free Consultation" data-ja="無料相談">無料相談</h3>
-          <p class="text-sm text-slate-600 leading-relaxed" data-en="Email me what you have in mind. A rough idea is enough — I'll help shape it." data-ja="メールでざっくり相談。ふわっとしたアイデア段階でもOK、一緒に形にします。">メールでざっくり相談。ふわっとしたアイデア段階でもOK、一緒に形にします。</p>
-        </div>
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 text-sky-600 font-bold mb-4">2</span>
-          <h3 class="font-semibold text-slate-800 mb-2" data-en="Proposal & Quote" data-ja="ご提案・お見積もり">ご提案・お見積もり</h3>
-          <p class="text-sm text-slate-600 leading-relaxed" data-en="I propose an approach, timeline, and quote that fits your budget." data-ja="ご予算に合わせて、進め方・スケジュール・お見積もりをご提案します。">ご予算に合わせて、進め方・スケジュール・お見積もりをご提案します。</p>
-        </div>
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 text-sky-600 font-bold mb-4">3</span>
-          <h3 class="font-semibold text-slate-800 mb-2" data-en="Production" data-ja="制作">制作</h3>
-          <p class="text-sm text-slate-600 leading-relaxed" data-en="Regular progress updates so there are no surprises. AI-powered workflow keeps it fast." data-ja="進捗をこまめに共有しながら制作。AI活用ワークフローでスピード感を保ちます。">進捗をこまめに共有しながら制作。AI活用ワークフローでスピード感を保ちます。</p>
-        </div>
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 text-sky-600 font-bold mb-4">4</span>
-          <h3 class="font-semibold text-slate-800 mb-2" data-en="Delivery & Revisions" data-ja="納品・修正対応">納品・修正対応</h3>
-          <p class="text-sm text-slate-600 leading-relaxed" data-en="Delivered in your preferred format. Revision rounds and scope are agreed in the quote — extra rounds available as paid add-ons." data-ja="ご希望の形式で納品。修正は回数・範囲をお見積もり時に決めて対応（追加修正は別途お見積もり）。">ご希望の形式で納品。修正は回数・範囲をお見積もり時に決めて対応（追加修正は別途お見積もり）。</p>
-        </div>
-      </div>
-      <p class="text-center text-sm text-slate-500 mt-10">
-        <span data-en="Track record: 3-day turnaround on the Phantom Theta (Ado) project. Rush jobs welcome — just ask." data-ja="実績：ファントムシータ（Ado）案件は相談から3日で納品。お急ぎの案件もまずはご相談ください。">実績：ファントムシータ（Ado）案件は相談から3日で納品。お急ぎの案件もまずはご相談ください。</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="py-24 px-6 bg-slate-50">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl font-bold text-slate-800 mb-16 text-center" data-en="FAQ" data-ja="よくある質問">よくある質問</h2>
-      <div class="space-y-4">
-        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
-            <span data-en="How much does it cost?" data-ja="料金はどのくらいですか？">料金はどのくらいですか？</span>
-            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
+        <details class="lab-details">
+          <summary>
+            <Text ja="AI生成動画を見る" en="Watch the AI motion studies" />
+            <span aria-hidden="true">＋</span>
           </summary>
-          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="It depends on scope, so I quote per project. Tell me your budget upfront and I'll propose the best plan within it — small budgets are welcome too." data-ja="内容によって変わるため案件ごとにお見積もりしています。先にご予算を教えていただければ、その範囲でベストなプランをご提案します。少額のご予算でも歓迎です。">内容によって変わるため案件ごとにお見積もりしています。先にご予算を教えていただければ、その範囲でベストなプランをご提案します。少額のご予算でも歓迎です。</p>
+          <div class="ai-videos">
+            {[
+              { name: 'steak', label: 'AI生成動画：ステーキ' },
+              { name: 'caramel', label: 'AI生成動画：キャラメル' },
+              { name: 'cheese', label: 'AI生成動画：チーズ' },
+            ].map((video) => (
+              <video
+                src={`/ai-art/ai-${video.name}.mp4`}
+                poster={`/ai-art/ai-${video.name}-poster.jpg`}
+                controls
+                playsinline
+                preload="none"
+                aria-label={video.label}
+              ></video>
+            ))}
+          </div>
         </details>
-        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
-            <span data-en="Can I just ask you about AI?" data-ja="AIの相談だけでもいいですか？">AIの相談だけでもいいですか？</span>
-            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
-          </summary>
-          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Of course. Tool choices, workflow ideas, 'can AI even do this?' — ask me anything. Half the fun is figuring out together what we could build." data-ja="もちろんです。ツール選び、活用方法の壁打ち、「これってAIでできる？」みたいな素朴な疑問まで、何でも聞いてください。話しているうちに作るものが見えてくることも多いです。">もちろんです。ツール選び、活用方法の壁打ち、「これってAIでできる？」みたいな素朴な疑問まで、何でも聞いてください。話しているうちに作るものが見えてくることも多いです。</p>
-        </details>
-        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
-            <span data-en="What kind of work can I ask for?" data-ja="どんな仕事を頼めますか？">どんな仕事を頼めますか？</span>
-            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
-          </summary>
-          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Video editing, short-form content, creative direction, VFX, and AI-assisted production (visuals, bots, apps, websites). From a single video edit to building your whole content pipeline." data-ja="映像編集、ショート動画、クリエイティブディレクション、VFX、AI活用の制作（ビジュアル・Bot・アプリ・Webサイト）まで。動画1本の編集から、コンテンツ制作フローの構築まで対応します。">映像編集、ショート動画、クリエイティブディレクション、VFX、AI活用の制作（ビジュアル・Bot・アプリ・Webサイト）まで。動画1本の編集から、コンテンツ制作フローの構築まで対応します。</p>
-        </details>
-        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
-            <span data-en="How fast can you deliver?" data-ja="納期はどのくらいですか？">納期はどのくらいですか？</span>
-            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
-          </summary>
-          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Depends on the project, but speed is my strength — the Phantom Theta (Ado) video went from brief to delivery in 3 days. Tell me your deadline and I'll be straight about whether it's doable." data-ja="案件によりますが、スピードは強みです。ファントムシータ（Ado）案件は依頼から3日で納品しました。希望納期を教えていただければ、対応可否を正直にお答えします。">案件によりますが、スピードは強みです。ファントムシータ（Ado）案件は依頼から3日で納品しました。希望納期を教えていただければ、対応可否を正直にお答えします。</p>
-        </details>
-        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
-            <span data-en="Do you work remotely only?" data-ja="リモートのみの対応ですか？">リモートのみの対応ですか？</span>
-            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
-          </summary>
-          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Fully remote worldwide is my default, but on-site work in the Tokyo area (shoots, live streaming, etc.) is also possible — just ask." data-ja="基本はフルリモートで世界中どこでも対応します。東京近郊での現場対応（撮影・配信など）も可能ですので、ご相談ください。">基本はフルリモートで世界中どこでも対応します。東京近郊での現場対応（撮影・配信など）も可能ですので、ご相談ください。</p>
-        </details>
-        <details class="group bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-semibold text-slate-800">
-            <span data-en="Can you join an ongoing team or project?" data-ja="既存のチームや進行中の案件にも入れますか？">既存のチームや進行中の案件にも入れますか？</span>
-            <span class="text-sky-500 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
-          </summary>
-          <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed" data-en="Yes. I slot into existing teams and workflows as an editor or director — short drama series, MVs, and brand content have all worked this way. Part-time and contract arrangements both work." data-ja="可能です。編集者・ディレクターとして既存のチームやワークフローに入るのは慣れています（ショートドラマシリーズ・MV・ブランド案件など）。バイト・業務委託どちらの形でも大丈夫です。">可能です。編集者・ディレクターとして既存のチームやワークフローに入るのは慣れています（ショートドラマシリーズ・MV・ブランド案件など）。バイト・業務委託どちらの形でも大丈夫です。</p>
-        </details>
-      </div>
-      <div class="text-center mt-12">
-        <a href="#contact" class="bg-sky-500 hover:bg-sky-400 text-white px-8 py-3 rounded-full font-medium transition inline-block" data-en="Ask Anything — It's Free" data-ja="まずは気軽に相談する（無料）">まずは気軽に相談する（無料）</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-32 px-6 bg-slate-100">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-slate-800 mb-8" data-en="Let's Work Together" data-ja="一緒に仕事しませんか？">一緒に仕事しませんか？</h2>
-      <p class="inline-flex items-center gap-2 text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full mb-5" data-en="Available Now • Remote Worldwide" data-ja="現在受付中 • フルリモート対応">
-        現在受付中 • フルリモート対応
-      </p>
-      <p class="text-slate-600 mb-12 max-w-xl mx-auto">
-        <span data-en="Video, AI, apps — if you want to make something, just say hi." data-ja="映像でもAIでもアプリでも、作りたいものがあれば気軽に声をかけてください。">映像でもAIでもアプリでも、作りたいものがあれば気軽に声をかけてください。</span><br>
-        <span data-en="Questions about AI are welcome too — happy to chat anytime." data-ja="「AIってこんなことできる？」みたいな質問だけでも歓迎です。">「AIってこんなことできる？」みたいな質問だけでも歓迎です。</span><br>
-        <span data-en="Fully remote worldwide. I reply within 24 hours — a one-line email is enough." data-ja="フルリモートで世界中どこからでも。原則24時間以内に返信します。一行のメールからで大丈夫。">フルリモートで世界中どこからでも。原則24時間以内に返信します。一行のメールからで大丈夫。</span>
-      </p>
-
-      <div class="grid md:grid-cols-3 gap-3 max-w-3xl mx-auto mb-10">
-        <div class="bg-white border border-slate-200 rounded-xl p-4">
-          <p class="text-sm font-semibold text-slate-800" data-en="Creative Direction" data-ja="クリエイティブディレクション">クリエイティブディレクション</p>
-          <p class="text-xs text-slate-500 mt-1" data-en="Concept design and production leadership for campaigns and live visuals." data-ja="企画設計と制作進行を一貫して担当。">企画設計と制作進行を一貫して担当。</p>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-xl p-4">
-          <p class="text-sm font-semibold text-slate-800" data-en="Video Production" data-ja="映像制作">映像制作</p>
-          <p class="text-xs text-slate-500 mt-1" data-en="Planning, direction, editing, and VFX for short-form and branded videos." data-ja="企画・演出・編集・VFXまで対応。">企画・演出・編集・VFXまで対応。</p>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-xl p-4">
-          <p class="text-sm font-semibold text-slate-800" data-en="AI Visual Development" data-ja="AIビジュアル開発">AIビジュアル開発</p>
-          <p class="text-xs text-slate-500 mt-1" data-en="Rapid visual prototyping and production workflows powered by AI." data-ja="AIを活用した高速なビジュアル制作フローを構築。">AIを活用した高速なビジュアル制作フローを構築。</p>
+        <div class="build-grid">
+          <article>
+            <span class="eyebrow">01 / ON-SET TOOLS</span>
+            <h3>ClapperLog</h3>
+            <Text
+              as="p"
+              ja="映像制作現場向けの撮影記録アプリ。タイマー管理、シーン連番登録、CSV出力をひとつに。"
+              en="A shooting log for film sets, combining timers, scene numbering and CSV export."
+            />
+            <a
+              href="https://github.com/akine/clapperlog"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+            >
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+          <article>
+            <span class="eyebrow">02 / PRODUCTION WORKFLOW</span>
+            <h3>SceneScope</h3>
+            <Text
+              as="p"
+              ja="脚本PDFからシーン分析・エレメント抽出を行うAI脚本解析ツール。開発中のプロジェクトです。"
+              en="An AI script analysis tool for scene breakdowns and element extraction from screenplay PDFs. In development."
+            />
+            <span class="project-status">
+              <Text ja="開発中" en="In development" />
+            </span>
+          </article>
+          <article>
+            <span class="eyebrow">03 / AUTOMATION</span>
+            <Text as="h3" ja="3Dアセット制作フロー" en="3D asset pipeline" />
+            <Text
+              as="p"
+              ja="AI画像生成、3D変換、Blenderでの最適化をつなぐ自作パイプライン。Roblox向けアセット制作を自動化。"
+              en="A custom pipeline connecting AI image generation, 3D conversion and Blender optimization for Roblox assets."
+            />
+            <span class="project-status">AI / Blender / Python</span>
+          </article>
         </div>
       </div>
+    </section>
 
-      <!-- Direct Contact -->
-      <div class="flex flex-wrap gap-6 justify-center mb-12">
-        <a href="mailto:kojo@akinechan.com?subject=%E3%80%90%E3%81%94%E7%9B%B8%E8%AB%87%E3%80%91%E6%98%A0%E5%83%8F%E5%88%B6%E4%BD%9C%E3%83%BB%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BE%9D%E9%A0%BC&body=%E3%81%94%E4%BE%9D%E9%A0%BC%E5%86%85%E5%AE%B9%EF%BC%9A%0A%0A%E3%81%94%E4%BA%88%E7%AE%97%EF%BC%88%E7%9B%AE%E5%AE%89%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%EF%BC%89%EF%BC%9A%0A%0A%E5%B8%8C%E6%9C%9B%E7%B4%8D%E6%9C%9F%EF%BC%9A%0A%0A%E3%81%94%E5%8F%82%E8%80%83%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%AA%E3%81%A9%EF%BC%9A%0A" class="flex items-center gap-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-4 rounded-2xl transition shadow-sm">
-          <span class="text-2xl">✉️</span>
-          <span class="text-left">
-            <span class="block text-xs text-slate-500">Email</span>
-            <span class="font-medium">kojo@akinechan.com</span>
+    <section id="about" class="section container about-section">
+      <div class="about-portrait">
+        <Image
+          src={avatar}
+          alt="小城昭根のプロフィール画像"
+          widths={[320, 640]}
+          sizes="(max-width: 760px) 160px, 280px"
+          format="webp"
+          loading="lazy"
+        />
+        <p class="eyebrow">KOJO AKINE / 小城 昭根</p>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">04 / ABOUT ME</p>
+        <Text
+          as="h2"
+          ja="演出も、編集も、コードも。\n一本の線でつながっている。"
+          en="Direction, editing, code.\nOne connected practice."
+        />
+        <Text
+          as="p"
+          ja="シナリオセンターで脚本を、ENBUゼミナール映画監督コース（2020年度）で演出を学びました。Webエンジニアとして5年の経験があり、Unreal Engine・Meta Quest 3によるVRトレーニングシステムも開発。現在は映像制作とAI・アプリ開発を手がけています。"
+          en="I studied screenwriting at Scenario Center and directing at ENBU Seminar (2020). My background includes five years in web engineering and VR training system development with Unreal Engine and Meta Quest 3. Today I work across film production, AI and application development."
+        />
+        <Text
+          as="p"
+          ja="東京都立工芸高校の映画部では、外部講師として10年間指導。指導した生徒の作品がぴあフィルムフェスティバルに入選しました。自分でつくることも、誰かの「つくりたい」を支えることも、大切にしています。"
+          en="I also spent ten years teaching film at Tokyo Metropolitan Kogei High School as an external instructor. A student film was selected for the PIA Film Festival. Making work and helping others make theirs are both central to my practice."
+        />
+        <div class="about-links">
+          <a
+            href="https://www.linkedin.com/in/akinechan/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn ↗
+          </a>
+          <a
+            href="https://github.com/akine"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub ↗
+          </a>
+          <a
+            href="https://note.com/akinechan"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            note ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="section process-section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">05 / HOW WE WORK</p>
+            <Text
+              as="h2"
+              ja="まずは、話すところから。"
+              en="It starts with a conversation."
+            />
+          </div>
+        </div>
+        <ol class="process-grid">
+          <li>
+            <span>01</span>
+            <Text as="h3" ja="ご相談" en="Tell me about it" />
+            <Text
+              as="p"
+              ja="内容・時期・予算を、分かる範囲でお知らせください。企画段階や募集ポジションのご相談も歓迎です。"
+              en="Share the scope, timing and budget you know. Early ideas and opportunities to join your team are welcome."
+            />
+          </li>
+          <li>
+            <span>02</span>
+            <Text as="h3" ja="進め方・お見積もり" en="Scope & estimate" />
+            <Text
+              as="p"
+              ja="担当範囲、納期、費用、修正回数をすり合わせてから制作を始めます。"
+              en="We agree on responsibilities, schedule, cost and revision rounds before production starts."
+            />
+          </li>
+          <li>
+            <span>03</span>
+            <Text as="h3" ja="制作・納品" en="Make & deliver" />
+            <Text
+              as="p"
+              ja="進捗を共有しながら制作。確認・修正を経て、ご希望の形式で納品します。"
+              en="Regular progress updates, review and agreed revisions, then delivery in your preferred format."
+            />
+          </li>
+        </ol>
+        <div class="faq">
+          <details>
+            <summary>
+              <Text
+                ja="編集だけ・継続のお仕事も相談できますか？"
+                en="Can you help with editing only or ongoing work?"
+              />
+              <span aria-hidden="true">＋</span>
+            </summary>
+            <Text
+              as="p"
+              ja="はい。編集のみ、制作チームへの参加、継続的な業務委託・アルバイトも歓迎です。担当業務や稼働日数をお知らせください。"
+              en="Yes. Editing-only projects, joining production teams, ongoing freelance engagements and part-time roles are welcome. Tell me about the responsibilities and schedule."
+            />
+          </details>
+          <details>
+            <summary>
+              <Text
+                ja="予算や依頼内容がまだ決まっていません。"
+                en="What if the budget or brief isn’t final yet?"
+              />
+              <span aria-hidden="true">＋</span>
+            </summary>
+            <Text
+              as="p"
+              ja="決まっていることだけで大丈夫です。目的や完成イメージを伺い、必要な工程と費用をご提案します。開始時期や短納期対応は、内容と稼働状況に合わせてご相談します。"
+              en="Start with what you know. We can discuss the goal and propose a scope and estimate. Availability and rush deadlines are agreed based on the project and schedule."
+            />
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section section">
+      <div class="container">
+        <div class="contact-top">
+          <span class="eyebrow">HAVE SOMETHING IN MIND?</span>
+          <span class="availability">
+            <i aria-hidden="true"></i>
+            <Text
+              ja="単発・継続・チーム参加のご相談"
+              en="Projects / Ongoing work / Team roles"
+            />
           </span>
-        </a>
-        <a href="tel:+818034930723" class="flex items-center gap-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-6 py-4 rounded-2xl transition shadow-sm">
-          <span class="text-2xl">📞</span>
-          <span class="text-left">
-            <span class="block text-xs text-slate-500" data-en="Phone (Japanese)" data-ja="電話（日本語対応）">電話（日本語対応）</span>
-            <span class="font-medium">080-3493-0723</span>
-          </span>
-        </a>
+        </div>
+        <Text
+          as="h2"
+          ja="次の「つくりたい」を、\n一緒に。"
+          en="Let’s make\nwhat’s next."
+        />
+        <div class="contact-bottom">
+          <div>
+            <Text
+              as="p"
+              ja="映像制作、AI活用、開発のこと。\n依頼内容が固まっていなくても大丈夫です。"
+              en="Film, AI or development.\nA rough idea is a good place to start."
+            />
+            <a
+              class="button button-dark"
+              href={mailto}
+              data-mail-ja={mailto}
+              data-mail-en={mailtoEn}
+            >
+              <Text ja="メールで仕事を相談する" en="Email about a project" />
+              <span aria-hidden="true">↗</span>
+            </a>
+            <div class="email-copy">
+              <a href={`mailto:${email}`}>{email}</a>
+              <button id="copy-email" type="button" hidden>
+                <Text ja="コピー" en="Copy" />
+              </button>
+              <span id="copy-status" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="contact-info">
+            <p>
+              <Text ja="働き方" en="WORKING STYLE" />
+              <Text
+                ja="業務委託・アルバイト / リモート対応"
+                en="Freelance / Part-time / Remote"
+              />
+            </p>
+            <p>
+              <Text ja="ご相談時に" en="HELPFUL TO INCLUDE" />
+              <Text
+                ja="ご依頼内容・希望時期・ご予算（未定可）"
+                en="Scope / Timing / Budget, if known"
+              />
+            </p>
+            <a class="phone-link" href="tel:+818034930723">
+              <Text ja="電話（日本語）" en="Phone (Japanese)" />{' '}
+              <span>080-3493-0723 ↗</span>
+            </a>
+          </div>
+        </div>
       </div>
-
-      <div class="flex flex-wrap gap-6 justify-center items-center">
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/akinechan/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#0A66C2] transition" title="LinkedIn" aria-label="LinkedIn">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <!-- GitHub -->
-        <a href="https://github.com/akine" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-800 transition" title="GitHub" aria-label="GitHub">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <!-- X -->
-        <a href="https://x.com/akinecool" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-800 transition" title="X" aria-label="X">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/akinex" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#E4405F] transition" title="Instagram" aria-label="Instagram">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <!-- note -->
-        <a href="https://note.com/akinechan" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#41C9B4] transition" title="note" aria-label="note">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M0 .279c4.623 0 10.953-.235 15.498-.117 6.099.156 8.39 2.813 8.468 9.374.077 3.71 0 14.335 0 14.335h-6.598c0-9.296.04-10.83 0-13.759-.078-2.578-.814-3.807-2.795-4.041-2.097-.235-7.975-.04-7.975-.04v17.84H0Z"/></svg>
-        </a>
-        <!-- しずかなインターネット -->
-        <a href="https://sizu.me/akine" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-600 transition" title="しずかなインターネット" aria-label="しずかなインターネット">
-          <svg class="w-7 h-7" viewBox="0 0 70 88" fill="none" stroke="currentColor" stroke-width="5"><path d="m23,63.5c2.9-1.9,6-3.8,9.5-4.2s7.5,1.2,8.6,4.5c1.5,4.2-2.2,8.4-5.8,11-3.4,2.5-7.1,4.6-11.2,5.6-4.1,1-8.6.7-12.3-1.3-4.3-2.4-6.9-7-7.9-11.8s-.4-9.7.4-14.5C7.4,36,14.5,19.7,26.2,7.3c2.5-2.7,6.1-5.4,9.6-4,3.4,1.4,4.2,5.8,4.1,9.5-.3,11.3-3.3,22.4-8.7,32.3-.7,1.2-1.4,2.5-2.6,3.3s-2.8,1.1-4-.4c-2.2-1.4-1.3-4.9.3-7,3.4-4.8,8.2-8.4,13.8-10.4,3.9-1.4,8.6-1.7,11.7.9,2.4,2.1,3.2,5.5,2.7,8.6s-2.2,5.9-4.1,8.4c-1.4,1.8-3.7,3.6-5.6,2.4-2.2-1.3-1.1-4.7.4-6.8,2.7-4,6.3-8.2,11.1-8.8,5.2-.6,10.1,3.3,11.8,8.2s.7,10.3-1.5,15c-4,8.9-12,15.9-21.4,18.7"/></svg>
-        </a>
-      </div>
+    </section>
+  </main>
+  <footer class="container site-footer">
+    <a href="/" class="wordmark">
+      akine<span class="brand-dot">.</span>
+    </a>
+    <span>© {new Date().getFullYear()} Kojo Akine</span>
+    <div>
+      <a
+        href="https://x.com/akinecool"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        X ↗
+      </a>
+      <a
+        href="https://www.instagram.com/akinex"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Instagram ↗
+      </a>
+      <a href="https://sizu.me/akine" target="_blank" rel="noopener noreferrer">
+        <Text ja="しずかなインターネット" en="sizu.me" /> ↗
+      </a>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-8 px-6 border-t border-slate-200">
-    <div class="max-w-6xl mx-auto text-center text-slate-500 text-sm">
-      <p>© 2026 Kojo Akine. All rights reserved.</p>
-    </div>
+    <a href="#main" class="back-top">
+      <Text ja="上へ" en="Back to top" /> ↑
+    </a>
   </footer>
-
-  <!-- Language Toggle Script -->
-  <script>
-    const langToggle = document.getElementById('lang-toggle');
-    const savedLang = localStorage.getItem('portfolio-lang');
-    let currentLang = savedLang === 'en' ? 'en' : 'ja';
-
-    // 初期表示
-    document.addEventListener('DOMContentLoaded', () => {
-      document.documentElement.lang = currentLang;
-      if (langToggle) {
-        langToggle.textContent = currentLang === 'ja' ? 'English' : '日本語';
-      }
-      document.querySelectorAll('[data-en][data-ja]').forEach(el => {
-        const text = el.getAttribute(`data-${currentLang}`);
-        if (text) {
-          el.textContent = text;
-        }
-      });
-    });
-
-    langToggle?.addEventListener('click', () => {
-      currentLang = currentLang === 'ja' ? 'en' : 'ja';
-      langToggle.textContent = currentLang === 'ja' ? 'English' : '日本語';
-      document.documentElement.lang = currentLang;
-      localStorage.setItem('portfolio-lang', currentLang);
-      
-      document.querySelectorAll('[data-en][data-ja]').forEach(el => {
-        const text = el.getAttribute(`data-${currentLang}`);
-        if (text) {
-          el.textContent = text;
-        }
-      });
-    });
-
-    // Mobile Menu
-    (() => {
-      const menuToggle = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (!menuToggle || !mobileMenu) return;
-
-      const setOpen = (open: boolean) => {
-        menuToggle.setAttribute('aria-expanded', String(open));
-        menuToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-        menuToggle.classList.toggle('menu-open', open);
-        mobileMenu.classList.toggle('mobile-menu-open', open);
-      };
-
-      menuToggle.addEventListener('click', () => {
-        setOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
-      });
-      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') setOpen(false);
-      });
-    })();
-
-    // AI生成動画：見えている間だけ再生（省電力・省帯域）
-    (() => {
-      const videos = document.querySelectorAll<HTMLVideoElement>('.ai-video');
-      if (!videos.length) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        videos.forEach(v => { v.controls = true; });
-        return;
-      }
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const v = entry.target as HTMLVideoElement;
-          if (entry.isIntersecting) {
-            v.play().catch(() => { v.controls = true; });
-          } else {
-            v.pause();
-          }
-        });
-      }, { threshold: 0.35 });
-      videos.forEach(v => observer.observe(v));
-    })();
-
-    // EXILE Gallery Slider
-    (() => {
-      const slides = document.getElementById('exile-slides');
-      const dots = document.querySelectorAll('.exile-dot');
-      const prev = document.getElementById('exile-prev');
-      const next = document.getElementById('exile-next');
-      if (!slides) return;
-      let current = 0;
-      const total = dots.length;
-      
-      const goTo = (i: number) => {
-        current = ((i % total) + total) % total;
-        slides.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach((d, idx) => {
-          (d as HTMLElement).style.opacity = idx === current ? '0.9' : '0.4';
-        });
-      };
-      
-      prev?.addEventListener('click', () => goTo(current - 1));
-      next?.addEventListener('click', () => goTo(current + 1));
-      dots.forEach(d => d.addEventListener('click', () => goTo(Number((d as HTMLElement).dataset.index))));
-      
-      // Touch swipe support
-      let startX = 0;
-      slides.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
-      slides.addEventListener('touchend', (e) => {
-        const diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
-      });
-      
-      // Auto-advance every 5s
-      let timer = setInterval(() => goTo(current + 1), 5000);
-      slides.parentElement?.addEventListener('mouseenter', () => clearInterval(timer));
-      slides.parentElement?.addEventListener('mouseleave', () => { timer = setInterval(() => goTo(current + 1), 5000); });
-    })();
-
-    // 🥚 Easter Egg
-    const avatar = document.getElementById('avatar');
-    const avatarCard = document.getElementById('avatar-card');
-    let clickCount = 0;
-    let clickTimer: ReturnType<typeof setTimeout> | null = null;
-    const messages = [
-      '🎬 Action!', '📹 Rolling!', '✂️ Good cut!', '🎥 Wrap!', '💡',
-      '🎮 GG!', '🐂 アリスター！', '🥋 ジェイミー！', '🦞', '🍻', '💖', '✨',
-      '(´・ω・｀)', '( ˘ω˘ )', '٩( \'ω\' )و', '🦐 エビじゃないよ',
-      'ちゅむ 💕', '(´∀`) ぬるぽ'
-    ];
-
-    // 四方八方からの曲線パターン
-    const getRandomPath = (rect: DOMRect) => {
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const r = rect.width / 2;
-      
-      const patterns = [
-        // 右上へ「ノ」
-        { start: { x: cx + r * 0.5, y: cy }, mid: { x: cx + r + 60, y: cy - 20 }, end: { x: cx + r + 40, y: cy - r - 40 } },
-        // 左上へ逆「ノ」
-        { start: { x: cx - r * 0.5, y: cy }, mid: { x: cx - r - 60, y: cy - 20 }, end: { x: cx - r - 40, y: cy - r - 40 } },
-        // 右下へ
-        { start: { x: cx + r * 0.5, y: cy }, mid: { x: cx + r + 60, y: cy + 20 }, end: { x: cx + r + 50, y: cy + r + 30 } },
-        // 左下へ
-        { start: { x: cx - r * 0.5, y: cy }, mid: { x: cx - r - 60, y: cy + 20 }, end: { x: cx - r - 50, y: cy + r + 30 } },
-        // 真上へ
-        { start: { x: cx, y: cy - r * 0.5 }, mid: { x: cx + 30, y: cy - r - 30 }, end: { x: cx, y: cy - r - 60 } },
-        // 真上へ（逆カーブ）
-        { start: { x: cx, y: cy - r * 0.5 }, mid: { x: cx - 30, y: cy - r - 30 }, end: { x: cx, y: cy - r - 60 } },
-        // 右へ
-        { start: { x: cx + r * 0.5, y: cy }, mid: { x: cx + r + 40, y: cy - 30 }, end: { x: cx + r + 80, y: cy } },
-        // 左へ
-        { start: { x: cx - r * 0.5, y: cy }, mid: { x: cx - r - 40, y: cy - 30 }, end: { x: cx - r - 80, y: cy } },
-      ];
-      
-      return patterns[Math.floor(Math.random() * patterns.length)];
-    };
-
-    const spawnEasterEgg = (forceMsg?: string, targetPos?: {x: number, y: number}) => {
-      const rect = avatar!.getBoundingClientRect();
-      const msg = forceMsg || messages[Math.floor(Math.random() * messages.length)];
-      const path = getRandomPath(rect);
-      
-      // ｶﾞｯの場合はぬるぽの位置に被せる
-      const isGatsu = msg === '⊂彡☆))Д´) ｶﾞｯ';
-      const endPos = targetPos || path.end;
-      
-      const toast = document.createElement('div');
-      toast.textContent = msg;
-      toast.style.cssText = `
-        position: fixed;
-        left: ${path.start.x}px;
-        top: ${path.start.y}px;
-        transform: translate(-50%, -50%) scale(0);
-        background: ${isGatsu ? '#ef4444' : 'white'};
-        color: ${isGatsu ? 'white' : '#334155'};
-        padding: 10px 18px;
-        border-radius: 999px;
-        font-size: 1rem;
-        font-weight: 600;
-        z-index: ${isGatsu ? 41 : 40};
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        border: 2px solid ${isGatsu ? '#dc2626' : '#e2e8f0'};
-        white-space: nowrap;
-        pointer-events: none;
-      `;
-
-      document.body.appendChild(toast);
-      
-      // ぬるぽが出たら自動でｶﾞｯ（少しズラして被せる）
-      if (msg === '(´∀`) ぬるぽ') {
-        const gatsuPos = { x: endPos.x + 15, y: endPos.y - 20 };
-        setTimeout(() => spawnEasterEgg('⊂彡☆))Д´) ｶﾞｯ', gatsuPos), 400);
-      }
-
-      // スッと出て、止まって見せて、ふわっと消える
-      toast.animate([
-        { 
-          left: `${path.start.x}px`, 
-          top: `${path.start.y}px`, 
-          transform: 'translate(-50%, -50%) scale(0.5)', 
-          opacity: 0,
-          offset: 0
-        },
-        { 
-          left: `${endPos.x}px`, 
-          top: `${endPos.y}px`, 
-          transform: 'translate(-50%, -50%) scale(1.05)', 
-          opacity: 1,
-          offset: 0.15
-        },
-        { 
-          left: `${endPos.x}px`, 
-          top: `${endPos.y}px`, 
-          transform: 'translate(-50%, -50%) scale(1)', 
-          opacity: 1,
-          offset: 0.25
-        },
-        { 
-          left: `${endPos.x}px`, 
-          top: `${endPos.y}px`, 
-          transform: 'translate(-50%, -50%) scale(1)', 
-          opacity: 1,
-          offset: 0.75
-        },
-        { 
-          left: `${endPos.x}px`, 
-          top: `${endPos.y - 15}px`, 
-          transform: 'translate(-50%, -50%) scale(0.9)', 
-          opacity: 0,
-          offset: 1
-        }
-      ], {
-        duration: 2500,
-        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-        fill: 'forwards'
-      }).onfinish = () => toast.remove();
-    };
-
-    avatar?.addEventListener('click', () => {
-      clickCount++;
-
-      // 毎クリック：ぷにっと潰れて弾む（スケールのバネに下向きの勢いを足す）
-      if (!prefersReducedMotion) {
-        scV -= 3.6;
-        startAvatarAnimation();
-      }
-
-      if (clickTimer) clearTimeout(clickTimer);
-      clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
-
-      // 5回ごとに発動（5, 10, 15, ...）- 連打OK、同時に複数出る
-      if (clickCount % 5 === 0) {
-        // 少しランダムな遅延で同時感を出す
-        setTimeout(() => spawnEasterEgg(), Math.random() * 100);
-      }
-    });
-
-    // ── アバター物理アニメーション：カーソル追従 + 掴んで引っ張る + 投げる ──
-    let targetPx = 0.5;
-    let targetPy = 0.5;
-    let currentPx = 0.5;
-    let currentPy = 0.5;
-    let ox = 0, oy = 0, oxV = 0, oyV = 0; // 位置オフセット(px)とその速度
-    let sc = 1, scV = 0; // スケールとその速度
-    let wobble = 0;
-    let wobblePhase = 0;
-    let avatarRaf: number | null = null;
-    let isAvatarHovering = false;
-    let isDragging = false;
-    let dragBaseX = 0, dragBaseY = 0;
-    let dragX = 0, dragY = 0;
-    let moveVX = 0, moveVY = 0, lastMoveX = 0, lastMoveY = 0, lastMoveT = 0;
-    let lastFrameTime: number | null = null;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const DRAG_LIMIT = 90; // 引っ張れる最大距離(px)
-    const softClamp = (v: number, limit: number) => limit * Math.tanh(v / limit);
-
-    const runAvatarAnimation = (now: number) => {
-      if (!avatarCard) return;
-      // 60Hzでも120Hzでも同じ速度になるよう経過時間ベース（秒）で積分
-      const dt = Math.min(lastFrameTime === null ? 16.7 : now - lastFrameTime, 50) / 1000;
-      lastFrameTime = now;
-
-      const posEase = 1 - Math.exp(-dt * 11);
-      currentPx += (targetPx - currentPx) * posEase;
-      currentPy += (targetPy - currentPy) * posEase;
-
-      // オフセット：ドラッグ中はしっかり追従、離すと低減衰バネでビヨンと戻る
-      const tx = isDragging ? dragX : isAvatarHovering ? (currentPx - 0.5) * 24 : 0;
-      const ty = isDragging ? dragY : isAvatarHovering ? (currentPy - 0.5) * 24 : 0;
-      const stiff = isDragging ? 380 : 150;
-      const damp = isDragging ? 28 : 9;
-      oxV += (tx - ox) * stiff * dt; oxV *= Math.exp(-damp * dt); ox += oxV * dt;
-      oyV += (ty - oy) * stiff * dt; oyV *= Math.exp(-damp * dt); oy += oyV * dt;
-
-      // スケール：掴むとむにっと大きく、クリックでぷにっと弾む
-      const tSc = isDragging ? 1.12 : isAvatarHovering ? 1.06 : 1;
-      scV += (tSc - sc) * 260 * dt; scV *= Math.exp(-14 * dt); sc += scV * dt;
-      sc = Math.min(Math.max(sc, 0.72), 1.3);
-
-      // 揺れ：動きの速さに応じてうねうね
-      const speed = Math.hypot(oxV, oyV);
-      const drift = Math.abs(targetPx - currentPx) + Math.abs(targetPy - currentPy);
-      const targetWobble = Math.min(drift * 10 + speed * 0.006, 2.5);
-      wobble += (targetWobble - wobble) * (1 - Math.exp(-dt * 6.7));
-      wobblePhase += dt * 11;
-
-      // 傾き：カーソル位置 + 引っ張られている方向 + 揺れの余韻
-      const rx = (currentPy - 0.5) * 14 - oy * 0.28 + Math.sin(wobblePhase) * wobble;
-      const ry = -(currentPx - 0.5) * 14 + ox * 0.28 + Math.cos(wobblePhase * 0.9) * wobble;
-
-      avatarCard.style.setProperty('--rx', `${rx.toFixed(3)}deg`);
-      avatarCard.style.setProperty('--ry', `${ry.toFixed(3)}deg`);
-      avatarCard.style.setProperty('--tx', `${ox.toFixed(2)}px`);
-      avatarCard.style.setProperty('--ty', `${oy.toFixed(2)}px`);
-      avatarCard.style.setProperty('--mx', `${(currentPx * 100).toFixed(2)}%`);
-      avatarCard.style.setProperty('--my', `${(currentPy * 100).toFixed(2)}%`);
-      avatarCard.style.setProperty('--sc', sc.toFixed(4));
-
-      const settled = !isDragging && !isAvatarHovering &&
-        drift < 0.001 && wobble < 0.01 &&
-        Math.abs(sc - 1) < 0.001 && Math.abs(scV) < 0.01 &&
-        Math.hypot(ox, oy) < 0.05 && speed < 0.5;
-      if (!settled) {
-        avatarRaf = requestAnimationFrame(runAvatarAnimation);
-      } else {
-        avatarCard.style.setProperty('--rx', '0deg');
-        avatarCard.style.setProperty('--ry', '0deg');
-        avatarCard.style.setProperty('--tx', '0px');
-        avatarCard.style.setProperty('--ty', '0px');
-        avatarCard.style.setProperty('--sc', '1');
-        avatarRaf = null;
-        lastFrameTime = null;
-      }
-    };
-
-    const startAvatarAnimation = () => {
-      if (prefersReducedMotion) return;
-      if (avatarRaf === null) {
-        lastFrameTime = null;
-        avatarRaf = requestAnimationFrame(runAvatarAnimation);
-      }
-    };
-
-    avatarCard?.addEventListener('pointerenter', (e) => {
-      if (e.pointerType !== 'mouse') return; // タッチはドラッグだけで反応
-      isAvatarHovering = true;
-      startAvatarAnimation();
-    });
-
-    avatarCard?.addEventListener('pointerdown', (e) => {
-      if (prefersReducedMotion || !avatarCard) return;
-      e.preventDefault();
-      isDragging = true;
-      avatarCard.setPointerCapture(e.pointerId);
-      // 現在のオフセットを引き継いで、掴んだ瞬間に跳ねないように
-      dragBaseX = e.clientX - ox;
-      dragBaseY = e.clientY - oy;
-      dragX = ox;
-      dragY = oy;
-      lastMoveX = e.clientX;
-      lastMoveY = e.clientY;
-      lastMoveT = performance.now();
-      moveVX = 0;
-      moveVY = 0;
-      startAvatarAnimation();
-    });
-
-    avatarCard?.addEventListener('pointermove', (e) => {
-      if (!avatarCard) return;
-      const rect = avatarCard.getBoundingClientRect();
-      targetPx = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
-      targetPy = Math.min(Math.max((e.clientY - rect.top) / rect.height, 0), 1);
-
-      if (isDragging) {
-        // ゴムひもみたいに、引っ張るほど重くなる
-        dragX = softClamp((e.clientX - dragBaseX) * 0.85, DRAG_LIMIT);
-        dragY = softClamp((e.clientY - dragBaseY) * 0.85, DRAG_LIMIT);
-        const t = performance.now();
-        const mdt = Math.max(t - lastMoveT, 1);
-        moveVX = moveVX * 0.7 + ((e.clientX - lastMoveX) / mdt) * 1000 * 0.3;
-        moveVY = moveVY * 0.7 + ((e.clientY - lastMoveY) / mdt) * 1000 * 0.3;
-        lastMoveX = e.clientX;
-        lastMoveY = e.clientY;
-        lastMoveT = t;
-      }
-      startAvatarAnimation();
-    });
-
-    const releaseAvatar = () => {
-      if (!isDragging) return;
-      isDragging = false;
-      dragX = 0;
-      dragY = 0;
-      // 投げた勢いをバネに乗せる
-      oxV += softClamp(moveVX * 0.9, 1400);
-      oyV += softClamp(moveVY * 0.9, 1400);
-      // 勢いよく投げたら吹き出しが飛び出す
-      if (Math.hypot(moveVX, moveVY) > 900) {
-        setTimeout(() => spawnEasterEgg(), 80);
-      }
-      startAvatarAnimation();
-    };
-    avatarCard?.addEventListener('pointerup', releaseAvatar);
-    avatarCard?.addEventListener('pointercancel', releaseAvatar);
-
-    avatarCard?.addEventListener('pointerleave', () => {
-      isAvatarHovering = false;
-      targetPx = 0.5;
-      targetPy = 0.5;
-      startAvatarAnimation();
-    });
-
-    // スクロールに合わせてセクションがふわっと現れる
-    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-      const revealEls = document.querySelectorAll('section h2, section h3, section .grid, #faq .space-y-4');
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      revealEls.forEach((el) => {
-        el.classList.add('reveal');
-        revealObserver.observe(el);
-      });
-    }
-  </script>
+  <script src="../scripts/portfolio.ts"></script>
 </Layout>
-<!-- Auto-deploy test 2026-02-01 -->
