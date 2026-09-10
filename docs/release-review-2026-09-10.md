@@ -32,3 +32,7 @@ The release candidate passed:
 - Visual inspection and image decoding, plus no horizontal overflow at 320, 375, 768, 1024, and 1440 pixels in Japanese and English.
 
 Production targets Cloudflare Pages project `akinechan`, branch `main`, at `https://akinechan.com`. The same browser checks are used for post-deployment validation. Only project source and the review documentation are included; the pre-existing local DNS export is excluded from version control and deployment.
+
+## Production-only correction
+
+The first custom-domain verification exposed Cloudflare email obfuscation rewriting mail links, which broke the no-JavaScript contact route. Scoped `email_off` comments now protect the contact section, following [Cloudflare’s documented per-address exclusion](https://developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/#prevent-cloudflare-from-obfuscating-email). The zone’s settings were not changed. The built HTML was checked to ensure these comments survive compilation; the no-JavaScript test is rerun on the custom domain after deployment.

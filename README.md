@@ -25,7 +25,7 @@ The development server runs at `http://localhost:4321`. Browser tests use instal
 - `src/scripts/portfolio.ts`: language preference, mobile navigation, manual gallery, and email copying.
 - `src/styles/global.css`: responsive visual system and reduced-motion behavior.
 
-Work links open the original publications. Contact links open the visitor’s email client; no form submission service or contact analytics is configured. Video studies play only when the visitor uses the controls. Core work and contact content is available without JavaScript. Local storage and clipboard access are optional enhancements.
+Work links open the original publications. Contact links open the visitor’s email client; no form submission service or contact analytics is configured. Video studies play only when the visitor uses the controls. Core work and contact content is available without JavaScript. Local storage and clipboard access are optional enhancements. Keep the `email_off` HTML comments around the contact section: they prevent Cloudflare from rewriting the public mail links into JavaScript-dependent links.
 
 The visual system uses plain CSS. Run `npm run format` to format source files. With the development server running, `npm run generate:og` regenerates the 1200 × 630 social preview from the implemented hero.
 
